@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="sulijin.androidfinalproject.StartActivity"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/activity_tracking"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:background="#13e8ef"
+                android:drawableTop="@drawable/ic_directions_bike_black_36dp"
+                android:paddingTop="4dp"
+                android:text="@string/title_activity_tracking"
+                android:textColor="#1d0471" />
+
+            <Button
+                android:id="@+id/nutrition"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:paddingTop="4dp"
+                android:background="#09f991"
+                android:drawableTop="@drawable/ic_local_dining_black_36dp"
+                android:text="@string/title_activity_nutrition"
+                android:textColor="#1d0471" />
+
+            <Button
+                android:id="@+id/house"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:paddingTop="4dp"
+                android:background="#f965b6"
+                android:drawableTop="@drawable/ic_iso_black_36dp"
+                android:text="@string/title_activity_house"
+                android:textColor="#1d0471" />
+
+
+            <Button
+                android:id="@+id/automobile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:paddingTop="4dp"
+                android:background="#f2ca7a"
+                android:drawableTop="@drawable/ic_directions_car_black_36dp"
+                android:text="@string/title_activity_automobile"
+                android:textColor="#1d0471" />
+
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:src="@drawable/main" />
+
+</LinearLayout>
