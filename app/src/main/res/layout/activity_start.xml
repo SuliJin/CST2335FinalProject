@@ -27,7 +27,7 @@
                 android:drawableTop="@drawable/ic_directions_bike_black_36dp"
                 android:paddingTop="4dp"
                 android:text="@string/title_activity_tracking"
-                android:textColor="#1d0471" />
+                android:textColor="#3d05fa" />
 
             <Button
                 android:id="@+id/nutrition"
@@ -38,7 +38,7 @@
                 android:background="#09f991"
                 android:drawableTop="@drawable/ic_local_dining_black_36dp"
                 android:text="@string/title_activity_nutrition"
-                android:textColor="#1d0471" />
+                android:textColor="#3d05fa" />
 
             <Button
                 android:id="@+id/house"
@@ -46,10 +46,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".25"
                 android:paddingTop="4dp"
-                android:background="#f965b6"
+                android:background="#fa56ec"
                 android:drawableTop="@drawable/ic_iso_black_36dp"
                 android:text="@string/title_activity_house"
-                android:textColor="#1d0471" />
+                android:textColor="#3d05fa" />
 
 
             <Button
@@ -58,10 +58,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".25"
                 android:paddingTop="4dp"
-                android:background="#f2ca7a"
+                android:background="#f4f459"
                 android:drawableTop="@drawable/ic_directions_car_black_36dp"
                 android:text="@string/title_activity_automobile"
-                android:textColor="#1d0471" />
+                android:textColor="#3d05fa" />
 
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
