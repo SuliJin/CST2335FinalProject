@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Magic Quartet</string>
+    <string name="title_activity_nutrition">Food Nutrition</string>
+    <string name="title_activity_automobile">Auto Gasoline</string>
+    <string name="title_activity_house">House Thermostat</string>
+    <string name="title_activity_tracking">Activity Tracking</string>
+</resources>

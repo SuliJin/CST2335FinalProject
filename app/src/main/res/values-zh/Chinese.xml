@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">神奇四件套</string>
+    <string name="title_activity_nutrition">食品营养</string>
+    <string name="title_activity_automobile">汽车燃油</string>
+    <string name="title_activity_house">室温调节</string>
+    <string name="title_activity_tracking">户外活动</string>
+</resources>
