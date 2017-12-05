@@ -1,21 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#83a8ef"
+    android:columnCount="2"
+    android:orientation="horizontal"
+    android:rowCount="2"
     tools:context="zhentingmai.androidfinalproject.AutomobileActivity">
+
+
     <TextView
-        android:id="@+id/toolbar_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@color/colorAccent"
-        android:gravity="center_horizontal"
+        android:id="@+id/textView_title"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
         android:text="@string/title_activity_automobile"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@android:color/holo_blue_bright"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-</android.support.constraint.ConstraintLayout>
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textView_blank"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        />
+
+
+    <Button
+        android:id="@+id/button_history"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:text="Consuming History"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button_summary"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+
+        android:text="Consuming Summary"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:visibility="visible" />
+
+
+    <TextView
+        android:id="@+id/textView_avgPrice"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:text="Last Month Avg Price"
+        android:textStyle="bold"
+        tools:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/textView_avgPriceValue"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:text="00"
+        android:textSize="30sp" />
+
+
+    <TextView
+        android:id="@+id/textView_total"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:text="Last Month Total Cost ($)"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView_totalValue"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:text="00"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textView_litres"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:gravity="bottom"
+        android:text="Litres"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/editText_litresValue"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:gravity="bottom"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textView_price"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:gravity="bottom"
+        android:text="Price ($/L)"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/editText_priceValue"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:gravity="bottom"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textView_kilos"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:gravity="bottom"
+        android:text="Kilometers"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/editText_kilosValue"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:gravity="bottom"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:text="Save"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button_delete"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:elevation="0dp"
+        android:text="Delete"
+        android:textStyle="bold" />
+
+
+</GridLayout>
