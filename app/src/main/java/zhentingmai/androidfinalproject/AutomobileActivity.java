@@ -1,11 +1,13 @@
 package zhentingmai.androidfinalproject;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,11 +26,13 @@ public class AutomobileActivity extends Activity {
     EditText liters;
     EditText price;
     EditText kilo;
+    Button save;
     ArrayList<String> list=new ArrayList<>();
+    ArrayList<String> listLiters=new ArrayList<>();
     AutoDatabaseHelper aHelper;
     SQLiteDatabase db;
     Cursor c;
-    SaveAdapter saveAdapter;
+    //SaveAdapter saveAdapter;
     int requestCode=1;
     int messageIndex;
 
@@ -37,11 +41,47 @@ public class AutomobileActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_automobile);
 
+
         liters=(EditText) findViewById(R.id.editText_litresValue);
         price =(EditText) findViewById(R.id.editText_priceValue);
         kilo = (EditText) findViewById(R.id.editText_kilosValue);
 
-        saveAdapter=new SaveAdapter(this);
+        save = (Button) findViewById(R.id.button_save);
+
+        //carAdapter=new SaveAdapter(this);
+
+
+        aHelper=new AutoDatabaseHelper(this);
+
+
+        save.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                /*ContentValues cValues=new ContentValues();
+
+                String strLiters=liters.getText().toString();
+                listLiters.add(strLiters);
+                cValues.put(AutoDatabaseHelper.KEY_LITERS,strLiters);
+                db.insert(AutoDatabaseHelper.TABLE_NAME, AutoDatabaseHelper.KEY_LITERS,cValues);
+
+                String strPrice=price.getText().toString();
+                cValues.put(AutoDatabaseHelper.KEY_PRICE, strPrice);
+                db.insert(AutoDatabaseHelper.TABLE_NAME, AutoDatabaseHelper.KEY_PRICE,cValues);
+
+                String strKilo=kilo.getText().toString();
+                cValues.put(AutoDatabaseHelper.KEY_KILO,strKilo);
+                db.insert(AutoDatabaseHelper.TABLE_NAME, AutoDatabaseHelper.KEY_ID,cValues);*/
+
+               aHelper.insert("time", "100", "200", "300");
+
+                refreshActivity();
+            }
+        });
+
+        //c=db.rawQuery("select * from " + AutoDatabaseHelper.TABLE_NAME,null);
+        //final Intent intent = new Intent(this, AutoHistoryActivity.class);
+       // int colIndexLiter=c.getColumnIndex(AutoDatabaseHelper.KEY_LITERS);
+        //int colIndexPrice=c.getColumnIndex(AutoDatabaseHelper.KEY_PRICE);
+        //int colIndexKilo=c.getColumnIndex(AutoDatabaseHelper.KEY_KILO);
 
 
 
@@ -65,7 +105,7 @@ public class AutomobileActivity extends Activity {
             }
         });
     }
-    private class SaveAdapter extends ArrayAdapter<String>{
+   /* private class SaveAdapter extends ArrayAdapter<String>{
         public SaveAdapter(Context ctx){super(ctx,0);}
         public int getCount(){return list.size();}
         public String getItem(int position){return list.get(position);}
@@ -88,5 +128,39 @@ public class AutomobileActivity extends Activity {
         }
 
 
+    }*/
+    @Override
+
+    protected void onResume() {
+        super.onResume();
+        Log.i(ACTIVITY_NAME, "In onResume()");
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(ACTIVITY_NAME, "In onStart()");
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i(ACTIVITY_NAME, "In onPause()");
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i(ACTIVITY_NAME, "In onStop()");
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        db.close();
+        //c.close();
+        Log.i(ACTIVITY_NAME, "In onDestroy()");
+    }
+
+    public void refreshActivity(){
+        finish();
+        Intent intent = getIntent();
+        startActivity(intent);
     }
 }
