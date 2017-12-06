@@ -116,6 +116,20 @@ public class AutoHistoryActivity extends Activity {
         aHelper=new AutoDatabaseHelper(this);
         aHelper.openDatabase();
 
+        cursor=aHelper.read();
+        cursor.moveToFirst();
+
+        int colIndexId=cursor.getColumnIndex(AutoDatabaseHelper.KEY_ID);
+        int colIndexPrice=cursor.getColumnIndex(AutoDatabaseHelper.KEY_PRICE);
+        int colIndexLiters=cursor.getColumnIndex(AutoDatabaseHelper.KEY_LITERS);
+        int colIndexKilo=cursor.getColumnIndex(AutoDatabaseHelper.KEY_KILO);
+
+        while(!cursor.isAfterLast()){
+            list.add(new carInfo("4","25","18","18","2222"));
+            list.add(new carInfo(cursor.getString(colIndexId),"25",cursor.getString(colIndexPrice),cursor.getString(colIndexLiters),cursor.getString(colIndexKilo)));
+            cursor.moveToNext();
+        }
+
 //        cursor =db.rawQuery("select "+AutoDatabaseHelper.KEY_LITERS+" from " + AutoDatabaseHelper.TABLE_NAME,null);
 
 //        int colIndexLiter= cursor.getColumnIndex(AutoDatabaseHelper.KEY_LITERS);
@@ -124,7 +138,6 @@ public class AutoHistoryActivity extends Activity {
     }
 
     @Override
-
     protected void onResume() {
         super.onResume();
         Log.i(ACTIVITY_NAME, "In onResume()");

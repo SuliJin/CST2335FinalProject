@@ -30,7 +30,7 @@ public class AutomobileActivity extends Activity {
     ArrayList<String> list=new ArrayList<>();
     ArrayList<String> listLiters=new ArrayList<>();
     AutoDatabaseHelper aHelper;
-    SQLiteDatabase db;
+    //SQLiteDatabase db;
     Cursor c;
     //SaveAdapter saveAdapter;
     int requestCode=1;
@@ -52,27 +52,17 @@ public class AutomobileActivity extends Activity {
 
 
         aHelper=new AutoDatabaseHelper(this);
+        aHelper.openDatabase();
 
 
         save.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                /*ContentValues cValues=new ContentValues();
-
-                String strLiters=liters.getText().toString();
-                listLiters.add(strLiters);
-                cValues.put(AutoDatabaseHelper.KEY_LITERS,strLiters);
-                db.insert(AutoDatabaseHelper.TABLE_NAME, AutoDatabaseHelper.KEY_LITERS,cValues);
-
+                //ContentValues cValues=new ContentValues();
                 String strPrice=price.getText().toString();
-                cValues.put(AutoDatabaseHelper.KEY_PRICE, strPrice);
-                db.insert(AutoDatabaseHelper.TABLE_NAME, AutoDatabaseHelper.KEY_PRICE,cValues);
-
+                String strLiters=liters.getText().toString();
                 String strKilo=kilo.getText().toString();
-                cValues.put(AutoDatabaseHelper.KEY_KILO,strKilo);
-                db.insert(AutoDatabaseHelper.TABLE_NAME, AutoDatabaseHelper.KEY_ID,cValues);*/
 
-               aHelper.insert("time", "100", "200", "300");
-
+              aHelper.insert("19", strPrice, strLiters, strKilo);
                 refreshActivity();
             }
         });
@@ -153,8 +143,6 @@ public class AutomobileActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        db.close();
-        //c.close();
         Log.i(ACTIVITY_NAME, "In onDestroy()");
     }
 
