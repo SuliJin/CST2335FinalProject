@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import sulijin.androidfinalproject.R;
 
@@ -58,11 +59,12 @@ public class AutomobileActivity extends Activity {
         save.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 //ContentValues cValues=new ContentValues();
-                String strPrice=price.getText().toString();
-                String strLiters=liters.getText().toString();
-                String strKilo=kilo.getText().toString();
+                String strTime= Calendar.getInstance().getTime().toString();
+                String strPrice="Price($/L): "+price.getText().toString();
+                String strLiters="Liters: "+liters.getText().toString();
+                String strKilo="Kilometers: "+kilo.getText().toString();
 
-              aHelper.insert("19", strPrice, strLiters, strKilo);
+              aHelper.insert(strTime, strPrice, strLiters, strKilo);
                 refreshActivity();
             }
         });

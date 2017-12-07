@@ -129,10 +129,11 @@ public class AutoHistoryActivity extends Activity {
         int colIndexPrice=cursor.getColumnIndex(AutoDatabaseHelper.KEY_PRICE);
         int colIndexLiters=cursor.getColumnIndex(AutoDatabaseHelper.KEY_LITERS);
         int colIndexKilo=cursor.getColumnIndex(AutoDatabaseHelper.KEY_KILO);
+        int colIndexTime=cursor.getColumnIndex(AutoDatabaseHelper.KEY_TIME);
 
         while(!cursor.isAfterLast()){
             //list.add(new carInfo("4","25","18","18","2222"));
-            list.add(new carInfo(cursor.getString(colIndexId),"25",cursor.getString(colIndexPrice),cursor.getString(colIndexLiters),cursor.getString(colIndexKilo)));
+            list.add(new carInfo(cursor.getString(colIndexId),cursor.getString(colIndexTime),cursor.getString(colIndexPrice),cursor.getString(colIndexLiters),cursor.getString(colIndexKilo)));
             cursor.moveToNext();
         }
 

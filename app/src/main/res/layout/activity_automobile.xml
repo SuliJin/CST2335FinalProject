@@ -52,7 +52,7 @@
         android:layout_width="180dp"
         android:layout_height="50dp"
         android:gravity="center_vertical"
-        android:text="Last Month Avg Price"
+        android:text="@string/auto_avgPrice"
         android:textStyle="bold"
         tools:textSize="14sp" />
 
@@ -70,7 +70,7 @@
         android:layout_width="180dp"
         android:layout_height="50dp"
         android:gravity="center_vertical"
-        android:text="Last Month Total Cost ($)"
+        android:text="@string/auto_totalCost"
         android:textSize="14sp"
         android:textStyle="bold" />
 
@@ -87,7 +87,7 @@
         android:layout_width="180dp"
         android:layout_height="50dp"
         android:gravity="bottom"
-        android:text="Litres"
+        android:text="@string/auto_liters"
         android:textSize="30sp" />
 
     <EditText
@@ -103,7 +103,7 @@
         android:layout_width="180dp"
         android:layout_height="50dp"
         android:gravity="bottom"
-        android:text="Price ($/L)"
+        android:text="@string/auto_price"
         android:textSize="30sp" />
 
     <EditText
@@ -119,7 +119,7 @@
         android:layout_width="180dp"
         android:layout_height="50dp"
         android:gravity="bottom"
-        android:text="Kilometers"
+        android:text="@string/auto_kilo"
         android:textSize="30sp" />
 
     <EditText

@@ -5,4 +5,9 @@
     <string name="title_activity_automobile">汽车燃油</string>
     <string name="title_activity_house">室温调节</string>
     <string name="title_activity_tracking">户外活动</string>
+    <string name="auto_liters">升</string>
+    <string name="auto_price">单价（美元/升）</string>
+    <string name="auto_kilo">公里数</string>
+    <string name="auto_avgPrice">上月均价</string>
+    <string name="auto_totalCost">上月总支出（美元）</string>
 </resources>

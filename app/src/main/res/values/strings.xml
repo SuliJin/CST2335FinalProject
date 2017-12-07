@@ -4,6 +4,11 @@
     <string name="title_activity_automobile">Gasoline</string>
     <string name="title_activity_house">Thermo</string>
     <string name="title_activity_tracking">Activity</string>
+    <string name="auto_liters">Liters</string>
+    <string name="auto_price">Price($/L)</string>
+    <string name="auto_kilo">Kilometers</string>
+    <string name="auto_avgPrice">Last Month Average Price</string>
+    <string name="auto_totalCost">Last Month Total Cost($)</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
