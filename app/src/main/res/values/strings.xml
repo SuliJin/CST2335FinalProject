@@ -34,7 +34,7 @@
     <string name="deleterule">Delete this rule</string>
     <string name="cancel">Cancel</string>
     <string name="saveAsNewRule">Save as new rule</string>
-
+    <string name="add">Add</string>
     <string name="day">day</string>
     <string name="hour">hour</string>
     <string name="minute">minute</string>

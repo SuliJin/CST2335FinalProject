@@ -10,12 +10,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.NumberPicker;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 
@@ -41,10 +38,12 @@ public class trackingHouseActivity extends Activity {
 
         House_DatabaseHelper dbHelper = new House_DatabaseHelper(this);
         tempDB = dbHelper.getWritableDatabase();
+        ListView listview = findViewById(R.id.thermView);
+        listview.setAdapter(new ChatAdapter(this));
 
         //populate activity list
         cursor = tempDB.rawQuery("select * from " + House_DatabaseHelper.TABLE_NAME,null );
-        cursor=dbHelper.read();
+        //cursor=dbHelper.read();
         cursor.moveToFirst();
         while(!cursor.isAfterLast() ) {
             Map<String, Object> row = new HashMap<>();
@@ -59,13 +58,22 @@ public class trackingHouseActivity extends Activity {
             cursor.moveToNext();
         }
 
-        ListView listview = findViewById(R.id.thermView);
-        listview.setAdapter(new ChatAdapter(this));
 
-        final Intent intent = new Intent(this, HouseActivity.class);
-        findViewById(R.id.floatingActionButton).setOnClickListener(new View.OnClickListener() {
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent edit=new Intent(trackingHouseActivity.this,AddHouseActivity.class);
+           startActivity(edit);
+            }
+        });
+
+        final Intent intent = new Intent(this, AddHouseActivity.class);
+        findViewById(R.id.addButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 startActivity(intent);
             }
         });
@@ -105,10 +113,10 @@ public class trackingHouseActivity extends Activity {
 
             return result;
         }
-        public long getItemId(int position){
+      /*  public long getItemId(int position){
             Map<String, Object> content = getItem(position);
             return Long.parseLong(content.get("id").toString());
-        }
+        }*/
     }
 
         @Override

@@ -25,7 +25,7 @@
         <activity
             android:name="sulijin.androidfinalproject.ActivityTrackingActivity"
             android:label="@string/title_activity_tracking"></activity>
-        <activity android:name="xiasheng.androidfinalproject.HouseActivity"/>
+        <activity android:name="xiasheng.androidfinalproject.AddHouseActivity"/>
         <activity android:name="xiasheng.androidfinalproject.trackingHouseActivity"/>
 
     </application>
