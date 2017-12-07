@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.app.Activity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +60,6 @@ public class ActivityTrackingActivity extends Activity {
             }
         });
     }
-
 
     private class ChatAdapter extends ArrayAdapter<Map<String, Object>> {
         public ChatAdapter(Context ctx) {

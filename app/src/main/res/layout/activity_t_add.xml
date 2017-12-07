@@ -35,13 +35,13 @@
         android:text="Time"
         android:textSize="15dp" />
 
-    <EditText
+    <TextView
         android:id="@+id/t_time_value"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/t_type_value"
         android:layout_below="@+id/t_type_value"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="31dp"
         android:inputType="date"
         android:textSize="15dp" />
 
