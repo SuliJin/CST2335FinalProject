@@ -62,8 +62,6 @@ public class trackingHouseActivity extends Activity {
         ListView listview = findViewById(R.id.thermView);
         listview.setAdapter(new ChatAdapter(this));
 
-
-
         final Intent intent = new Intent(this, HouseActivity.class);
         findViewById(R.id.floatingActionButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,7 +112,6 @@ public class trackingHouseActivity extends Activity {
     }
 
         @Override
-
         protected void onResume() {
             super.onResume();
             Log.i(ACTIVITY_NAME, "In onResume()");
