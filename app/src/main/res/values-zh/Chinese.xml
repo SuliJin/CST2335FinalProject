@@ -7,4 +7,11 @@
     <string name="title_activity_tracking">户外活动</string>
     <string name="t_new_activity">添加</string>
     <string name="t_activities">活动列表</string>
+    <string-array name="t_activities">
+        <item>撒鸭子</item>
+        <item>走道</item>
+        <item>骑车子</item>
+        <item>游泳</item>
+        <item>滑出溜</item>
+    </string-array>
 </resources>

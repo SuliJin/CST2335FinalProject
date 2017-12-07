@@ -79,7 +79,16 @@ public class ActivityTrackingActivity extends Activity {
 
         private int getImageId(String type) {
             switch (type) {
-                case "Running": return R.drawable.running;
+                case "Running":
+                case "撒鸭子":  return R.drawable.running;
+                case "Walking":
+                case "走道": return R.drawable.hiking;
+                case "Biking":
+                case "骑车子": return R.drawable.biking;
+                case "Swimming":
+                case "游泳": return R.drawable.swimming;
+                case "Skating":
+                case "滑出溜": return R.drawable.skating;
             }
             return 0;
         }
