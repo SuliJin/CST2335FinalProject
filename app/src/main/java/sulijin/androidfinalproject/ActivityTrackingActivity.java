@@ -1,7 +1,7 @@
 package sulijin.androidfinalproject;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 
 public class ActivityTrackingActivity extends Activity {
 

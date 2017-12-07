@@ -4,4 +4,5 @@
     <string name="title_activity_automobile">Gasoline</string>
     <string name="title_activity_house">Thermo</string>
     <string name="title_activity_tracking">Activity</string>
+    <string name="title_activity_food">Nutrition</string>
 </resources>
