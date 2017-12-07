@@ -14,4 +14,9 @@
         <item>游泳</item>
         <item>滑出溜</item>
     </string-array>
+    <string name="auto_liters">油量（升）</string>
+    <string name="auto_price">单价（美元/升）</string>
+    <string name="auto_kilo">公里数</string>
+    <string name="auto_avgPrice">上月均价</string>
+    <string name="auto_totalCost">上月支出（$）</string>
 </resources>
