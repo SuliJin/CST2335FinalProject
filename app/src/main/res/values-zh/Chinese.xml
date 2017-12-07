@@ -48,7 +48,7 @@
     <string name="deleterule">删除此条目</string>
     <string name="cancel">取消</string>
     <string name="saveAsNewRule">设为新条目</string>
-
+    <string name="add">添加</string>
     <string name="day">日</string>
     <string name="hour">小时</string>
     <string name="minute">分钟</string>

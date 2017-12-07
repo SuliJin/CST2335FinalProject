@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StartActivity">
+        <activity android:name="sulijin.androidfinalproject.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,11 +22,9 @@
         <activity
             android:name="zhentingmai.androidfinalproject.AutomobileActivity"
             android:label="@string/title_activity_automobile" />
+
         <activity
-            android:name="xiasheng.androidfinalproject.HouseActivity"
-            android:label="@string/title_activity_house" />
-        <activity
-            android:name=".ActivityTrackingActivity"
+            android:name="sulijin.androidfinalproject.ActivityTrackingActivity"
             android:label="@string/title_activity_tracking" />
         <activity android:name=".T_AddActivity"
             android:label="@string/t_new_activity"
@@ -39,6 +37,7 @@
         <activity android:name="zhentingmai.androidfinalproject.AutoSummaryActivity" />
         <activity android:name="zhentingmai.androidfinalproject.AutoDetailActivity"></activity>
 
+        <activity android:name="xiasheng.androidfinalproject.AddHouseActivity"/>
         <activity android:name="xiasheng.androidfinalproject.trackingHouseActivity"/>
 
     </application>

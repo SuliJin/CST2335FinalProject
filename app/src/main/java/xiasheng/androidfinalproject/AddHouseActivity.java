@@ -14,7 +14,7 @@ import android.widget.Spinner;
 
 import sulijin.androidfinalproject.R;
 
-public class HouseActivity extends Activity {
+public class AddHouseActivity extends Activity {
 
     private Button button_save;
     private Button button_cancel;

@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import tianjunjin.androidfinalproject.FoodActivity;
 import tianjunjin.androidfinalproject.NutritionActivity;
-import xiasheng.androidfinalproject.HouseActivity;
+import xiasheng.androidfinalproject.AddHouseActivity;
 import xiasheng.androidfinalproject.trackingHouseActivity;
 import zhentingmai.androidfinalproject.AutomobileActivity;
 
@@ -41,7 +41,7 @@ public class StartActivity extends Activity {
         });
 
         Button houseButton = findViewById(R.id.house);
-        final Intent houseIntent = new Intent(this, HouseActivity.class);
+        final Intent houseIntent = new Intent(this, trackingHouseActivity.class);
         houseButton.setOnClickListener(new OnClickListener() {
 
             @Override
