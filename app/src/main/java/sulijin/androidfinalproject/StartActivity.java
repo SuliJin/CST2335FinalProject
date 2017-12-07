@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import tianjunjin.androidfinalproject.NutritionActivity;
 import xiasheng.androidfinalproject.HouseActivity;
+import xiasheng.androidfinalproject.trackingHouseActivity;
 import zhentingmai.androidfinalproject.AutomobileActivity;
 
 public class StartActivity extends Activity {

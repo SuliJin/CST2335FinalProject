@@ -23,11 +23,11 @@
             android:name="zhentingmai.androidfinalproject.AutomobileActivity"
             android:label="@string/title_activity_automobile" />
         <activity
-            android:name="xiasheng.androidfinalproject.HouseActivity"
-            android:label="@string/title_activity_house" />
-        <activity
             android:name="sulijin.androidfinalproject.ActivityTrackingActivity"
             android:label="@string/title_activity_tracking"></activity>
+        <activity android:name="xiasheng.androidfinalproject.HouseActivity"/>
+        <activity android:name="xiasheng.androidfinalproject.trackingHouseActivity"/>
+
     </application>
 
 </manifest>

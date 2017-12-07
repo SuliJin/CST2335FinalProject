@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="xiasheng.androidfinalproject.HouseActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editText1"
+        android:layout_toStartOf="@+id/numberPicker1"
+        android:text="@string/setDayofWeek"
+        android:textAlignment="center"
+        android:id="@+id/textView" />
+
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:entries="@array/weekday"
+        android:layout_toStartOf="@id/numberPicker1"
+        android:layout_centerVertical="true"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:text="@string/setHour"
+        android:textAlignment="center" />
+
+    <NumberPicker
+        android:id="@+id/numberPicker1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:max="24"
+        android:min="1"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/numberPicker2"
+        android:layout_marginBottom="14dp"
+        android:layout_toEndOf="@+id/numberPicker1"
+        android:text="@string/setMinute"
+        android:textAlignment="center"
+        android:id="@+id/textView2" />
+
+    <NumberPicker
+        android:id="@+id/numberPicker2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/numberPicker1"
+        android:max="59"
+        android:min="00" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editText1"
+        android:layout_toEndOf="@+id/textView2"
+        android:text="@string/setTemp"
+        android:textAlignment="center" />
+
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/numberPicker2"
+        android:ems="10"
+        android:inputType="number"
+        android:labelFor="@string/setTemp"/>
+
+    <Button
+        android:id="@+id/savebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="23dp"
+        android:layout_toEndOf="@+id/numberPicker2"
+        android:text="@string/save" />
+
+    <Button
+        android:id="@+id/cancelbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView"
+        android:layout_alignTop="@+id/savebutton"
+        android:layout_marginStart="35dp"
+        android:text="@string/cancel" />
+
+    <Button
+        android:id="@+id/button_delete_fg_h"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/button_saveNewRule_fg_h"
+        android:text="@string/deleterule" />
+
+    <Button
+        android:id="@+id/button_saveNewRule_fg_h"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/editText1"
+        android:layout_marginTop="38dp"
+        android:text="@string/saveAsNewRule" />
+
+
+</RelativeLayout>
