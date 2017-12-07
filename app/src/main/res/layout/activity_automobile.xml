@@ -19,7 +19,7 @@
         android:layout_gravity="bottom"
         android:gravity="bottom"
         android:text="@string/title_activity_automobile"
-        android:textSize="30sp" />
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textView_blank"
@@ -62,7 +62,7 @@
         android:layout_height="50dp"
         android:layout_gravity="bottom"
         android:text="00"
-        android:textSize="30sp" />
+        android:textSize="24sp" />
 
 
     <TextView
@@ -80,7 +80,7 @@
         android:layout_height="50dp"
         android:layout_gravity="bottom"
         android:text="00"
-        android:textSize="30sp" />
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textView_litres"
@@ -88,7 +88,7 @@
         android:layout_height="50dp"
         android:gravity="bottom"
         android:text="@string/auto_liters"
-        android:textSize="30sp" />
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/editText_litresValue"
@@ -96,7 +96,7 @@
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:gravity="bottom"
-        android:textSize="30sp" />
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textView_price"
@@ -104,7 +104,7 @@
         android:layout_height="50dp"
         android:gravity="bottom"
         android:text="@string/auto_price"
-        android:textSize="30sp" />
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/editText_priceValue"
@@ -112,7 +112,7 @@
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:gravity="bottom"
-        android:textSize="30sp" />
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textView_kilos"
@@ -120,7 +120,7 @@
         android:layout_height="50dp"
         android:gravity="bottom"
         android:text="@string/auto_kilo"
-        android:textSize="30sp" />
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/editText_kilosValue"
@@ -128,7 +128,7 @@
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:gravity="bottom"
-        android:textSize="30sp" />
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/button_save"
