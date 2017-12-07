@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -82,6 +83,11 @@ public class AutoHistoryActivity extends Activity {
             return list.get(position);
         }
 
+        public long getItemId(int position){
+            cursor.moveToPosition(position);
+            return cursor.getLong(cursor.getColumnIndex(aHelper.KEY_ID));
+        }
+
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             View view = inflater.inflate(R.layout.auto_record, parent, false);
@@ -108,10 +114,10 @@ public class AutoHistoryActivity extends Activity {
         carAdapter =new CarAdapter(this);
         listView.setAdapter(carAdapter);
 
-       list.add(new carInfo("1","20","200","10","2000"));
+      /* list.add(new carInfo("1","20","200","10","2000"));
         list.add(new carInfo("2","30","150","15","1500"));
        list.add(new carInfo("3","12","122","8","666"));
-        list.add(new carInfo("4","25","18","18","2222"));
+        list.add(new carInfo("4","25","18","18","2222"));*/
 
         aHelper=new AutoDatabaseHelper(this);
         aHelper.openDatabase();
@@ -125,7 +131,7 @@ public class AutoHistoryActivity extends Activity {
         int colIndexKilo=cursor.getColumnIndex(AutoDatabaseHelper.KEY_KILO);
 
         while(!cursor.isAfterLast()){
-            list.add(new carInfo("4","25","18","18","2222"));
+            //list.add(new carInfo("4","25","18","18","2222"));
             list.add(new carInfo(cursor.getString(colIndexId),"25",cursor.getString(colIndexPrice),cursor.getString(colIndexLiters),cursor.getString(colIndexKilo)));
             cursor.moveToNext();
         }
@@ -135,6 +141,33 @@ public class AutoHistoryActivity extends Activity {
 //        int colIndexLiter= cursor.getColumnIndex(AutoDatabaseHelper.KEY_LITERS);
         //int colIndexPrice=c.getColumnIndex(AutoDatabaseHelper.KEY_PRICE);
         //int colIndexKilo=c.getColumnIndex(AutoDatabaseHelper.KEY_KILO);
+        final Intent intent = new Intent(this,AutoDetailActivity.class);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                carInfo carInfo=carAdapter.getItem(position);
+                long idInDb= carAdapter.getItemId(position);
+                Bundle bundle = new Bundle();
+                bundle.putLong("id", idInDb);
+                bundle.putString("time",carInfo.getTime());
+                bundle.putString("price",carInfo.getPrice());
+                bundle.putString("liters",carInfo.getLiters());
+                bundle.putString("kilo",carInfo.getKilo());
+
+                intent.putExtra("bundle",bundle);
+                startActivityForResult(intent,5);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==5 && data != null) {
+            Long id = data.getLongExtra("id", -1);
+            aHelper.delete(id);
+           refreshActivity();
+        }
     }
 
     @Override
@@ -160,14 +193,15 @@ public class AutoHistoryActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        aHelper.closeDatabase();
+        //aHelper.closeDatabase();
         Log.i(ACTIVITY_NAME, "In onDestroy()");
     }
 
-//    public void refreshActivity(){
-//        finish();
-//        Intent intent = getIntent();
-//        startActivity(intent);
-//    }
+   public void refreshActivity(){
+       finish();
+       Intent intent = getIntent();
+       startActivity(intent);
+   }
 }
+
 

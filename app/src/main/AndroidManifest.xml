@@ -29,7 +29,8 @@
             android:name=".ActivityTrackingActivity"
             android:label="@string/title_activity_tracking" />
         <activity android:name="zhentingmai.androidfinalproject.AutoHistoryActivity" />
-        <activity android:name="zhentingmai.androidfinalproject.AutoSummaryActivity"></activity>
+        <activity android:name="zhentingmai.androidfinalproject.AutoSummaryActivity" />
+        <activity android:name="zhentingmai.androidfinalproject.AutoDetailActivity"></activity>
     </application>
 
 </manifest>
