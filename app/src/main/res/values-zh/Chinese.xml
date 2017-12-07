@@ -5,4 +5,6 @@
     <string name="title_activity_automobile">汽车燃油</string>
     <string name="title_activity_house">室温调节</string>
     <string name="title_activity_tracking">户外活动</string>
+    <string name="t_new_activity">添加</string>
+    <string name="t_activities">活动列表</string>
 </resources>
