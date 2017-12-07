@@ -19,4 +19,38 @@
     <string name="auto_kilo">公里数</string>
     <string name="auto_avgPrice">上月均价</string>
     <string name="auto_totalCost">上月支出（$）</string>
+
+    <string name="SUNDAY">星期日</string>
+    <string name="MONDAY">星期一</string>
+    <string name="TUESDAY">星期二</string>
+    <string name="WEDNESDAY">星期三</string>
+    <string name="THURSDAY">星期四</string>
+    <string name="FRIDAY">星期五</string>
+    <string name="SATURDAY">星期六</string>
+
+    <string-array name="weekday">
+        <item>@string/SUNDAY</item>
+        <item>@string/MONDAY</item>
+        <item>@string/TUESDAY</item>
+        <item>@string/WEDNESDAY</item>
+        <item>@string/THURSDAY</item>
+        <item>@string/FRIDAY</item>
+        <item>@string/SATURDAY</item>
+    </string-array>
+
+    <string name="addNew">添加温度条目</string>
+    <string name="delete">删除温度条目</string>
+    <string name="save">保存</string>
+    <string name="setDayofWeek">设置星期几</string>
+    <string name="setTemp">设置温度</string>
+    <string name="setHour">设置小时</string>
+    <string name="setMinute">设置分钟</string>
+    <string name="deleterule">删除此条目</string>
+    <string name="cancel">取消</string>
+    <string name="saveAsNewRule">设为新条目</string>
+
+    <string name="day">日</string>
+    <string name="hour">小时</string>
+    <string name="minute">分钟</string>
+    <string name="temp">温度</string>
 </resources>

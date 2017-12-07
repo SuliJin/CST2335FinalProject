@@ -31,9 +31,14 @@
         <activity android:name=".T_AddActivity"
             android:label="@string/t_new_activity"
             android:screenOrientation="portrait"></activity>
+
         <activity android:name="zhentingmai.androidfinalproject.AutoHistoryActivity" />
         <activity android:name="zhentingmai.androidfinalproject.AutoSummaryActivity" />
         <activity android:name="zhentingmai.androidfinalproject.AutoDetailActivity"></activity>
+
+        <activity android:name="xiasheng.androidfinalproject.HouseActivity"/>
+        <activity android:name="xiasheng.androidfinalproject.trackingHouseActivity"/>
+
     </application>
 
 </manifest>
