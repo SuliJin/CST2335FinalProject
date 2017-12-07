@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import tianjunjin.androidfinalproject.FoodActivity;
 import tianjunjin.androidfinalproject.NutritionActivity;
 import xiasheng.androidfinalproject.HouseActivity;
 import zhentingmai.androidfinalproject.AutomobileActivity;
@@ -29,7 +30,7 @@ public class StartActivity extends Activity {
         });
 
         Button nutritionButton = findViewById(R.id.nutrition);
-        final Intent nutritionIntent = new Intent(this, NutritionActivity.class);
+        final Intent nutritionIntent = new Intent(this,FoodActivity.class);
         nutritionButton.setOnClickListener(new OnClickListener() {
 
             @Override
