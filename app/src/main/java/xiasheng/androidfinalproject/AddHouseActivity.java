@@ -32,7 +32,7 @@ public class AddHouseActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_house_add);
-
+        //this.deleteDatabase("HouseTemperature1");
         day = (Spinner) findViewById(R.id.spinner);
         hour = (NumberPicker) findViewById(R.id.numberPicker1);
         minutes = (NumberPicker) findViewById(R.id.numberPicker2);

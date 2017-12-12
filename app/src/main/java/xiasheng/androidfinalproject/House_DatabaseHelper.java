@@ -22,7 +22,7 @@ public class House_DatabaseHelper extends SQLiteOpenHelper {
     protected final static String DAY= "weekday";
     protected final static String HOUR = "hour";
     protected final static String MINUTE= "minutes";
-    protected final static String Temperature = "House Temperature";
+    protected final static String Temperature = "HouseTemperature";
 
     protected SQLiteDatabase database;
     protected static final String ACTIVITY_NAME = "AutoDatabaseHelper";
@@ -34,7 +34,11 @@ public class House_DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        db.execSQL("CREATE TABLE " +TABLE_NAME+"(_id INTEGER PRIMARY KEY AUTOINCREMENT, DAY text, HOUR text, MINUTE text, Temperature text );");
+        db.execSQL("CREATE TABLE " +TABLE_NAME+"(_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                                 DAY + " text, " +
+                                                 HOUR + " text, " +
+                                                 MINUTE + " text, " +
+                                                 Temperature + " text );");
         Log.i(ACTIVITY_NAME, "Table " + TABLE_NAME + " is created.");
     }
 
