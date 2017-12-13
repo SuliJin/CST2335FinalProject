@@ -101,14 +101,8 @@ public class trackingHouseActivity extends Activity {
             View result = inflater.inflate(R.layout.activity_track_temperature, parent, false);
             if (!userList.isEmpty()) {
                 Map<String, Object> content = getItem(position);
-                TextView message1 = (TextView) result.findViewById(R.id.dayrecord);
-                TextView message2 = (TextView) result.findViewById(R.id.hourRecord);
-                TextView message3 = (TextView) result.findViewById(R.id.minRecord);
-                TextView message4 = (TextView) result.findViewById(R.id.tempRecord);
+                TextView message1 = (TextView) result.findViewById(R.id.record);
                 message1.setText(content.get("description").toString());
-                message2.setText(content.get("description").toString());
-                message3.setText(content.get("description").toString());
-                message4.setText(content.get("description").toString());
           }
 
             return result;
