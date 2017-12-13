@@ -7,82 +7,10 @@
     tools:context="sulijin.androidfinalproject.T_AddActivity">
 
 
-    <TextView
-        android:id="@+id/t_type_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/t_type_value"
-        android:layout_marginStart="15dp"
-        android:textSize="15dp"
-        android:text="Type" />
-
-    <Spinner
-        android:id="@+id/t_type_value"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/t_new_activity"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="64dp"
-        android:textSize="15dp" />
-
-    <TextView
-        android:id="@+id/t_time_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/t_duration_label"
-        android:layout_alignStart="@+id/t_type_label"
-        android:text="Time"
-        android:textSize="15dp" />
-
-    <TextView
-        android:id="@+id/t_time_value"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/t_type_value"
-        android:layout_below="@+id/t_type_value"
-        android:layout_marginTop="31dp"
-        android:inputType="date"
-        android:textSize="15dp" />
-
-    <TextView
-        android:id="@+id/t_duration_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/t_time_label"
-        android:layout_below="@+id/t_time_value"
-        android:layout_marginTop="31dp"
-        android:textSize="15dp"
-        android:text="Duration" />
-
-    <EditText
-        android:id="@+id/t_duration_value"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/t_duration_label"
-        android:layout_alignStart="@+id/t_time_value"
-        android:inputType="number"
-        android:textSize="15dp" />
-
-    <TextView
-        android:id="@+id/t_comment_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/t_duration_value"
-        android:layout_alignStart="@+id/t_duration_label"
-        android:layout_marginTop="31dp"
-        android:layout_toStartOf="@+id/t_duration_value"
-        android:textSize="15dp"
-        android:text="Comment" />
-
-    <EditText
-        android:id="@+id/t_comment_value"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/t_comment_label"
-        android:layout_toEndOf="@+id/t_comment_label"
-        android:inputType="textMultiLine"
-        android:textSize="15dp" />
+    <fragment android:name="sulijin.androidfinalproject.ActivityTrackingEditFragment"
+        android:id="@+id/t_add_activity_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <Button
         android:id="@+id/t_new_activity"
