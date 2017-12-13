@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.support.design.widget.Snackbar;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -57,7 +57,10 @@ public class T_AddActivity extends Activity {
                 });
                 builder1.setNegativeButton(R.string.t_cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        Snackbar snackbar = Snackbar
+                                .make(findViewById(R.id.t_add_activity_layout), R.string.t_stay, Snackbar.LENGTH_LONG);
 
+                        snackbar.show();
                     }
                 });
                 // Create the AlertDialog
