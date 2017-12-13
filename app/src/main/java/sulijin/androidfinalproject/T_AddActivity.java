@@ -2,9 +2,11 @@ package sulijin.androidfinalproject;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.app.AlertDialog;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -42,11 +44,27 @@ public class T_AddActivity extends Activity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(T_AddActivity.this);
+                builder1.setTitle("Do you want to go back?");
+                // Add the buttons
+                builder1.setPositiveButton(R.string.t_ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Toast toast = Toast.makeText(T_AddActivity.this, R.string.cancel, Toast.LENGTH_SHORT);
+                        toast.show();
+                        finish();
+                        startActivity(startIntent);
+                    }
+                });
+                builder1.setNegativeButton(R.string.t_cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
 
-                Toast toast = Toast.makeText(T_AddActivity.this, R.string.cancel, Toast.LENGTH_SHORT);
-                toast.show();
-                finish();
-                startActivity(startIntent);
+                    }
+                });
+                // Create the AlertDialog
+                AlertDialog dialog1 = builder1.create();
+
+                dialog1.show();
+
             }
         });
 
