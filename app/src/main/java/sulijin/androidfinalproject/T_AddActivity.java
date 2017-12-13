@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -41,6 +42,9 @@ public class T_AddActivity extends Activity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Toast toast = Toast.makeText(T_AddActivity.this, R.string.cancel, Toast.LENGTH_SHORT);
+                toast.show();
                 finish();
                 startActivity(startIntent);
             }
