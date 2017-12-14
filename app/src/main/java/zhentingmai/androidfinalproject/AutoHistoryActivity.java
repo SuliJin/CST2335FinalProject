@@ -1,11 +1,15 @@
 package zhentingmai.androidfinalproject;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.os.SystemClock;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -33,6 +38,9 @@ public class AutoHistoryActivity extends Activity {
     AutoDatabaseHelper aHelper;
     Cursor cursor;
     CarAdapter carAdapter;
+    private ProgressBar progressBar;
+
+
 
     class carInfo{
         private String id;
@@ -95,14 +103,16 @@ public class AutoHistoryActivity extends Activity {
             price =(TextView) view.findViewById(R.id.textView_priceRecord);
             kilo = (TextView) view.findViewById(R.id.textView_kiloRecord);
             time = (TextView) view.findViewById(R.id.textView_timeRecord);
-            liters.setText(getItem(position).getLiters());
-            price.setText(getItem(position).getPrice());
-            kilo.setText(getItem(position).getKilo());
+            liters.setText("Liters: "+getItem(position).getLiters());
+            price.setText("Price($/L): "+getItem(position).getPrice());
+            kilo.setText("Kilometers: "+getItem(position).getKilo());
             time.setText(getItem(position).getTime());
 
             return view;
         }
     }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,16 +120,22 @@ public class AutoHistoryActivity extends Activity {
         setContentView(R.layout.activity_auto_history);
 
         listView=(ListView)findViewById(R.id.listView_history);
+        progressBar=(ProgressBar) findViewById(R.id.auto_progressBar);
 
         carAdapter =new CarAdapter(this);
         listView.setAdapter(carAdapter);
+
+        aHelper = new AutoDatabaseHelper(this);
+        aHelper.openDatabase();
 
       /* list.add(new carInfo("1","20","200","10","2000"));
         list.add(new carInfo("2","30","150","15","1500"));
        list.add(new carInfo("3","12","122","8","666"));
         list.add(new carInfo("4","25","18","18","2222"));*/
+       DatabaseQuery query=new DatabaseQuery();
+        query.execute();
 
-        aHelper=new AutoDatabaseHelper(this);
+       /* aHelper=new AutoDatabaseHelper(this);
         aHelper.openDatabase();
 
         cursor=aHelper.read();
@@ -132,10 +148,11 @@ public class AutoHistoryActivity extends Activity {
         int colIndexTime=cursor.getColumnIndex(AutoDatabaseHelper.KEY_TIME);
 
         while(!cursor.isAfterLast()){
-            //list.add(new carInfo("4","25","18","18","2222"));
             list.add(new carInfo(cursor.getString(colIndexId),cursor.getString(colIndexTime),cursor.getString(colIndexPrice),cursor.getString(colIndexLiters),cursor.getString(colIndexKilo)));
             cursor.moveToNext();
         }
+*/
+
 
 //        cursor =db.rawQuery("select "+AutoDatabaseHelper.KEY_LITERS+" from " + AutoDatabaseHelper.TABLE_NAME,null);
 
@@ -166,10 +183,75 @@ public class AutoHistoryActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode==5 && data != null) {
             Long id = data.getLongExtra("id", -1);
+            /*AlertDialog.Builder builder=new AlertDialog.Builder(this);
+            builder.setTitle("doyou");
+            builder.setPositiveButton("ok", new DialogInterface.OnClickListener(){
+                @Override
+                public void onClick(DialogInterface dialog, int id) {
+                    finish();
+                }
+            });
+            builder.setNegativeButton("no", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();*/
+
             aHelper.delete(id);
            refreshActivity();
         }
     }
+
+     public class DatabaseQuery extends AsyncTask<carInfo,Integer,String> {
+
+
+         protected void onProgressUpdate(Integer ...value){
+             Log.i(ACTIVITY_NAME, "in onProgressUpdate");
+             progressBar.setVisibility(View.VISIBLE);
+             progressBar.setProgress(value[0]);
+         }
+
+         @Override
+         protected String doInBackground(carInfo... carInfos) {
+            try {
+
+
+                cursor = aHelper.read();
+                cursor.moveToFirst();
+
+                int colIndexId = cursor.getColumnIndex(AutoDatabaseHelper.KEY_ID);
+                int colIndexPrice = cursor.getColumnIndex(AutoDatabaseHelper.KEY_PRICE);
+                int colIndexLiters = cursor.getColumnIndex(AutoDatabaseHelper.KEY_LITERS);
+                int colIndexKilo = cursor.getColumnIndex(AutoDatabaseHelper.KEY_KILO);
+                int colIndexTime = cursor.getColumnIndex(AutoDatabaseHelper.KEY_TIME);
+
+                while (!cursor.isAfterLast()) {
+                    list.add(new carInfo(cursor.getString(colIndexId), cursor.getString(colIndexTime), cursor.getString(colIndexPrice), cursor.getString(colIndexLiters), cursor.getString(colIndexKilo)));
+                    cursor.moveToNext();
+                }
+                SystemClock.sleep(400);
+                publishProgress(25);
+                SystemClock.sleep(400);
+                publishProgress(50);
+                SystemClock.sleep(400);
+                publishProgress(75);
+                SystemClock.sleep(400);
+                publishProgress(100);
+            }catch(Exception e){
+                 e.printStackTrace();
+                }
+             return null;
+         }
+
+         @Override
+         protected void onPostExecute(String result){
+             Log.i(ACTIVITY_NAME, "In onPostExecute");
+             carAdapter.notifyDataSetChanged();
+             progressBar.setVisibility(View.INVISIBLE);
+         }
+     }
 
     @Override
     protected void onResume() {
@@ -200,8 +282,8 @@ public class AutoHistoryActivity extends Activity {
 
    public void refreshActivity(){
        finish();
-       Intent intent = getIntent();
-       startActivity(intent);
+       Intent intentRef = getIntent();
+       startActivity(intentRef);
    }
 }
 

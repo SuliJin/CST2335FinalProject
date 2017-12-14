@@ -2,11 +2,14 @@ package zhentingmai.androidfinalproject;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +18,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -42,15 +48,13 @@ public class AutomobileActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_automobile);
 
-
         liters=(EditText) findViewById(R.id.editText_litresValue);
         price =(EditText) findViewById(R.id.editText_priceValue);
         kilo = (EditText) findViewById(R.id.editText_kilosValue);
 
-        save = (Button) findViewById(R.id.button_save);
+        save = (Button) findViewById(R.id.autoBt_save);
 
         //carAdapter=new SaveAdapter(this);
-
 
         aHelper=new AutoDatabaseHelper(this);
         aHelper.openDatabase();
@@ -59,22 +63,17 @@ public class AutomobileActivity extends Activity {
         save.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 //ContentValues cValues=new ContentValues();
-                String strTime= Calendar.getInstance().getTime().toString();
-                String strPrice="Price($/L): "+price.getText().toString();
-                String strLiters="Liters: "+liters.getText().toString();
-                String strKilo="Kilometers: "+kilo.getText().toString();
+                String strTime= new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+                String strPrice=price.getText().toString();
+                String strLiters=liters.getText().toString();
+                String strKilo=kilo.getText().toString();
 
               aHelper.insert(strTime, strPrice, strLiters, strKilo);
-                refreshActivity();
+              Toast t = Toast.makeText(getApplicationContext(), "Information saved successfully", Toast.LENGTH_LONG);
+              t.show();
+              refreshActivity();
             }
         });
-
-        //c=db.rawQuery("select * from " + AutoDatabaseHelper.TABLE_NAME,null);
-        //final Intent intent = new Intent(this, AutoHistoryActivity.class);
-       // int colIndexLiter=c.getColumnIndex(AutoDatabaseHelper.KEY_LITERS);
-        //int colIndexPrice=c.getColumnIndex(AutoDatabaseHelper.KEY_PRICE);
-        //int colIndexKilo=c.getColumnIndex(AutoDatabaseHelper.KEY_KILO);
-
 
 
         Button historyButton = findViewById(R.id.button_history);
@@ -87,13 +86,42 @@ public class AutomobileActivity extends Activity {
             }
         });
 
-        Button summaryButton = findViewById(R.id.button_summary);
+
+        final Button summaryButton = findViewById(R.id.button_summary);
         final Intent summaryIntent = new Intent(this, AutoSummaryActivity.class);
         summaryButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
                 startActivity(summaryIntent);
+            }
+        });
+
+        final Button cancelButton = findViewById(R.id.autoBt_delete);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(final View view) {
+
+            AlertDialog.Builder builder=new AlertDialog.Builder(AutomobileActivity.this);
+                   builder.setTitle("Do you want to clear the entry");
+                   builder.setPositiveButton("yes", new DialogInterface.OnClickListener(){
+                @Override
+                public void onClick(DialogInterface dialog, int id) {
+                    refreshActivity();
+                }
+            });
+            builder.setNegativeButton("no", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int id) {
+                    Snackbar.make(view, "Please continue to entry", Snackbar.LENGTH_LONG).show();
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+                //Snackbar.make(view, "You have cancel the entry", Snackbar.LENGTH_LONG).show();
+
             }
         });
     }

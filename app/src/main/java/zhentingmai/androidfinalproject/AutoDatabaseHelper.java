@@ -88,7 +88,7 @@ public class AutoDatabaseHelper extends SQLiteOpenHelper {
         database.execSQL("DELETE FROM " + TABLE_NAME + " WHERE " + KEY_ID + " = " + id);
     }
 
-    public void update(String id, String time, String price, String liters, String kilo) {
+    public void update(Long id, String time, String price, String liters, String kilo) {
         ContentValues values = new ContentValues();
         values.put(KEY_TIME, time);
         values.put(KEY_PRICE, price);

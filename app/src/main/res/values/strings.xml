@@ -11,11 +11,6 @@
     <string name="t_cancel">Cancel</string>
     <string name="t_save">Save</string>
     <string name="t_stay">Stay in the page</string>
-
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string-array name="t_activities">
         <item>Running</item>
         <item>Walking</item>
@@ -30,6 +25,9 @@
     <string name="auto_totalCost">Last Month Total Cost($)</string>
 
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_automobile2">Automobile2Activity</string>
+    <string name="title_activity_a">AActivity</string>
 
     <string name="title_activity_food">Nutrition</string>
 
