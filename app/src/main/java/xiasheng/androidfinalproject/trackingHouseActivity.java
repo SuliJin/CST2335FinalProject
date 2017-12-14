@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
@@ -28,18 +31,24 @@ public class trackingHouseActivity extends Activity {
     private SQLiteDatabase tempDB;
     private ArrayList<Map> userList = new ArrayList();
     private Cursor cursor;
-
-
+    private ProgressBar progressBar;
+    private ChatAdapter therAdapter;
+    private House_DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_house);
 
-        House_DatabaseHelper dbHelper = new House_DatabaseHelper(this);
+        dbHelper = new House_DatabaseHelper(this);
         tempDB = dbHelper.getWritableDatabase();
         ListView listview = findViewById(R.id.thermView);
-        listview.setAdapter(new ChatAdapter(this));
+        therAdapter=new ChatAdapter(this);
+        listview.setAdapter(therAdapter);
+        progressBar=(ProgressBar) findViewById(R.id.progressBar);
+
+        //DatabaseQuery query=new DatabaseQuery();
+        //query.execute();
 
         //populate activity list
         cursor = tempDB.rawQuery("select * from " + House_DatabaseHelper.TABLE_NAME,null );
@@ -58,8 +67,6 @@ public class trackingHouseActivity extends Activity {
             cursor.moveToNext();
         }
 
-
-
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -72,13 +79,10 @@ public class trackingHouseActivity extends Activity {
         findViewById(R.id.addButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                startActivity(intent);
+           startActivity(intent);
             }
         });
     }
-
 
     private class ChatAdapter extends ArrayAdapter<Map<String, Object>> {
         public ChatAdapter(Context ctx) {
@@ -107,11 +111,13 @@ public class trackingHouseActivity extends Activity {
 
             return result;
         }
+    }
       /*  public long getItemId(int position){
             Map<String, Object> content = getItem(position);
             return Long.parseLong(content.get("id").toString());
         }*/
-    }
+
+
 
         @Override
         protected void onResume() {

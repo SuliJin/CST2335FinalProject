@@ -12,4 +12,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />
 
+    <ProgressBar
+
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/record"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="420dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
 </LinearLayout>

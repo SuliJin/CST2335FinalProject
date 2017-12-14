@@ -62,4 +62,6 @@
     <string name="hour">hour</string>
     <string name="minute">minute</string>
     <string name="temp">Temperature</string>
+    <string name="title_activity_toolbar">Toolbar</string>
+    <string name="about">about</string>
 </resources>
