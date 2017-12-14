@@ -49,11 +49,20 @@
         android:layout_marginTop="19dp"
         android:text="@string/setTemp" />
 
+
     <Button
-        android:id="@+id/deleteButton"
+        android:id="@+id/button_delete_fg_h"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:text="@string/delete" />
+        android:text="@string/deleterule" />
+
+    <Button
+        android:id="@+id/button_saveNewRule_fg_h"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="@string/saveAsNewRule" />
 </RelativeLayout>
