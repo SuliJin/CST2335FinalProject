@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp">
+    <TextView
+        android:id="@+id/fragmentId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="19dp"
+        android:text="@string/ID" />
+
+    <TextView
+        android:id="@+id/fragmentWeek"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/fragmentId"
+        android:layout_marginTop="20dp"
+        android:text="@string/setDayofWeek" />
+
+    <TextView
+        android:id="@+id/fragmentHour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/fragmentWeek"
+        android:layout_marginTop="19dp"
+        android:text="@string/setHour" />
+
+    <TextView
+        android:id="@+id/fragmentMinute"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/fragmentHour"
+        android:layout_marginTop="19dp"
+        android:text="@string/setMinute" />
+
+    <TextView
+        android:id="@+id/fragmentTemp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/fragmentMinute"
+        android:layout_marginTop="19dp"
+        android:text="@string/setTemp" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:text="@string/delete" />
+</RelativeLayout>

@@ -40,15 +40,26 @@ public class trackingHouseActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_house);
 
-        dbHelper = new House_DatabaseHelper(this);
-        tempDB = dbHelper.getWritableDatabase();
-        ListView listview = findViewById(R.id.thermView);
-        therAdapter=new ChatAdapter(this);
-        listview.setAdapter(therAdapter);
+
         progressBar=(ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
 
         //DatabaseQuery query=new DatabaseQuery();
         //query.execute();
+
+        TrackingAsync init = new TrackingAsync();
+        init.execute();
+    }
+
+    class TrackingAsync extends AsyncTask<String, Integer, String>{
+        @Override
+        protected String doInBackground(String... strings) {
+            SystemClock.sleep(100);
+            progressBar.setProgress(10);
+            dbHelper = new House_DatabaseHelper(trackingHouseActivity.this);
+            tempDB = dbHelper.getWritableDatabase();
+            SystemClock.sleep(200);
+            progressBar.setProgress(30);
 
         //populate activity list
         cursor = tempDB.rawQuery("select * from " + House_DatabaseHelper.TABLE_NAME,null );
@@ -66,23 +77,46 @@ public class trackingHouseActivity extends Activity {
             userList.add(row);
             cursor.moveToNext();
         }
+            SystemClock.sleep(500);
+            progressBar.setProgress(80);
 
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent edit=new Intent(trackingHouseActivity.this,AddHouseActivity.class);
-           startActivity(edit);
-            }
-        });
+            final Intent intent = new Intent(trackingHouseActivity.this, AddHouseActivity.class);
+            findViewById(R.id.addButton).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(intent);
+                }
+            });
+            SystemClock.sleep(200);
+            progressBar.setProgress(100);
+            return null;
+        }
 
-        final Intent intent = new Intent(this, AddHouseActivity.class);
-        findViewById(R.id.addButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-           startActivity(intent);
-            }
-        });
+        protected void onProgressUpdate(Integer ...values){
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            progressBar.setVisibility(View.INVISIBLE );
+            ListView listview = findViewById(R.id.thermView);
+            therAdapter=new ChatAdapter(trackingHouseActivity.this);
+            listview.setAdapter(therAdapter);
+
+            listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Intent edit=new Intent(trackingHouseActivity.this,HouseDetailActivity.class);
+                    startActivity(edit);
+                }
+            });
+        }
     }
+    private void init() {
+
+    }
+
+
 
     private class ChatAdapter extends ArrayAdapter<Map<String, Object>> {
         public ChatAdapter(Context ctx) {
@@ -90,12 +124,10 @@ public class trackingHouseActivity extends Activity {
         }
 
         public int getCount() {
-
             return userList.size();
         }
 
         public Map<String, Object> getItem(int position) {
-
             return userList.get(position);
         }
 
