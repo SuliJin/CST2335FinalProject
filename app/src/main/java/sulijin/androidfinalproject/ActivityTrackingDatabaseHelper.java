@@ -10,7 +10,7 @@ import android.util.Log;
  * Created by Suli Jin on 10/11/2017.
  */
 
-public class T_DatabaseHelper extends SQLiteOpenHelper {
+public class ActivityTrackingDatabaseHelper extends SQLiteOpenHelper {
     public final static String LOGGER_NAME = "ChatDatabaseHelper";
     public final static String DATABASE_NAME = "T_Activity_DB";
     public final static String TABLE_NAME = "T_Activity_Table";
@@ -21,7 +21,7 @@ public class T_DatabaseHelper extends SQLiteOpenHelper {
     public final static String DURATION = "duration";
     public final static String COMMENT = "comment";
 
-    public T_DatabaseHelper(Context ctx) {
+    public ActivityTrackingDatabaseHelper(Context ctx) {
         super(ctx, DATABASE_NAME, null, VERSION_NUM);
     }
 

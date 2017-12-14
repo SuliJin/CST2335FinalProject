@@ -27,7 +27,7 @@
             android:name="sulijin.androidfinalproject.ActivityTrackingActivity"
             android:label="@string/title_activity_tracking" />
         <activity
-            android:name="sulijin.androidfinalproject.T_AddActivity"
+            android:name="sulijin.androidfinalproject.ActivityTrackingAddActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:label="@string/t_new_activity"
             android:screenOrientation="portrait" />

@@ -1,17 +1,22 @@
 package sulijin.androidfinalproject;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -23,42 +28,79 @@ public class ActivityTrackingActivity extends Activity {
     private SQLiteDatabase writeableDB;
     private ArrayList<Map> activityList = new ArrayList();
     private Cursor cursor;
+    private ProgressBar progressBar;
+    private ObjectAnimator animation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tracking);
+        progressBar = (ProgressBar) findViewById(R.id.t_progressBar);
+        progressBar.setVisibility(View.VISIBLE);
+//        progressBar.setMax(100);
+//        animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 100);
+//        animation.setDuration(3000); // 3 second
+//        animation.setInterpolator(new DecelerateInterpolator());
+//        animation.start();
 
-        T_DatabaseHelper dbHelper = new T_DatabaseHelper(this);
-        writeableDB = dbHelper.getWritableDatabase();
+        InitActivityTracking init = new InitActivityTracking();
+        init.execute();
+    }
 
-        //populate activity list
-        cursor = writeableDB.rawQuery("select * from " + T_DatabaseHelper.TABLE_NAME,null );
-        cursor.moveToFirst();
-        while(!cursor.isAfterLast() ) {
-            Map<String, Object> row = new HashMap<>();
-            row.put("id", cursor.getString(cursor.getColumnIndex(T_DatabaseHelper.ID)));
-            String type = cursor.getString(cursor.getColumnIndex(T_DatabaseHelper.TYPE));
-            String time = cursor.getString(cursor.getColumnIndex(T_DatabaseHelper.TIME));
-            String duration = cursor.getString(cursor.getColumnIndex(T_DatabaseHelper.DURATION));
-            String comment = cursor.getString(cursor.getColumnIndex(T_DatabaseHelper.COMMENT));
-            row.put("type", type);
-            row.put("description", "start at " + time +", " + type + " for " + duration + " minutes. Note: " + comment);
+    class InitActivityTracking extends AsyncTask<String, Integer, String> {
 
-            activityList.add(row);
-            cursor.moveToNext();
+        @Override
+        protected String doInBackground(String... strings) {
+            SystemClock.sleep(100);
+            progressBar.setProgress(10);
+            ActivityTrackingDatabaseHelper dbHelper = new ActivityTrackingDatabaseHelper(ActivityTrackingActivity.this);
+            writeableDB = dbHelper.getWritableDatabase();
+            SystemClock.sleep(200);
+            progressBar.setProgress(30);
+            //populate activity list
+            cursor = writeableDB.rawQuery("select * from " + ActivityTrackingDatabaseHelper.TABLE_NAME,null );
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast() ) {
+                Map<String, Object> row = new HashMap<>();
+                row.put("id", cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.ID)));
+                String type = cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.TYPE));
+                String time = cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.TIME));
+                String duration = cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.DURATION));
+                String comment = cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.COMMENT));
+                row.put("type", type);
+                row.put("description", "start at " + time +", " + type + " for " + duration + " minutes. Note: " + comment);
+
+                activityList.add(row);
+                cursor.moveToNext();
+            }
+            SystemClock.sleep(500);
+            progressBar.setProgress(80);
+            final Intent intent = new Intent(ActivityTrackingActivity.this, ActivityTrackingAddActivity.class);
+            findViewById(R.id.newActivity).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(intent);
+                }
+            });
+            SystemClock.sleep(200);
+            progressBar.setProgress(100);
+            return null;
         }
 
-        ListView listview = findViewById(R.id.t_activitListView);
-        listview.setAdapter(new ChatAdapter(this));
+        protected void onProgressUpdate(Integer ...values){
+            super.onProgressUpdate(values);
+//            progressBar.setProgress(values[0]);
+        }
 
-        final Intent intent = new Intent(this, T_AddActivity.class);
-        findViewById(R.id.newActivity).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(intent);
-            }
-        });
+        @Override
+        protected void onPostExecute(String result) {
+            progressBar.setVisibility(View.INVISIBLE );
+            ListView listview = findViewById(R.id.t_activitListView);
+            listview.setAdapter(new ChatAdapter(ActivityTrackingActivity.this));
+        }
+    }
+    private void init() {
+
     }
 
     private class ChatAdapter extends ArrayAdapter<Map<String, Object>> {

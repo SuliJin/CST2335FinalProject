@@ -18,7 +18,7 @@ import android.support.design.widget.Snackbar;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class T_AddActivity extends Activity {
+public class ActivityTrackingAddActivity extends Activity {
     private SQLiteDatabase writeableDB;
 
     @Override
@@ -26,7 +26,7 @@ public class T_AddActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_t_add);
 
-        T_DatabaseHelper dbHelper = new T_DatabaseHelper(this);
+        ActivityTrackingDatabaseHelper dbHelper = new ActivityTrackingDatabaseHelper(this);
         writeableDB = dbHelper.getWritableDatabase();
 
         Spinner spinner = findViewById(R.id.t_type_value);
@@ -44,12 +44,12 @@ public class T_AddActivity extends Activity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder1 = new AlertDialog.Builder(T_AddActivity.this);
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(ActivityTrackingAddActivity.this);
                 builder1.setTitle("Do you want to go back?");
                 // Add the buttons
                 builder1.setPositiveButton(R.string.t_ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Toast toast = Toast.makeText(T_AddActivity.this, R.string.cancel, Toast.LENGTH_SHORT);
+                        Toast toast = Toast.makeText(ActivityTrackingAddActivity.this, R.string.cancel, Toast.LENGTH_SHORT);
                         toast.show();
                         finish();
                         startActivity(startIntent);
@@ -81,11 +81,11 @@ public class T_AddActivity extends Activity {
                 String comment = ((EditText)findViewById(R.id.t_comment_value)).getText().toString();
 
                 ContentValues newData = new ContentValues();
-                newData.put(T_DatabaseHelper.TYPE, type);
-                newData.put(T_DatabaseHelper.TIME, time);
-                newData.put(T_DatabaseHelper.DURATION, duration);
-                newData.put(T_DatabaseHelper.COMMENT, comment);
-                writeableDB.insert(T_DatabaseHelper.TABLE_NAME,"", newData);
+                newData.put(ActivityTrackingDatabaseHelper.TYPE, type);
+                newData.put(ActivityTrackingDatabaseHelper.TIME, time);
+                newData.put(ActivityTrackingDatabaseHelper.DURATION, duration);
+                newData.put(ActivityTrackingDatabaseHelper.COMMENT, comment);
+                writeableDB.insert(ActivityTrackingDatabaseHelper.TABLE_NAME,"", newData);
                 finish();
                 startActivity(startIntent);
             }
