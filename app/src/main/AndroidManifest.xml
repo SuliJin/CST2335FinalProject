@@ -37,6 +37,7 @@
         <activity android:name="zhentingmai.androidfinalproject.AutoDetailActivity" />
         <activity android:name="xiasheng.androidfinalproject.AddHouseActivity" />
         <activity android:name="xiasheng.androidfinalproject.trackingHouseActivity" />
+        <activity android:name="xiasheng.androidfinalproject.TrackingHouseActivityFragment"></activity>
     </application>
 
 </manifest>

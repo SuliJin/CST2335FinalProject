@@ -7,10 +7,44 @@
     android:orientation="horizontal"
     tools:context="xiasheng.androidfinalproject.trackingHouseActivity">
 
-    <TextView
-    android:id="@+id/record"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_title_Therm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight=".75"
+            android:background="#13e8ef"
+            android:text="@string/t_activities"
+            android:padding="8dp"
+            android:textSize="15dp"
+            android:gravity="left|center_vertical"
+            android:textColor="#3F51B5"/>
+
+        <ImageView
+            android:id="@+id/newActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".25"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:background="@color/colorPrimary"
+            android:src="@drawable/ic_add_box_white_48dp"/>
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <ListView
+        android:id="@+id/thermList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/newActivityBar" />
 
     <ProgressBar
 
@@ -18,7 +52,7 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/record"
+        android:layout_below="@+id/thermList"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="420dp"
         android:visibility="invisible"
