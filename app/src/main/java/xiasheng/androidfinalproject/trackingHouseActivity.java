@@ -1,6 +1,7 @@
 package xiasheng.androidfinalproject;
 
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -25,6 +27,8 @@ import java.util.Map;
 
 import sulijin.androidfinalproject.R;
 
+import static xiasheng.androidfinalproject.House_DatabaseHelper.TABLE_NAME;
+
 
 public class trackingHouseActivity extends Activity {
     private static final String ACTIVITY_NAME = "TrackingHouseActivity";
@@ -34,12 +38,14 @@ public class trackingHouseActivity extends Activity {
     private ProgressBar progressBar;
     private ChatAdapter therAdapter;
     private House_DatabaseHelper dbHelper;
+    private Boolean isLandscape;
+    private FrameLayout landscapeFrameLayout;
+    private int requestCode = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_house);
-
 
         progressBar=(ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
@@ -49,6 +55,7 @@ public class trackingHouseActivity extends Activity {
 
         TrackingAsync init = new TrackingAsync();
         init.execute();
+
     }
 
     class TrackingAsync extends AsyncTask<String, Integer, String>{
@@ -62,7 +69,7 @@ public class trackingHouseActivity extends Activity {
             progressBar.setProgress(30);
 
         //populate activity list
-        cursor = tempDB.rawQuery("select * from " + House_DatabaseHelper.TABLE_NAME,null );
+        cursor = tempDB.rawQuery("select * from " + TABLE_NAME,null );
         //cursor=dbHelper.read();
         cursor.moveToFirst();
         while(!cursor.isAfterLast() ) {
@@ -73,7 +80,7 @@ public class trackingHouseActivity extends Activity {
             String minutes = cursor.getString(cursor.getColumnIndex(House_DatabaseHelper.MINUTE));
             String temperature = cursor.getString(cursor.getColumnIndex(House_DatabaseHelper.Temperature));
             row.put("Day of  Week", day);
-            row.put("description", "you choose " + hour +": "  + minutes + " Temperature is " + temperature);
+            row.put("description", day+ hour +": "  + minutes +  temperature);
             userList.add(row);
             cursor.moveToNext();
         }
@@ -103,21 +110,59 @@ public class trackingHouseActivity extends Activity {
             therAdapter=new ChatAdapter(trackingHouseActivity.this);
             listview.setAdapter(therAdapter);
 
+            final Intent edit=new Intent(trackingHouseActivity.this,HouseDetailActivity.class);
             listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Intent edit=new Intent(trackingHouseActivity.this,HouseDetailActivity.class);
+                //public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    landscapeFrameLayout = (FrameLayout) findViewById(R.id.HouseFrameLayout);
+
+                    if(landscapeFrameLayout == null){
+                        isLandscape = false;
+                        Log.i(ACTIVITY_NAME, "The phone is on portrait layout.");
+
+                    }
+                    else {
+                        isLandscape = true;
+                        Log.i(ACTIVITY_NAME, "The phone is on landscape layout.");
+                    }
+
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("id",therAdapter.getItemId(position));
+                    bundle.putBoolean("isLandscape", isLandscape);
+
+                    if(isLandscape == true){
+                        FragmentThermo messageFragment = new FragmentThermo();
+                        messageFragment.setArguments(bundle);
+                        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.HouseFrameLayout,messageFragment);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
+                        // fragmentTransaction.add(R.id.landscapeFrameLayout, messageFragment).addToBackStack(null).commit();
+                    }
+                    else{
+                        edit.putExtra("bundle", bundle);
+                        startActivityForResult(edit, requestCode);
+                    }
+
+
                     startActivity(edit);
                 }
             });
         }
     }
     private void init() {
-
     }
 
-
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (this.requestCode == requestCode && data != null) {
+            Long id = data.getLongExtra("id", -1);
+            tempDB.delete(TABLE_NAME, House_DatabaseHelper.ID + "=" + id, null);
+            refreshActivity();
+        }
+    }
     private class ChatAdapter extends ArrayAdapter<Map<String, Object>> {
         public ChatAdapter(Context ctx) {
             super(ctx, 0);
@@ -129,6 +174,11 @@ public class trackingHouseActivity extends Activity {
 
         public Map<String, Object> getItem(int position) {
             return userList.get(position);
+        }
+
+        public long getItemId(int position){
+            Map<String, Object> content = getItem(position);
+            return Long.parseLong(content.get("id").toString());
         }
 
         public View getView(int position, View convertView, ViewGroup parent) {
@@ -144,10 +194,7 @@ public class trackingHouseActivity extends Activity {
             return result;
         }
     }
-      /*  public long getItemId(int position){
-            Map<String, Object> content = getItem(position);
-            return Long.parseLong(content.get("id").toString());
-        }*/
+
 
 
 
