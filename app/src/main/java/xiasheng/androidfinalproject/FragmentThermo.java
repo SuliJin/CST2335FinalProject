@@ -20,6 +20,7 @@ public class FragmentThermo extends Fragment {
 
     private House_DatabaseHelper dbHelper;
     private Button del;
+    private Button saveNew;
     private Button save;
     private View view;
     private TextView textViewId;
@@ -64,7 +65,6 @@ public class FragmentThermo extends Fragment {
         //textViewTemp.setText("Temperature="+temp);
 //
 
-
         del = view.findViewById(R.id.button_delete_fg_h);
         del.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -84,8 +84,41 @@ public class FragmentThermo extends Fragment {
                 }
             }
         });
-        save = view.findViewById(R.id.button_saveNewRule_fg_h);
+
+        save=view.findViewById(R.id.button_save);
         save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isLandscape) {
+                    temp = textViewTemp.getText().toString();
+                    day = textViewDay.getText().toString();
+                    hour= textViewHour.getText().toString();
+                    minute = textViewMinute.getText().toString();
+
+                    ContentValues input = new ContentValues();
+                    input.put(House_DatabaseHelper.DAY, day);
+                    input.put(House_DatabaseHelper.HOUR, hour);
+                    input.put(House_DatabaseHelper.MINUTE,minute);
+                    input.put(House_DatabaseHelper.Temperature, temp);
+                    writeableDB.insert(House_DatabaseHelper.TABLE_NAME, House_DatabaseHelper.ID, input );
+                    getActivity().finish();
+                    getActivity().getFragmentManager().beginTransaction().remove(FragmentThermo.this).commit();
+                    Intent intent = getActivity().getIntent();
+                    startActivity(intent);
+                }
+                else {
+                    Intent ret = new Intent();
+                    ret.putExtra("id", id);
+                    getActivity().setResult(Activity.RESULT_OK, ret);
+                    getActivity().finish();
+                }
+            }
+
+        });
+
+
+        saveNew = view.findViewById(R.id.button_saveNewRule_fg_h);
+        saveNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View var2) {
 
@@ -119,5 +152,3 @@ public class FragmentThermo extends Fragment {
     }
 
     }
-
-
