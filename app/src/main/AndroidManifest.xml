@@ -31,10 +31,6 @@
         <activity android:name="zhentingmai.androidfinalproject.AutoHistoryActivity" />
         <activity android:name="zhentingmai.androidfinalproject.AutoSummaryActivity" />
         <activity android:name="zhentingmai.androidfinalproject.AutoDetailActivity" />
-        <activity
-            android:name="zhentingmai.androidfinalproject.AActivity"
-            android:label="@string/title_activity_a"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
 </manifest>

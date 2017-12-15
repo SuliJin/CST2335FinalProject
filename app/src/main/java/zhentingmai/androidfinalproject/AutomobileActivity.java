@@ -8,10 +8,15 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -27,7 +32,7 @@ import java.util.Calendar;
 
 import sulijin.androidfinalproject.R;
 
-public class AutomobileActivity extends Activity {
+public class AutomobileActivity extends AppCompatActivity {
 
     protected static final String ACTIVITY_NAME = "AutomobileActivity";
     EditText liters;
@@ -47,6 +52,18 @@ public class AutomobileActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_automobile);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Welcome to Gasoline App", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
 
         liters=(EditText) findViewById(R.id.editText_litresValue);
         price =(EditText) findViewById(R.id.editText_priceValue);
@@ -149,6 +166,34 @@ public class AutomobileActivity extends Activity {
 
 
     }*/
+
+    public boolean onCreateOptionsMenu(Menu m){
+        getMenuInflater().inflate(R.menu.toolbar_menu,m);
+        return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem mi){
+        switch(mi.getItemId()){
+
+            case R.id.help:
+                Log.d("Toolbar","about is selected");
+                AlertDialog.Builder builder=new AlertDialog.Builder(this);
+                builder.setMessage("Zhenting Mai gasolin app");
+                builder.setNeutralButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //finish();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+                /*Toast t = Toast.makeText(this, "Version1.0 Zhenting Mai", Toast.LENGTH_LONG);
+                t.show();*/
+                break;
+
+        }
+        return true;
+    }
     @Override
 
     protected void onResume() {

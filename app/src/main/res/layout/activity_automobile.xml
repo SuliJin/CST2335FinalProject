@@ -1,151 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#83a8ef"
-    android:columnCount="2"
-    android:orientation="horizontal"
-    android:id="@+id/auto"
     tools:context="zhentingmai.androidfinalproject.AutomobileActivity">
 
-
-
-    <TextView
-        android:id="@+id/textView_title"
-        android:layout_width="180dp"
-        android:layout_height="50dp"
-        android:layout_gravity="bottom"
-        android:gravity="bottom"
-        android:text="@string/title_activity_automobile"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/textView_blank"
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        />
+        android:layout_height="wrap_content"
+        android:theme="@style/AppBarOverlay">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/darker_gray"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/Theme.AppCompat.Light"
+            />
 
-    <Button
-        android:id="@+id/button_history"
-        android:layout_width="180dp"
-        android:layout_height="60dp"
-        android:text="Consuming History"
-        android:textSize="14sp"
-        android:textStyle="bold" />
+    </android.support.design.widget.AppBarLayout>
 
-    <Button
-        android:id="@+id/button_summary"
-        android:layout_width="180dp"
-        android:layout_height="60dp"
-
-        android:text="Consuming Summary"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:visibility="visible" />
-
-
-    <TextView
-        android:id="@+id/textView_avgPrice"
-        android:layout_width="180dp"
-        android:layout_height="50dp"
-        android:gravity="center_vertical"
-        android:text="@string/auto_avgPrice"
-        android:textStyle="bold"
-        tools:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/textView_avgPriceValue"
+    <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="bottom"
-        android:text="00"
-        android:textSize="24sp" />
+        android:layout_height="match_parent"
+        android:background="#83a8ef"
+        android:columnCount="2"
+        android:orientation="horizontal"
+        android:id="@+id/auto"
+        >
 
 
-    <TextView
-        android:id="@+id/textView_total"
-        android:layout_width="180dp"
-        android:layout_height="50dp"
-        android:gravity="center_vertical"
-        android:text="@string/auto_totalCost"
-        android:textSize="14sp"
-        android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/textView_totalValue"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="bottom"
-        android:text="00"
-        android:textSize="24sp" />
+        <TextView
+            android:id="@+id/textView_title"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:gravity="bottom"
+            android:text="@string/title_activity_automobile"
+            android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/textView_litres"
-        android:layout_width="180dp"
-        android:layout_height="50dp"
-        android:gravity="bottom"
-        android:text="@string/auto_liters"
-        android:textSize="24sp" />
-
-    <EditText
-        android:id="@+id/editText_litresValue"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
-        android:gravity="bottom"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/textView_price"
-        android:layout_width="180dp"
-        android:layout_height="50dp"
-        android:gravity="bottom"
-        android:text="@string/auto_price"
-        android:textSize="24sp" />
-
-    <EditText
-        android:id="@+id/editText_priceValue"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
-        android:gravity="bottom"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/textView_kilos"
-        android:layout_width="180dp"
-        android:layout_height="50dp"
-        android:gravity="bottom"
-        android:text="@string/auto_kilo"
-        android:textSize="24sp" />
-
-    <EditText
-        android:id="@+id/editText_kilosValue"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
-        android:gravity="bottom"
-        android:textSize="24sp" />
-
-    <Button
-        android:id="@+id/autoBt_save"
-        android:layout_width="180dp"
-        android:layout_height="50dp"
-        android:text="Save"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/autoBt_delete"
-        android:layout_width="180dp"
-        android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
-        android:elevation="0dp"
-        android:text="Cancel"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/textView_blank"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            />
 
 
-</GridLayout>
+        <Button
+            android:id="@+id/button_history"
+            android:layout_width="180dp"
+            android:layout_height="60dp"
+            android:lineSpacingExtra="14sp"
+            android:layout_marginTop="10dp"
+            android:text="Consuming History"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button_summary"
+            android:layout_width="180dp"
+            android:layout_height="60dp"
+
+            android:layout_marginTop="10dp"
+            android:text="Consuming Summary"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+
+        <TextView
+            android:id="@+id/textView_avgPrice"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:text="@string/auto_avgPrice"
+            android:textStyle="bold"
+            tools:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView_avgPriceValue"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:text="00"
+            android:textSize="24sp" />
+
+
+        <TextView
+            android:id="@+id/textView_total"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:text="@string/auto_totalCost"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_totalValue"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:text="00"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textView_litres"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:gravity="bottom"
+            android:text="@string/auto_liters"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/editText_litresValue"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:gravity="bottom"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textView_price"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:gravity="bottom"
+            android:text="@string/auto_price"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/editText_priceValue"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:gravity="bottom"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textView_kilos"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:gravity="bottom"
+            android:text="@string/auto_kilo"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/editText_kilosValue"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:gravity="bottom"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/autoBt_save"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:text="Save"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/autoBt_delete"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:elevation="0dp"
+            android:text="Cancel"
+            android:textStyle="bold" />
+
+
+    </GridLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@android:drawable/ic_dialog_email" />
+
+</android.support.design.widget.CoordinatorLayout>
+
