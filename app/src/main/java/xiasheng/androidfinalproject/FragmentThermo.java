@@ -24,7 +24,7 @@ public class FragmentThermo extends Fragment {
     private Button save;
     private View view;
     private TextView textViewId;
-    private TextView textViewDay;
+    private EditText textViewDay;
     private EditText textViewHour;
     private EditText textViewMinute;
     private EditText textViewTemp;
@@ -44,26 +44,27 @@ public class FragmentThermo extends Fragment {
 
        dbHelper = new House_DatabaseHelper(getActivity());
         writeableDB = dbHelper.getWritableDatabase();
-//       dbHelper.openDatabase();
+       dbHelper.openDatabase();
        final Bundle bundle = this.getArguments();
-       final long id = bundle.getLong("id");final boolean isLandscape = bundle.getBoolean("isLandscape");
-//         day = bundle.getString("day");
+       final long id = bundle.getLong("id");
+       final boolean isLandscape = bundle.getBoolean("isLandscape");
+         day = bundle.getString("day");
 //         hour = bundle.getString("hour");
 //        minute = bundle.getString("minute");
 //        temp = bundle.getString("temperature");
 
 
         textViewId=view.findViewById(R.id.fragmentId);
-        //textViewId.setText("ID="+id);
+        textViewId.setText("ID="+id);
         textViewDay=view.findViewById(R.id.fragmentWeek);
-       //textViewDay.setText("Day="+day);
+      textViewDay.setText("Day="+day);
         textViewHour=view.findViewById(R.id.fragmentHour);
-       //textViewHour.setText("Hour="+hour);
+       textViewHour.setText("Hour="+hour);
         textViewMinute=view.findViewById(R.id.fragmentMinute);
-      // textViewMinute.setText("Minute="+minute);
+      textViewMinute.setText("Minute="+minute);
         textViewTemp=view.findViewById(R.id.fragmentTemp);
-        //textViewTemp.setText("Temperature="+temp);
-//
+        textViewTemp.setText("Temperature="+temp);
+
 
         del = view.findViewById(R.id.button_delete_fg_h);
         del.setOnClickListener(new View.OnClickListener(){
@@ -80,8 +81,7 @@ public class FragmentThermo extends Fragment {
                     Intent ret = new Intent();
                     ret.putExtra("id", id);
                     getActivity().setResult(Activity.RESULT_OK, ret);
-                    getActivity().finish();
-                }
+                    getActivity().finish();                }
             }
         });
 
