@@ -80,7 +80,7 @@ public class trackingHouseActivity extends Activity {
             String minutes = cursor.getString(cursor.getColumnIndex(House_DatabaseHelper.MINUTE));
             String temperature = cursor.getString(cursor.getColumnIndex(House_DatabaseHelper.Temperature));
             row.put("Day of  Week", day);
-            row.put("description", day+ hour +": "  + minutes +  temperature);
+            row.put("description", day + " , "+ hour +": "  + minutes + " , "+  temperature);
             userList.add(row);
             cursor.moveToNext();
         }
@@ -110,12 +110,12 @@ public class trackingHouseActivity extends Activity {
             therAdapter=new ChatAdapter(trackingHouseActivity.this);
             listview.setAdapter(therAdapter);
 
-            final Intent edit=new Intent(trackingHouseActivity.this,HouseDetailActivity.class);
+
             listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 //public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    landscapeFrameLayout = (FrameLayout) findViewById(R.id.HouseFrameLayout);
+                    landscapeFrameLayout = (FrameLayout) findViewById(R.id.landscapeFrameLayout);
 
                     if(landscapeFrameLayout == null){
                         isLandscape = false;
@@ -128,25 +128,23 @@ public class trackingHouseActivity extends Activity {
                     }
 
                     Bundle bundle = new Bundle();
-                    bundle.putLong("id",therAdapter.getItemId(position));
+                    bundle.putString("id",therAdapter.getItemId(position)+"");
                     bundle.putBoolean("isLandscape", isLandscape);
 
                     if(isLandscape == true){
                         FragmentThermo messageFragment = new FragmentThermo();
                         messageFragment.setArguments(bundle);
                         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.HouseFrameLayout,messageFragment);
+                        fragmentTransaction.replace(R.id.landscapeFrameLayout,messageFragment);
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.commit();
                         // fragmentTransaction.add(R.id.landscapeFrameLayout, messageFragment).addToBackStack(null).commit();
                     }
                     else{
+                        Intent edit=new Intent(trackingHouseActivity.this,HouseDetailActivity.class);
                         edit.putExtra("bundle", bundle);
                         startActivityForResult(edit, requestCode);
                     }
-
-
-                    startActivity(edit);
                 }
             });
         }
@@ -190,13 +188,9 @@ public class trackingHouseActivity extends Activity {
                 TextView message1 = (TextView) result.findViewById(R.id.record);
                 message1.setText(content.get("description").toString());
           }
-
             return result;
         }
     }
-
-
-
 
         @Override
         protected void onResume() {
