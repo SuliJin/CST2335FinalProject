@@ -22,6 +22,7 @@
         android:layout_marginTop="20dp"
         android:hint="@string/setDayofWeek" />
 
+
     <EditText
         android:id="@+id/fragmentHour"
         android:layout_width="match_parent"

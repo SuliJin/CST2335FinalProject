@@ -50,8 +50,6 @@ public class trackingHouseActivity extends Activity {
         progressBar=(ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
 
-        //DatabaseQuery query=new DatabaseQuery();
-        //query.execute();
 
         TrackingAsync init = new TrackingAsync();
         init.execute();
@@ -59,6 +57,7 @@ public class trackingHouseActivity extends Activity {
     }
 
     class TrackingAsync extends AsyncTask<String, Integer, String>{
+
         @Override
         protected String doInBackground(String... strings) {
             SystemClock.sleep(100);
@@ -87,12 +86,21 @@ public class trackingHouseActivity extends Activity {
             SystemClock.sleep(500);
             progressBar.setProgress(80);
 
-            final Intent intent = new Intent(trackingHouseActivity.this, AddHouseActivity.class);
+
             findViewById(R.id.addButton).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(intent);
-                }
+//                    if(findViewById(R.id.landscapeFrameLayout)!=null){
+//                        FragmentThermo mf = new FragmentThermo();
+//                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+//                       ft.add(R.id.landscapeFrameLayout, mf).commit();
+//                    }else{
+                        Intent intent = new Intent(trackingHouseActivity.this, AddHouseActivity.class);
+                        startActivityForResult(intent, requestCode);
+
+                        //startActivity(intent);
+                    }
+//                }
             });
             SystemClock.sleep(200);
             progressBar.setProgress(100);
@@ -120,7 +128,6 @@ public class trackingHouseActivity extends Activity {
                     if(landscapeFrameLayout == null){
                         isLandscape = false;
                         Log.i(ACTIVITY_NAME, "The phone is on portrait layout.");
-
                     }
                     else {
                         isLandscape = true;

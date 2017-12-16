@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,11 +74,15 @@ public class FragmentThermo extends Fragment {
 
         textDay=view.findViewById(R.id.fragmentWeek);
         textDay.setText(day,TextView.BufferType.EDITABLE);
+
         textHour=view.findViewById(R.id.fragmentHour);
+        textHour.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "23")});
        textHour.setText(hour,TextView.BufferType.EDITABLE);
         textMinute=view.findViewById(R.id.fragmentMinute);
+        textMinute.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "59")});
         textMinute.setText(minute,TextView.BufferType.EDITABLE);
         textTemp=view.findViewById(R.id.fragmentTemp);
+        textTemp.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "100")});
         textTemp.setText(temp,TextView.BufferType.EDITABLE);
         cursor.close();
 
@@ -115,7 +120,7 @@ public class FragmentThermo extends Fragment {
                     input.put(HOUR, hour);
                     input.put(MINUTE,minute);
                     input.put(Temperature, temp);
-                    tempDB.insert(House_DatabaseHelper.TABLE_NAME, ID, input );
+                    tempDB.update(House_DatabaseHelper.TABLE_NAME,input, "_id="+id , null );
                     getActivity().finish();
                     getActivity().getFragmentManager().beginTransaction().remove(FragmentThermo.this).commit();
                     Intent intent = getActivity().getIntent();
