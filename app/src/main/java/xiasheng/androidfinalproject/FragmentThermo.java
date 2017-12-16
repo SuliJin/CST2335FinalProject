@@ -35,7 +35,7 @@ public class FragmentThermo extends Fragment {
     private View view;
     private Cursor cursor;
     private TextView textViewId;
-    private EditText textDay;
+    private Spinner textDay;
     private EditText textHour;
     private EditText textMinute;
     private EditText textTemp;
@@ -73,7 +73,7 @@ public class FragmentThermo extends Fragment {
         temp=cursor.getString(cursor.getColumnIndex(Temperature));
 
         textDay=view.findViewById(R.id.fragmentWeek);
-        textDay.setText(day,TextView.BufferType.EDITABLE);
+        textDay.getSelectedItem().toString();
 
         textHour=view.findViewById(R.id.fragmentHour);
         textHour.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "23")});
@@ -111,7 +111,7 @@ public class FragmentThermo extends Fragment {
             public void onClick(View view) {
                 if (isLandscape) {
                     temp = textTemp.getText().toString();
-                    day = textDay.getText().toString();
+                    day = textDay.getSelectedItem().toString();
                     hour= textHour.getText().toString();
                     minute = textMinute.getText().toString();
 
@@ -144,7 +144,7 @@ public class FragmentThermo extends Fragment {
 
                 if (isLandscape) {
                     temp = textTemp.getText().toString();
-                    day = textDay.getText().toString();
+                    day = textDay.getSelectedItem().toString();
                     hour= textHour.getText().toString();
                     minute = textMinute.getText().toString();
 
