@@ -16,14 +16,17 @@ public class HouseDetailActivity extends Activity {
 
         FragmentThermo thermoFragment = new FragmentThermo();
         Bundle bundle = getIntent().getBundleExtra("bundle");
-        FragmentManager FM =getFragmentManager();
         thermoFragment.setArguments(bundle);
-        if (FM.getBackStackEntryCount() > 0) {
-            FragmentManager.BackStackEntry first = FM.getBackStackEntryAt(0);
-            FM.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        }
+
+//        FragmentManager FM =getFragmentManager();
+//        if (FM.getBackStackEntryCount() > 0) {
+//            FragmentManager.BackStackEntry first = FM.getBackStackEntryAt(0);
+//            FM.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+//        }
 
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.add(R.id.HouseFrameLayout, thermoFragment).addToBackStack(null).commit();
+        ft.replace(R.id.HouseFrameLayout, thermoFragment);
+        ft.commit();
+        //ft.add(R.id.HouseFrameLayout, thermoFragment).addToBackStack(null).commit();
     }
 }

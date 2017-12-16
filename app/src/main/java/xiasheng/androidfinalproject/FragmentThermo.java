@@ -109,18 +109,19 @@ public class FragmentThermo extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isLandscape) {
-                    temp = textTemp.getText().toString();
-                    day = textDay.getSelectedItem().toString();
-                    hour= textHour.getText().toString();
-                    minute = textMinute.getText().toString();
+                temp = textTemp.getText().toString();
+                day = textDay.getSelectedItem().toString();
+                hour= textHour.getText().toString();
+                minute = textMinute.getText().toString();
+                ContentValues input = new ContentValues();
+                input.put(House_DatabaseHelper.DAY, day);
+                input.put(HOUR, hour);
+                input.put(MINUTE,minute);
+                input.put(Temperature, temp);
+                tempDB.update(House_DatabaseHelper.TABLE_NAME,input, "_id="+id , null );
 
-                    ContentValues input = new ContentValues();
-                    input.put(House_DatabaseHelper.DAY, day);
-                    input.put(HOUR, hour);
-                    input.put(MINUTE,minute);
-                    input.put(Temperature, temp);
-                    tempDB.update(House_DatabaseHelper.TABLE_NAME,input, "_id="+id , null );
+
+                if (isLandscape) {
                     getActivity().finish();
                     getActivity().getFragmentManager().beginTransaction().remove(FragmentThermo.this).commit();
                     Intent intent = getActivity().getIntent();
@@ -141,19 +142,20 @@ public class FragmentThermo extends Fragment {
         saveNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View var2) {
+                temp = textTemp.getText().toString();
+                day = textDay.getSelectedItem().toString();
+                hour= textHour.getText().toString();
+                minute = textMinute.getText().toString();
+
+                ContentValues input = new ContentValues();
+                input.put(House_DatabaseHelper.DAY, day);
+                input.put(HOUR, hour);
+                input.put(MINUTE,minute);
+                input.put(Temperature, temp);
+                tempDB.insert(House_DatabaseHelper.TABLE_NAME, ID, input );
 
                 if (isLandscape) {
-                    temp = textTemp.getText().toString();
-                    day = textDay.getSelectedItem().toString();
-                    hour= textHour.getText().toString();
-                    minute = textMinute.getText().toString();
 
-                    ContentValues input = new ContentValues();
-                    input.put(House_DatabaseHelper.DAY, day);
-                    input.put(HOUR, hour);
-                    input.put(MINUTE,minute);
-                    input.put(Temperature, temp);
-                    tempDB.insert(House_DatabaseHelper.TABLE_NAME, ID, input );
                     getActivity().finish();
                     getActivity().getFragmentManager().beginTransaction().remove(FragmentThermo.this).commit();
                     Intent intent = getActivity().getIntent();

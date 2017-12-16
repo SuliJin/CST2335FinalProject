@@ -123,6 +123,7 @@ public class trackingHouseActivity extends Activity {
                 @Override
                 //public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                     landscapeFrameLayout = (FrameLayout) findViewById(R.id.landscapeFrameLayout);
 
                     if(landscapeFrameLayout == null){
@@ -133,11 +134,11 @@ public class trackingHouseActivity extends Activity {
                         isLandscape = true;
                         Log.i(ACTIVITY_NAME, "The phone is on landscape layout.");
                     }
-
                     Bundle bundle = new Bundle();
                     bundle.putString("id",therAdapter.getItemId(position)+"");
                     bundle.putBoolean("isLandscape", isLandscape);
 
+                    final Intent edit=new Intent(trackingHouseActivity.this,HouseDetailActivity.class);
                     if(isLandscape == true){
                         FragmentThermo messageFragment = new FragmentThermo();
                         messageFragment.setArguments(bundle);
@@ -148,7 +149,7 @@ public class trackingHouseActivity extends Activity {
                         // fragmentTransaction.add(R.id.landscapeFrameLayout, messageFragment).addToBackStack(null).commit();
                     }
                     else{
-                        Intent edit=new Intent(trackingHouseActivity.this,HouseDetailActivity.class);
+
                         edit.putExtra("bundle", bundle);
                         startActivityForResult(edit, requestCode);
                     }
