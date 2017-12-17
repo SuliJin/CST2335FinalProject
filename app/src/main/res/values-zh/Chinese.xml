@@ -42,15 +42,17 @@
     <string name="delete">删除温度条目</string>
     <string name="save">保存</string>
     <string name="setDayofWeek">设置星期几</string>
-    <string name="setTemp">设置温度</string>
-    <string name="setHour">设置小时</string>
-    <string name="setMinute">设置分钟</string>
+    <string name="setTemp">设置温度(0-100)</string>
+    <string name="setHour">设置小时(0-23)</string>
+    <string name="setMinute">设置分钟(0-59)</string>
     <string name="deleterule">删除此条目</string>
     <string name="cancel">取消</string>
     <string name="saveAsNewRule">设为新条目</string>
     <string name="add">添加</string>
     <string name="day">日</string>
-    <string name="hour">小时</string>
-    <string name="minute">分钟</string>
-    <string name="temp">温度</string>
+    <string name="hour">小时(0-23)</string>
+    <string name="minute">分钟(0-59)</string>
+    <string name="temp">温度(0-100)</string>
+    <string name="about">关于</string>
+    <string name="ID">序号</string>
 </resources>

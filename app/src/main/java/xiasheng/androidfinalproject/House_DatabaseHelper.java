@@ -48,24 +48,24 @@ public class House_DatabaseHelper extends SQLiteOpenHelper {
         Log.i(ACTIVITY_NAME, "Table " + TABLE_NAME + " is upgraded, oldVersion= " + oldVer
                 + " newVersion=" + newVer);
     }
-//    @Override
-//    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion)
-//    {
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME); //delete what was there previously
-//        onCreate(db);
-//        //  Log.i("ChatDatabaseHelper", "Calling onCreate");
-//        Log.i(ACTIVITY_NAME, "Table " + TABLE_NAME + " is downgraded, newVersion=" + newVersion + "oldVersion=" + oldVersion);
-//    }
-//    public void openDatabase() {
-//        database = getWritableDatabase();
-//    }
+    @Override
+    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion)
+    {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME); //delete what was there previously
+        onCreate(db);
+        //  Log.i("ChatDatabaseHelper", "Calling onCreate");
+        Log.i(ACTIVITY_NAME, "Table " + TABLE_NAME + " is downgraded, newVersion=" + newVersion + "oldVersion=" + oldVersion);
+    }
+    public void openDatabase() {
+        database = getWritableDatabase();
+    }
 
-//    public void closeDatabase() {
-//        if (database != null && database.isOpen()) {
-//            database.close();
-//        }
-//    }
-/*
+    public void closeDatabase() {
+        if (database != null && database.isOpen()) {
+            database.close();
+        }
+    }
+
     public void insert(String day, String hour, String minute, String temp) {
         ContentValues values = new ContentValues();
         values.put(DAY, day);
@@ -92,7 +92,7 @@ public class House_DatabaseHelper extends SQLiteOpenHelper {
 
     protected Cursor read() {
         return database.query(TABLE_NAME, null, null, null, null, null, null);
-    }   */
+    }
 @Override
 public void onOpen(SQLiteDatabase db)
 {

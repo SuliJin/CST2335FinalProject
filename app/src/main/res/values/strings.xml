@@ -57,15 +57,19 @@
     <string name="delete">Delete temperature rule</string>
     <string name="save">save</string>
     <string name="setDayofWeek">Set Day of Week</string>
-    <string name="setTemp">set temperature</string>
-    <string name="setHour">Set hour</string>
-    <string name="setMinute">Set minute</string>
+    <string name="setTemp">set temperature(0-100)</string>
+    <string name="setHour">Set hour(0-23)</string>
+    <string name="setMinute">Set minute(0-59)</string>
     <string name="deleterule">Delete this rule</string>
     <string name="cancel">Cancel</string>
     <string name="saveAsNewRule">Save as new rule</string>
     <string name="add">Add</string>
     <string name="day">day</string>
-    <string name="hour">hour</string>
-    <string name="minute">minute</string>
-    <string name="temp">Temperature</string>
+    <string name="hour">hour(0-23)</string>
+    <string name="minute">minute(0-59)</string>
+    <string name="temp">Temperature(0-100)</string>
+    <string name="title_activity_toolbar">Toolbar</string>
+    <string name="about">about</string>
+    <string name="ID">ID</string>
+    <color name="green">#ff00ff00</color>
 </resources>

@@ -1,23 +1,27 @@
 package xiasheng.androidfinalproject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import sulijin.androidfinalproject.R;
 
 public class AddHouseActivity extends Activity {
 
-    private Button button_save;
-    private Button button_cancel;
+    private Button save;
+    private Button cancel;
     private NumberPicker hour;
     private NumberPicker minutes;
     private Spinner day;
@@ -46,8 +50,9 @@ public class AddHouseActivity extends Activity {
         minutes.setMinValue(0);
         minutes.setMaxValue(59);
 
-        Button save = (Button) findViewById(R.id.savebutton);
-        Button cancel = (Button) findViewById(R.id.cancelbutton);
+
+        save = (Button) findViewById(R.id.savebutton);
+        cancel = (Button) findViewById(R.id.cancelbutton);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.weekday, android.R.layout.simple_spinner_item);
@@ -55,15 +60,6 @@ public class AddHouseActivity extends Activity {
        day.setAdapter(adapter);
 
         final Intent startIntent = new Intent(this, trackingHouseActivity.class);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setResult(Activity.RESULT_CANCELED);
-                finish();
-                startActivity(startIntent);
-            }
-        });
-
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,15 +74,34 @@ public class AddHouseActivity extends Activity {
                 input.put(House_DatabaseHelper.MINUTE,minInput);
                 input.put(House_DatabaseHelper.Temperature, houseTemp);
                 writeableDB.insert(House_DatabaseHelper.TABLE_NAME,"", input);
+                Toast.makeText(getApplicationContext(),"You save the rule successfully",Toast.LENGTH_LONG).show();
                 finish();
                 startActivity(startIntent);
             }
         });
-
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                setResult(Activity.RESULT_CANCELED);
+                AlertDialog.Builder builder = new AlertDialog.Builder(AddHouseActivity.this);
+                builder.setTitle("Do you want to return without saving?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                        startActivity(startIntent);
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        Snackbar.make(view, "Please continue to build rule", Snackbar.LENGTH_LONG).show();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+            });
     }
-
 }
-
-
-
 

@@ -24,20 +24,21 @@
         <activity
             android:name="zhentingmai.androidfinalproject.AutomobileActivity"
             android:label="@string/title_activity_automobile" />
+
         <activity
-            android:name=".ActivityTrackingActivity"
-            android:label="@string/title_activity_tracking"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".ActivityTrackingAddActivity"
+            android:name="sulijin.androidfinalproject.ActivityTrackingActivity"
+            android:label="@string/title_activity_tracking" />
+        <activity android:name=".ActivityTrackingAddActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:label="@string/t_new_activity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name="tianjunjin.androidfinalproject.FoodActivity"
             android:label="@string/title_activity_food" />
         <activity android:name="xiasheng.androidfinalproject.AddHouseActivity" />
         <activity android:name="xiasheng.androidfinalproject.trackingHouseActivity" />
+        <activity android:name="xiasheng.androidfinalproject.FragmentThermo" />
+        <activity android:name="xiasheng.androidfinalproject.HouseDetailActivity"></activity>
         <activity
             android:name="zhentingmai.androidfinalproject.AutoHistoryActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
