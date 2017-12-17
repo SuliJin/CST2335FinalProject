@@ -2,7 +2,6 @@ package tianjunjin.androidfinalproject;
 
 import android.os.Bundle;
 import android.app.Activity;
-
 import sulijin.androidfinalproject.R;
 
 public class NutritionActivity extends Activity {

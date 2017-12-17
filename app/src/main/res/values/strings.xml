@@ -4,6 +4,20 @@
     <string name="title_activity_automobile">Gasoline</string>
     <string name="title_activity_house">Thermo</string>
     <string name="title_activity_tracking">Activity</string>
+    <string name="t_new_activity">New Activity</string>
+    <string name="t_activities">Life is beautiful...</string>
+    <string name="title_activity_new">New</string>
+    <string name="t_ok">OK</string>
+    <string name="t_cancel">Cancel</string>
+    <string name="t_save">Save</string>
+    <string name="t_stay">Stay in the page</string>
+    <string-array name="t_activities">
+        <item>Running</item>
+        <item>Walking</item>
+        <item>Biking</item>
+        <item>Swimming</item>
+        <item>Skating</item>
+    </string-array>
     <string name="auto_liters">Liters</string>
     <string name="auto_price">Price($/L)</string>
     <string name="auto_kilo">Kilometers</string>
@@ -14,4 +28,41 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_automobile2">Automobile2Activity</string>
     <string name="title_activity_a">AActivity</string>
+
+    <string name="title_activity_food">Nutrition</string>
+
+    <string name="SUNDAY">SUNDAY</string>
+    <string name="MONDAY">MONDAY</string>
+    <string name="TUESDAY">TUESDAY</string>
+    <string name="WEDNESDAY">WEDNESDAY</string>
+    <string name="THURSDAY">THURSDAY</string>
+    <string name="FRIDAY">FRIDAY</string>
+    <string name="SATURDAY">SATURDAY</string>
+
+
+    <string-array name="weekday">
+        <item>@string/SUNDAY</item>
+        <item>@string/MONDAY</item>
+        <item>@string/TUESDAY</item>
+        <item>@string/WEDNESDAY</item>
+        <item>@string/THURSDAY</item>
+        <item>@string/FRIDAY</item>
+        <item>@string/SATURDAY</item>
+    </string-array>
+
+    <string name="addNew">Add new temperature rule</string>
+    <string name="delete">Delete temperature rule</string>
+    <string name="save">save</string>
+    <string name="setDayofWeek">Set Day of Week</string>
+    <string name="setTemp">set temperature</string>
+    <string name="setHour">Set hour</string>
+    <string name="setMinute">Set minute</string>
+    <string name="deleterule">Delete this rule</string>
+    <string name="cancel">Cancel</string>
+    <string name="saveAsNewRule">Save as new rule</string>
+    <string name="add">Add</string>
+    <string name="day">day</string>
+    <string name="hour">hour</string>
+    <string name="minute">minute</string>
+    <string name="temp">Temperature</string>
 </resources>
