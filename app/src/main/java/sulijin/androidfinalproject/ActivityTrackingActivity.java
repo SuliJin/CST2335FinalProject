@@ -7,29 +7,32 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Activity;
-import android.os.SystemClock;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.DecelerateInterpolator;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ActivityTrackingActivity extends Activity {
+public class ActivityTrackingActivity extends FragmentActivity {
+    public static final String ID = "id";
+    public static final String DESCRIPTION = "description";
     private static final String ACTIVITY_NAME = "ActivityTracking";
     private SQLiteDatabase writeableDB;
     private ArrayList<Map> activityList = new ArrayList();
     private Cursor cursor;
     private ProgressBar progressBar;
     private ObjectAnimator animation;
+    private ChatAdapter chatAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +40,6 @@ public class ActivityTrackingActivity extends Activity {
         setContentView(R.layout.activity_tracking);
         progressBar = (ProgressBar) findViewById(R.id.t_progressBar);
         progressBar.setVisibility(View.VISIBLE);
-//        progressBar.setMax(100);
-//        animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 100);
-//        animation.setDuration(3000); // 3 second
-//        animation.setInterpolator(new DecelerateInterpolator());
-//        animation.start();
 
         InitActivityTracking init = new InitActivityTracking();
         init.execute();
@@ -51,38 +49,42 @@ public class ActivityTrackingActivity extends Activity {
 
         @Override
         protected String doInBackground(String... strings) {
-            SystemClock.sleep(100);
+//            SystemClock.sleep(100);
             progressBar.setProgress(10);
             ActivityTrackingDatabaseHelper dbHelper = new ActivityTrackingDatabaseHelper(ActivityTrackingActivity.this);
             writeableDB = dbHelper.getWritableDatabase();
-            SystemClock.sleep(200);
+//            SystemClock.sleep(200);
             progressBar.setProgress(30);
             //populate activity list
             cursor = writeableDB.rawQuery("select * from " + ActivityTrackingDatabaseHelper.TABLE_NAME,null );
             cursor.moveToFirst();
             while(!cursor.isAfterLast() ) {
                 Map<String, Object> row = new HashMap<>();
-                row.put("id", cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.ID)));
+                row.put(ID, cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.ID)));
                 String type = cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.TYPE));
                 String time = cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.TIME));
                 String duration = cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.DURATION));
                 String comment = cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.COMMENT));
-                row.put("type", type);
-                row.put("description", "start at " + time +", " + type + " for " + duration + " minutes. Note: " + comment);
+                row.put(ActivityTrackingDatabaseHelper.TYPE, type);
+                row.put(ActivityTrackingDatabaseHelper.TIME, time);
+                row.put(ActivityTrackingDatabaseHelper.DURATION, duration);
+                row.put(ActivityTrackingDatabaseHelper.COMMENT, comment);
+                row.put(DESCRIPTION, "start at " + time +", " + type + " for " + duration + " minutes. Note: " + comment);
 
                 activityList.add(row);
                 cursor.moveToNext();
             }
-            SystemClock.sleep(500);
+//            SystemClock.sleep(500);
             progressBar.setProgress(80);
             final Intent intent = new Intent(ActivityTrackingActivity.this, ActivityTrackingAddActivity.class);
             findViewById(R.id.newActivity).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    finish();
                     startActivity(intent);
                 }
             });
-            SystemClock.sleep(200);
+//            SystemClock.sleep(200);
             progressBar.setProgress(100);
             return null;
         }
@@ -95,8 +97,30 @@ public class ActivityTrackingActivity extends Activity {
         @Override
         protected void onPostExecute(String result) {
             progressBar.setVisibility(View.INVISIBLE );
-            ListView listview = findViewById(R.id.t_activitListView);
-            listview.setAdapter(new ChatAdapter(ActivityTrackingActivity.this));
+            ListView listView = findViewById(R.id.t_activitListView);
+            chatAdapter = new ChatAdapter(ActivityTrackingActivity.this);
+            listView.setAdapter(chatAdapter);
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    Map message = chatAdapter.getItem(position);
+                    long idInDb =  chatAdapter.getItemId(position);
+                    Bundle bundle = new Bundle();
+                    bundle.putLong(ID,idInDb);
+                    bundle.putString(ActivityTrackingDatabaseHelper.TYPE, message.get(ActivityTrackingDatabaseHelper.TYPE).toString());
+                    bundle.putString(ActivityTrackingDatabaseHelper.TIME, message.get(ActivityTrackingDatabaseHelper.TIME).toString());
+                    bundle.putString(ActivityTrackingDatabaseHelper.DURATION, message.get(ActivityTrackingDatabaseHelper.DURATION).toString());
+                    bundle.putString(ActivityTrackingDatabaseHelper.COMMENT, message.get(ActivityTrackingDatabaseHelper.COMMENT).toString());
+
+                    Intent intent = new Intent(ActivityTrackingActivity.this, ActivityTrackingEditActivity.class);
+                    intent.putExtra("bundle", bundle);
+                    finish();
+                    startActivity(intent);
+                }
+            });
         }
     }
     private void init() {

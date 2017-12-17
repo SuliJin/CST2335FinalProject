@@ -5,16 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/t_add_activity_layout"
-    tools:context="sulijin.androidfinalproject.ActivityTrackingAddActivity">
+    tools:context="sulijin.androidfinalproject.ActivityTrackingEditActivity">
 
     <TextView
-        android:id="@+id/t_add_new_activity"
+        android:id="@+id/t_edit_activity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center_horizontal"
         android:layout_marginTop="64dp"
-        android:text="@string/t_new_activity"
+        android:text="@string/t_edit_activity"
         android:textSize="25dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:layout_alignParentStart="true"
@@ -22,27 +22,37 @@
         android:layout_alignParentTop="true"/>
 
     <fragment android:name="sulijin.androidfinalproject.ActivityTrackingEditFragment"
-        android:id="@+id/t_add_activity_fragment"
-        android:layout_below="@id/t_add_new_activity"
+        android:id="@+id/t_edit_activity_fragment"
+        android:layout_below="@id/t_edit_activity"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <Button
-        android:id="@+id/t_new_activity"
+        android:id="@+id/t_button_update_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="34dp"
         android:layout_marginEnd="37dp"
-        android:text="@string/t_save" />
+        android:text="@string/t_update" />
 
     <Button
-        android:id="@+id/t_cancel_new_activity"
+        android:id="@+id/t_button_delete_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/t_new_activity"
-        android:layout_marginStart="27dp"
+        android:layout_alignBaseline="@+id/t_button_update_activity"
+        android:layout_alignBottom="@+id/t_button_update_activity"
+        android:layout_centerHorizontal="true"
+        android:text="@string/t_delete" />
+
+    <Button
+        android:id="@+id/t_buttone_cancel_edit_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/t_button_delete_activity"
+        android:layout_marginEnd="27dp"
+        android:layout_toStartOf="@+id/t_button_delete_activity"
         android:text="@string/t_cancel" />
 
 

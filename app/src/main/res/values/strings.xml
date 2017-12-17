@@ -5,11 +5,14 @@
     <string name="title_activity_house">Thermo</string>
     <string name="title_activity_tracking">Activity</string>
     <string name="t_new_activity">New Activity</string>
+    <string name="t_edit_activity">Update Activity</string>
     <string name="t_activities">Life is beautiful...</string>
     <string name="title_activity_new">New</string>
     <string name="t_ok">OK</string>
     <string name="t_cancel">Cancel</string>
     <string name="t_save">Save</string>
+    <string name="t_update">Update</string>
+    <string name="t_delete">Delete</string>
     <string name="t_stay">Stay in the page</string>
     <string-array name="t_activities">
         <item>Running</item>

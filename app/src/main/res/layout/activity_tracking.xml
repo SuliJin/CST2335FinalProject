@@ -50,12 +50,10 @@
         android:progress="@android:integer/config_shortAnimTime"
         android:progressTint="@android:color/holo_red_light"
         android:visibility="invisible" />
-    <ListView
-        android:id="@+id/t_activitListView"
+
+    <fragment android:name="sulijin.androidfinalproject.ActivityTrackingListViewFragment"
+        android:id="@+id/t_list_activity_fragment"
+        android:layout_below="@id/newActivityBar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/newActivityBar" />
-
-
+        android:layout_height="match_parent" />
 </RelativeLayout>

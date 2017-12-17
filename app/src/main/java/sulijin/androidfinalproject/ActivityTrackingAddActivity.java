@@ -35,7 +35,7 @@ public class ActivityTrackingAddActivity extends Activity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        TextView timeView = findViewById(R.id.t_time_value);
+        EditText timeView = findViewById(R.id.t_time_value);
         SimpleDateFormat format = new SimpleDateFormat("yyyy MMM dd hh:mm");
         timeView.setText(format.format(new Date()));
 
@@ -76,7 +76,7 @@ public class ActivityTrackingAddActivity extends Activity {
             @Override
             public void onClick(View view) {
                 String type = ((Spinner)findViewById(R.id.t_type_value)).getSelectedItem().toString();
-                String time = ((TextView)findViewById(R.id.t_time_value)).getText().toString();
+                String time = ((EditText)findViewById(R.id.t_time_value)).getText().toString();
                 String duration = ((EditText)findViewById(R.id.t_duration_value)).getText().toString();
                 String comment = ((EditText)findViewById(R.id.t_comment_value)).getText().toString();
 
