@@ -21,8 +21,26 @@
     <string name="auto_liters">Liters</string>
     <string name="auto_price">Price($/L)</string>
     <string name="auto_kilo">Kilometers</string>
-    <string name="auto_avgPrice">Last Month Average Price</string>
+    <string name="auto_avgPrice">Last Month Average Price($)</string>
     <string name="auto_totalCost">Last Month Total Cost($)</string>
+    <string name="auto_histRecord">History Consumption</string>
+    <string name="auto_histSummary">Consuming Summary</string>
+    <string name="auto_save">Save</string>
+    <string name="auto_saveConfirm">Information saved successfully!</string>
+    <string name="auto_cancel">Cancel</string>
+    <string name="auto_help">Help</string>
+    <string name="auto_ok">OK</string>
+    <string name="auto_helpValue">Author: Zhenting Mai. Gasolin app Version 1.0. Save, to save your entry. Cancel, to
+        cancel your entry. History Consumption, the records. Consuming Summary, the purchases per month.</string>
+    <string name="auto_noRecord">No Record</string>
+    <string name="auto_welcome">Welcome to use Gasoline App!</string>
+    <string name="auto_cancelValue">Do you want to cancel your entry?</string>
+    <string name="auto_yes">Yes</string>
+    <string name="auto_no">No</string>
+    <string name="auto_noCancel">Please continue to input your entry.</string>
+    <string name="auto_btUpdate">Update</string>
+    <string name="auto_btDelete">Delete</string>
+    <string name="auto_textViewDate">Date</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

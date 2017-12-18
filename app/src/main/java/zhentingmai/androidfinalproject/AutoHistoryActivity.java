@@ -1,5 +1,7 @@
 package zhentingmai.androidfinalproject;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -34,7 +36,7 @@ public class AutoHistoryActivity extends Activity {
     TextView kilo;
     ListView listView;
 
-    ArrayList<carInfo> list=new ArrayList<>();
+    ArrayList<AutoInfo> list=new ArrayList<>();
     AutoDatabaseHelper aHelper;
     Cursor cursor;
     CarAdapter carAdapter;
@@ -42,16 +44,21 @@ public class AutoHistoryActivity extends Activity {
 
 
 
-    class carInfo{
+    /*class carInfo{
         private String id;
-        private String time;
+        private String year;
+        private String month;
+        private String day;
+
         private String price;
         private String liters;
         private String kilo;
 
-        public carInfo(String id, String time, String price, String liters, String kilo) {
+        public carInfo(String id, String year, String month, String day, String price, String liters, String kilo) {
             this.id = id;
-            this.time = time;
+            this.year = year;
+            this.month = month;
+            this.day = day;
             this.price = price;
             this.liters = liters;
             this.kilo = kilo;
@@ -61,8 +68,14 @@ public class AutoHistoryActivity extends Activity {
             return id;
         }
 
-        public String getTime() {
-            return time;
+        public String getYear() {
+            return year;
+        }
+        public String getMonth() {
+            return month;
+        }
+        public String getDay() {
+            return day;
         }
 
         public String getPrice() {
@@ -76,9 +89,9 @@ public class AutoHistoryActivity extends Activity {
         public String getKilo() {
             return kilo;
         }
-    }
+    }*/
 
-    private class CarAdapter extends ArrayAdapter<carInfo> {
+    private class CarAdapter extends ArrayAdapter<AutoInfo> {
         public CarAdapter(Context ctx) {
             super(ctx, 0);
         }
@@ -87,7 +100,7 @@ public class AutoHistoryActivity extends Activity {
             return list.size();
         }
 
-        public carInfo getItem(int position) {
+        public AutoInfo getItem(int position) {
             return list.get(position);
         }
 
@@ -103,10 +116,10 @@ public class AutoHistoryActivity extends Activity {
             price =(TextView) view.findViewById(R.id.textView_priceRecord);
             kilo = (TextView) view.findViewById(R.id.textView_kiloRecord);
             time = (TextView) view.findViewById(R.id.textView_timeRecord);
-            liters.setText("Liters: "+getItem(position).getLiters());
-            price.setText("Price($/L): "+getItem(position).getPrice());
-            kilo.setText("Kilometers: "+getItem(position).getKilo());
-            time.setText(getItem(position).getTime());
+            liters.setText(getResources().getString(R.string.auto_liters) +": "+getItem(position).getLiters());
+            price.setText(getResources().getString(R.string.auto_price) +": "+getItem(position).getPrice());
+            kilo.setText(getResources().getString(R.string.auto_kilo) +": "+getItem(position).getKilo());
+            time.setText(getItem(position).getYear()+"-"+getItem(position).getMonth()+ " - "+getItem(position).getDay());
 
             return view;
         }
@@ -126,13 +139,12 @@ public class AutoHistoryActivity extends Activity {
         listView.setAdapter(carAdapter);
 
         aHelper = new AutoDatabaseHelper(this);
-        aHelper.openDatabase();
+        //aHelper.openDatabase();
+        aHelper.setWritable();
 
-      /* list.add(new carInfo("1","20","200","10","2000"));
-        list.add(new carInfo("2","30","150","15","1500"));
-       list.add(new carInfo("3","12","122","8","666"));
-        list.add(new carInfo("4","25","18","18","2222"));*/
-       DatabaseQuery query=new DatabaseQuery();
+
+        //list.add(new carInfo("4","25","18","18","2222"));
+        DatabaseQuery query=new DatabaseQuery();
         query.execute();
 
        /* aHelper=new AutoDatabaseHelper(this);
@@ -159,21 +171,38 @@ public class AutoHistoryActivity extends Activity {
 //        int colIndexLiter= cursor.getColumnIndex(AutoDatabaseHelper.KEY_LITERS);
         //int colIndexPrice=c.getColumnIndex(AutoDatabaseHelper.KEY_PRICE);
         //int colIndexKilo=c.getColumnIndex(AutoDatabaseHelper.KEY_KILO);
-        final Intent intent = new Intent(this,AutoDetailActivity.class);
+
+        //final Intent intent = new Intent(this,AutoDetailActivity.class);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                carInfo carInfo=carAdapter.getItem(position);
+                AutoInfo carInfo=carAdapter.getItem(position);
                 long idInDb= carAdapter.getItemId(position);
                 Bundle bundle = new Bundle();
                 bundle.putLong("id", idInDb);
-                bundle.putString("time",carInfo.getTime());
+                bundle.putString("year",carInfo.getYear());
+                bundle.putString("month",carInfo.getMonth());
+                bundle.putString("day",carInfo.getDay());
                 bundle.putString("price",carInfo.getPrice());
                 bundle.putString("liters",carInfo.getLiters());
                 bundle.putString("kilo",carInfo.getKilo());
 
-                intent.putExtra("bundle",bundle);
-                startActivityForResult(intent,5);
+
+                AutoHistFragment autoHistFragment = new AutoHistFragment();
+                //Bundle bundle = getIntent().getBundleExtra("bundle");
+                autoHistFragment.setArguments(bundle);
+                FragmentManager fragmentManager =getFragmentManager();
+
+        /*if (fragmentManager.getBackStackEntryCount() > 0) {
+            FragmentManager.BackStackEntry first = fragmentManager.getBackStackEntryAt(0);
+            fragmentManager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }*/
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                //fragmentTransaction.add(R.id.phoneFrameLayout, messageFragment).addToBackStack(null).commit();
+                fragmentTransaction.replace(R.id.autoHistFrameLayout, autoHistFragment).addToBackStack(null).commit();
+
+               /* intent.putExtra("bundle",bundle);
+                startActivityForResult(intent,5);*/
             }
         });
     }
@@ -183,52 +212,40 @@ public class AutoHistoryActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode==5 && data != null) {
             Long id = data.getLongExtra("id", -1);
-            /*AlertDialog.Builder builder=new AlertDialog.Builder(this);
-            builder.setTitle("doyou");
-            builder.setPositiveButton("ok", new DialogInterface.OnClickListener(){
-                @Override
-                public void onClick(DialogInterface dialog, int id) {
-                    finish();
-                }
-            });
-            builder.setNegativeButton("no", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                }
-            });
-            AlertDialog dialog = builder.create();
-            dialog.show();*/
-
             aHelper.delete(id);
-           refreshActivity();
+            refreshActivity();
         }
     }
 
-     public class DatabaseQuery extends AsyncTask<carInfo,Integer,String> {
+    public class DatabaseQuery extends AsyncTask<AutoInfo,Integer,String> {
 
 
-         protected void onProgressUpdate(Integer ...value){
-             Log.i(ACTIVITY_NAME, "in onProgressUpdate");
-             progressBar.setVisibility(View.VISIBLE);
-             progressBar.setProgress(value[0]);
-         }
+        protected void onProgressUpdate(Integer ...value){
+            Log.i(ACTIVITY_NAME, "in onProgressUpdate");
+            progressBar.setVisibility(View.VISIBLE);
+            progressBar.setProgress(value[0]);
+        }
 
-         @Override
-         protected String doInBackground(carInfo... carInfos) {
+        @Override
+        protected String doInBackground(AutoInfo... carInfos) {
+            Log.i(ACTIVITY_NAME, "In DOINBACKGROUND");
             try {
 
-
-                cursor = aHelper.read();
+                cursor = aHelper.getCursor();
                 cursor.moveToFirst();
 
                 int colIndexId = cursor.getColumnIndex(AutoDatabaseHelper.KEY_ID);
                 int colIndexPrice = cursor.getColumnIndex(AutoDatabaseHelper.KEY_PRICE);
                 int colIndexLiters = cursor.getColumnIndex(AutoDatabaseHelper.KEY_LITERS);
                 int colIndexKilo = cursor.getColumnIndex(AutoDatabaseHelper.KEY_KILO);
-                int colIndexTime = cursor.getColumnIndex(AutoDatabaseHelper.KEY_TIME);
+                int colIndexYear = cursor.getColumnIndex(AutoDatabaseHelper.KEY_YEAR);
+                int colIndexMonth = cursor.getColumnIndex(AutoDatabaseHelper.KEY_MONTH);
+                int colIndexDay = cursor.getColumnIndex(AutoDatabaseHelper.KEY_DAY);
 
                 while (!cursor.isAfterLast()) {
-                    list.add(new carInfo(cursor.getString(colIndexId), cursor.getString(colIndexTime), cursor.getString(colIndexPrice), cursor.getString(colIndexLiters), cursor.getString(colIndexKilo)));
+                    list.add(new AutoInfo(cursor.getString(colIndexId), cursor.getString(colIndexYear),
+                            cursor.getString(colIndexMonth), cursor.getString(colIndexDay),cursor.getString(colIndexPrice),
+                            cursor.getString(colIndexLiters), cursor.getString(colIndexKilo)));
                     cursor.moveToNext();
                 }
                 SystemClock.sleep(400);
@@ -240,18 +257,18 @@ public class AutoHistoryActivity extends Activity {
                 SystemClock.sleep(400);
                 publishProgress(100);
             }catch(Exception e){
-                 e.printStackTrace();
-                }
-             return null;
-         }
+                e.printStackTrace();
+            }
+            return null;
+        }
 
-         @Override
-         protected void onPostExecute(String result){
-             Log.i(ACTIVITY_NAME, "In onPostExecute");
-             carAdapter.notifyDataSetChanged();
-             progressBar.setVisibility(View.INVISIBLE);
-         }
-     }
+        @Override
+        protected void onPostExecute(String result){
+            Log.i(ACTIVITY_NAME, "In onPostExecute");
+            carAdapter.notifyDataSetChanged();
+            progressBar.setVisibility(View.INVISIBLE);
+        }
+    }
 
     @Override
     protected void onResume() {
@@ -280,11 +297,9 @@ public class AutoHistoryActivity extends Activity {
         Log.i(ACTIVITY_NAME, "In onDestroy()");
     }
 
-   public void refreshActivity(){
-       finish();
-       Intent intentRef = getIntent();
-       startActivity(intentRef);
-   }
+    public void refreshActivity(){
+        finish();
+        Intent intentRef = getIntent();
+        startActivity(intentRef);
+    }
 }
-
-

@@ -8,7 +8,7 @@
 
     <ListView
 
-        android:id="@+id/summary"
+        android:id="@+id/auto_summary"
 
         android:layout_width="match_parent"
 

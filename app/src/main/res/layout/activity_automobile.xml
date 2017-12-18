@@ -56,7 +56,7 @@
             android:layout_height="60dp"
             android:lineSpacingExtra="14sp"
             android:layout_marginTop="10dp"
-            android:text="Consuming History"
+            android:text="@string/auto_histRecord"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -66,44 +66,46 @@
             android:layout_height="60dp"
 
             android:layout_marginTop="10dp"
-            android:text="Consuming Summary"
+            android:text="@string/auto_histSummary"
             android:textSize="14sp"
             android:textStyle="bold"
             android:visibility="visible" />
 
 
         <TextView
-            android:id="@+id/textView_avgPrice"
+            android:id="@+id/autoAvgPrice"
             android:layout_width="180dp"
             android:layout_height="50dp"
             android:gravity="center_vertical"
             android:text="@string/auto_avgPrice"
-            android:textStyle="bold"
-            tools:textSize="14sp" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView_avgPriceValue"
+            android:id="@+id/autoAvgPriceValue"
             android:layout_width="180dp"
             android:layout_height="50dp"
             android:layout_gravity="bottom"
+            android:gravity="bottom|center_vertical|fill_vertical|center_horizontal"
             android:text="00"
             android:textSize="24sp" />
 
 
         <TextView
-            android:id="@+id/textView_total"
+            android:id="@+id/autoTotal"
             android:layout_width="180dp"
             android:layout_height="50dp"
             android:gravity="center_vertical"
             android:text="@string/auto_totalCost"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView_totalValue"
+            android:id="@+id/autoTotalValue"
             android:layout_width="180dp"
             android:layout_height="50dp"
             android:layout_gravity="bottom"
+            android:gravity="center_vertical|fill_vertical|center_horizontal"
             android:text="00"
             android:textSize="24sp" />
 
@@ -159,7 +161,7 @@
             android:id="@+id/autoBt_save"
             android:layout_width="180dp"
             android:layout_height="50dp"
-            android:text="Save"
+            android:text="@string/auto_save"
             android:textStyle="bold" />
 
         <Button
@@ -168,7 +170,7 @@
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
             android:elevation="0dp"
-            android:text="Cancel"
+            android:text="@string/auto_cancel"
             android:textStyle="bold" />
 
 

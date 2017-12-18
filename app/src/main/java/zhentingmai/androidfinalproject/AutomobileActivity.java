@@ -35,6 +35,9 @@ import sulijin.androidfinalproject.R;
 public class AutomobileActivity extends AppCompatActivity {
 
     protected static final String ACTIVITY_NAME = "AutomobileActivity";
+
+    TextView avgPrice;
+    TextView totalCost;
     EditText liters;
     EditText price;
     EditText kilo;
@@ -60,10 +63,12 @@ public class AutomobileActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Welcome to Gasoline App", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, R.string.auto_welcome, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
+
+
 
         liters=(EditText) findViewById(R.id.editText_litresValue);
         price =(EditText) findViewById(R.id.editText_priceValue);
@@ -74,21 +79,36 @@ public class AutomobileActivity extends AppCompatActivity {
         //carAdapter=new SaveAdapter(this);
 
         aHelper=new AutoDatabaseHelper(this);
-        aHelper.openDatabase();
+        aHelper.setWritable();
+
+        avgPrice=(TextView) findViewById(R.id.autoAvgPriceValue);
+        String avgPriceValue=aHelper.getAvg();
+        avgPrice.setText(avgPriceValue);
+
+        totalCost=(TextView) findViewById(R.id.autoTotalValue);
+        String totalCostValue=aHelper.getTotal();
+        totalCost.setText(totalCostValue);
 
 
         save.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 //ContentValues cValues=new ContentValues();
-                String strTime= new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+                //String strTime= new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+
+                Calendar calendar = Calendar.getInstance();
+                String strYear = calendar.get(Calendar.YEAR)+"";
+                String strMonth = calendar.get(Calendar.MONTH)+"";
+                String strDay = calendar.get(Calendar.DAY_OF_MONTH)+"";
+
+
                 String strPrice=price.getText().toString();
                 String strLiters=liters.getText().toString();
                 String strKilo=kilo.getText().toString();
 
-              aHelper.insert(strTime, strPrice, strLiters, strKilo);
-              Toast t = Toast.makeText(getApplicationContext(), "Information saved successfully", Toast.LENGTH_LONG);
-              t.show();
-              refreshActivity();
+                aHelper.insert(strYear, strMonth, strDay, strPrice, strLiters, strKilo);
+                Toast t = Toast.makeText(getApplicationContext(), R.string.auto_saveConfirm, Toast.LENGTH_LONG);
+                t.show();
+                refreshActivity();
             }
         });
 
@@ -120,22 +140,22 @@ public class AutomobileActivity extends AppCompatActivity {
             @Override
             public void onClick(final View view) {
 
-            AlertDialog.Builder builder=new AlertDialog.Builder(AutomobileActivity.this);
-                   builder.setTitle("Do you want to clear the entry");
-                   builder.setPositiveButton("yes", new DialogInterface.OnClickListener(){
-                @Override
-                public void onClick(DialogInterface dialog, int id) {
-                    refreshActivity();
-                }
-            });
-            builder.setNegativeButton("no", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int id) {
-                    Snackbar.make(view, "Please continue to entry", Snackbar.LENGTH_LONG).show();
-                }
-            });
-            AlertDialog dialog = builder.create();
-            dialog.show();
+                AlertDialog.Builder builder=new AlertDialog.Builder(AutomobileActivity.this);
+                builder.setTitle(R.string.auto_cancelValue);
+                builder.setPositiveButton(R.string.auto_yes, new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        refreshActivity();
+                    }
+                });
+                builder.setNegativeButton(R.string.auto_no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        Snackbar.make(view, R.string.auto_noCancel, Snackbar.LENGTH_LONG).show();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
 
                 //Snackbar.make(view, "You have cancel the entry", Snackbar.LENGTH_LONG).show();
 
@@ -163,9 +183,8 @@ public class AutomobileActivity extends AppCompatActivity {
 
             return result;
         }
-
-
     }*/
+
 
     public boolean onCreateOptionsMenu(Menu m){
         getMenuInflater().inflate(R.menu.toolbar_menu,m);
@@ -175,10 +194,10 @@ public class AutomobileActivity extends AppCompatActivity {
         switch(mi.getItemId()){
 
             case R.id.help:
-                Log.d("Toolbar","about is selected");
+                Log.d("Toolbar","help is selected");
                 AlertDialog.Builder builder=new AlertDialog.Builder(this);
-                builder.setMessage("Zhenting Mai gasolin app");
-                builder.setNeutralButton("ok", new DialogInterface.OnClickListener() {
+                builder.setMessage(R.string.auto_helpValue);
+                builder.setNeutralButton(R.string.auto_ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //finish();

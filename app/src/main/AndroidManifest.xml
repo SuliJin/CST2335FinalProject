@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".StartActivity">
+        <activity android:name="sulijin.androidfinalproject.StartActivity"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,15 +23,34 @@
         <activity
             android:name="zhentingmai.androidfinalproject.AutomobileActivity"
             android:label="@string/title_activity_automobile" />
+
+
         <activity
-            android:name="xiasheng.androidfinalproject.HouseActivity"
-            android:label="@string/title_activity_house" />
-        <activity
-            android:name=".ActivityTrackingActivity"
+            android:name="sulijin.androidfinalproject.ActivityTrackingActivity"
+            android:theme="@style/AppTheme"
             android:label="@string/title_activity_tracking" />
-        <activity android:name="zhentingmai.androidfinalproject.AutoHistoryActivity" />
-        <activity android:name="zhentingmai.androidfinalproject.AutoSummaryActivity" />
-        <activity android:name="zhentingmai.androidfinalproject.AutoDetailActivity" />
+        <activity
+            android:name="sulijin.androidfinalproject.ActivityTrackingAddActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:label="@string/t_new_activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="tianjunjin.androidfinalproject.FoodActivity"
+            android:label="@string/title_activity_food" />
+
+
+        <activity android:name="xiasheng.androidfinalproject.AddHouseActivity" />
+        <activity android:name="xiasheng.androidfinalproject.trackingHouseActivity" />
+
+        <activity android:name="zhentingmai.androidfinalproject.AutoHistoryActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name="zhentingmai.androidfinalproject.AutoSummaryActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name="zhentingmai.androidfinalproject.AutoDetailActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+
+
     </application>
 
 </manifest>
