@@ -55,7 +55,8 @@
     <string name="temp">温度(0-100)</string>
     <string name="about">关于</string>
     <string name="ID">序号</string>
-    <string name="help">帮助
+    <string name="help">帮助</string>
+    <string name="helpthermo">帮助
         1. App介绍 \n\n
         点击菜单 -> 关于，显示应用详细信息 \n\n
         2. 帮助 \n\n

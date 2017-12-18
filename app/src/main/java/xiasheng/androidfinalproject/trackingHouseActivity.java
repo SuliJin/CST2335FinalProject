@@ -5,12 +5,16 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -35,7 +39,7 @@ import sulijin.androidfinalproject.R;
 import static xiasheng.androidfinalproject.House_DatabaseHelper.TABLE_NAME;
 
 
-public class trackingHouseActivity extends Activity {
+public class trackingHouseActivity extends AppCompatActivity {
     private static final String ACTIVITY_NAME = "TrackingHouseActivity";
     private SQLiteDatabase tempDB;
     private ArrayList<Map> userList = new ArrayList();
@@ -51,22 +55,19 @@ public class trackingHouseActivity extends Activity {
         switch (mi.getItemId()) {
 
             case R.id.helpthermo:
-                FragmentHelp FragmentH = new FragmentHelp();
-
-                FragmentManager FM =getFragmentManager();
-                //remove previous fragment
-                if (FM.getBackStackEntryCount() > 0) {
-                    FragmentManager.BackStackEntry first = FM.getBackStackEntryAt(0);
-                    FM.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                }
-
-                FragmentTransaction FT = FM.beginTransaction();
-                FT.add(R.id.listview_Frame, FragmentH).addToBackStack(null).commit();
-                return true;
-            default:
-                return super.onOptionsItemSelected(mi);
-
-    }
+                AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+                builder2.setTitle("help");
+                LayoutInflater inflater = this.getLayoutInflater();
+                final View dialogView = inflater.inflate(R.layout.activity_thermo_help, null);
+                builder2.setView(dialogView);
+                builder2.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
+              AlertDialog dialog2 = builder2.create();
+                dialog2.show();
+                break;
+        }return true;
     }
         @Override
         public boolean onCreateOptionsMenu (Menu m){
@@ -77,10 +78,8 @@ public class trackingHouseActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_house);
-
         progressBar=(ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
-
 
         TrackingAsync init = new TrackingAsync();
         init.execute();
@@ -184,6 +183,7 @@ public class trackingHouseActivity extends Activity {
                         edit.putExtra("bundle", bundle);
                         startActivityForResult(edit, requestCode);
                     }
+
                 }
             });
         }
