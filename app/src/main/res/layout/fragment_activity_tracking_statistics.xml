@@ -1,0 +1,60 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/t_duration_per_act"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="40dp"
+        android:fontFamily="sans-serif"
+        android:textSize="25dp"
+        android:text="Duration per activity:\n" />
+
+    <TextView
+        android:id="@+id/t_minitePerActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/t_duration_per_act"
+        android:layout_marginLeft="150dp"
+        android:fontFamily="sans-serif"
+        android:textSize="18dp"/>
+
+    <TextView
+        android:id="@+id/t_act_count_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="240dp"
+        android:fontFamily="sans-serif"
+        android:textSize="25dp"
+        android:text="Count per activity:\n" />
+
+    <TextView
+        android:id="@+id/t_activityCount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="150dp"
+        android:fontFamily="sans-serif"
+        android:gravity="left"
+        android:layout_below="@id/t_act_count_title"
+        android:textSize="18dp" />
+
+    <Button
+        android:id="@+id/t_stats_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/t_activityCount"
+        android:text="@string/t_ok" />
+
+</RelativeLayout>

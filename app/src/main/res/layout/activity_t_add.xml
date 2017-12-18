@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/t_add_activity_layout"
+    android:background="#c2f2ff"
     tools:context="sulijin.androidfinalproject.ActivityTrackingAddActivity">
 
     <TextView
@@ -24,6 +25,7 @@
     <fragment android:name="sulijin.androidfinalproject.ActivityTrackingEditFragment"
         android:id="@+id/t_add_activity_fragment"
         android:layout_below="@id/t_add_new_activity"
+        android:background="#c2f2ff"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

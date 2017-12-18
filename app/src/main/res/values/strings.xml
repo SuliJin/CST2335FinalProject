@@ -14,6 +14,24 @@
     <string name="t_update">Update</string>
     <string name="t_delete">Delete</string>
     <string name="t_stay">Stay in the page</string>
+    <string name="t_author">Author: Suli Jin</string>
+    <string name="t_version">Version: 1.0.0</string>
+    <string name="t_help">
+        1. App Info \n\n
+        Click menu -> About to show the application information. \n\n
+        2. Help \n\n
+        Click menu -> Help to show the helps about how to use the app. \n\n
+        3. Activity Statistics \n\n
+        Click menu -> Statistics to display how many minutes of activity the user does per month,
+        and also show how much activity the user did last month. \n\n
+        4. Add Activity \n\n
+        Click the add icon to navigate to new activity page,
+        where you can enter the information for new activity, and save new activity by clicking the Save button. \n\n
+        5. Edit Activity \n\n
+        Click the item in the activity list to navigate to the page to edit activity,
+        where you can change the information, and update the activity by clicking the Update button,
+        or delete the activity by clicking the Delete button. \n\n
+    </string>
     <string-array name="t_activities">
         <item>Running</item>
         <item>Walking</item>
