@@ -55,4 +55,17 @@
     <string name="temp">温度(0-100)</string>
     <string name="about">关于</string>
     <string name="ID">序号</string>
+    <string name="help">帮助
+        1. App介绍 \n\n
+        点击菜单 -> 关于，显示应用详细信息 \n\n
+        2. 帮助 \n\n
+        点击菜单 -> 帮助， 显示如何使用应用。 \n\n
+        3. 添加新活动 \n\n
+        点击“添加温度条目”进入添加页面，录入新活动的信息点击按钮“保存” \n\n
+        4. 修改活动\n\n
+        点击活动列表进行活动修改：更改信息并点击按钮“保存”更新此活动，或者点击“设为新条目”存为新的活动，也可以点击“删除温度条目”删除此项活动。\n\n
+    </string>
+    <string name="author">作者:盛夏</string>
+    <string name="OK">确定</string>
+    <string name="version">版本：1.0.0</string>
 </resources>

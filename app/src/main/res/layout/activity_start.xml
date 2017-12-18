@@ -73,4 +73,5 @@
         android:adjustViewBounds="true"
         android:src="@drawable/main" />
 
+
 </LinearLayout>

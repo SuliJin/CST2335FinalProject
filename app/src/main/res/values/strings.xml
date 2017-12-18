@@ -46,7 +46,6 @@
     <string name="auto_totalCost">Last Month Total Cost($)</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_automobile2">Automobile2Activity</string>
     <string name="title_activity_a">AActivity</string>
 
@@ -88,8 +87,24 @@
     <string name="temp">Temperature(0-100)</string>
     <string name="title_activity_toolbar">Toolbar</string>
     <string name="about">about</string>
+    <string name="help">help>
+        1. App Info \n\n
+        Click menu -> About to show the application information. \n\n
+        2. Help \n\n
+        Click menu -> Help to show the helps about how to use the app. \n\n
+        3. Add Activity \n\n
+        Click the "Add new temperature rule" button to navigate to new activity page,
+        where you can enter the information for new activity, and save new activity by clicking the "Save" button. \n\n
+        4. Edit Activity \n\n
+        Click the item in the activity list to navigate to the page to edit activity,
+        where you can change the information, and update the activity by clicking the "Save" button, or add as a new activity by clicking the "Save As new rule" button,
+        or delete the activity by clicking the "Delete this rule" button. \n\n
+
+    </string>
     <string name="ID">ID</string>
     <color name="green">#ff00ff00</color>
-    <string name="title_activity_testactivity">testactivity</string>
-    <string name="title_activity_test">testActivity</string>
+    <string name="title_activity_toolbar_thermo">Toolbar_thermo</string>
+    <string name="author">author:Xia Sheng</string>
+    <string name="OK">OK</string>
+    <string name="version">version: 1.0.0 </string>
 </resources>
