@@ -56,7 +56,7 @@ public class trackingHouseActivity extends AppCompatActivity {
 
             case R.id.helpthermo:
                 AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
-                builder2.setTitle("help");
+                builder2.setTitle(R.string.help);
                 LayoutInflater inflater = this.getLayoutInflater();
                 final View dialogView = inflater.inflate(R.layout.activity_thermo_help, null);
                 builder2.setView(dialogView);
