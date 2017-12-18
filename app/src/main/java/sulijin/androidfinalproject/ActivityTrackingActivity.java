@@ -12,6 +12,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,7 +39,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ActivityTrackingActivity extends Activity {
+public class ActivityTrackingActivity extends AppCompatActivity {
     public static final String ID = "id";
     public static final String DESCRIPTION = "description";
     private static final String ACTIVITY_NAME = "ActivityTracking";
@@ -45,18 +52,31 @@ public class ActivityTrackingActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
-        Toast toast = Toast.makeText(this, R.string.t_cancel, Toast.LENGTH_SHORT);
+        final Intent startIntent = new Intent(this, ActivityTrackingActivity.class);
         switch (item.getItemId()) {
-            case R.id.t_about:
-
-                ActivityTrackingAboutFragment fragment = new ActivityTrackingAboutFragment();
-
-                addFragment(fragment);
-                return true;
             case R.id.t_help:
-                ActivityTrackingHelpFragment helpFragment = new ActivityTrackingHelpFragment();
+                AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+                builder2.setTitle("Help");
+                LayoutInflater inflater = this.getLayoutInflater();
+                final View dialogView = inflater.inflate(R.layout.fragment_activity_tracking_help, null);
+                ((TextView)dialogView.findViewById(R.id.t_help)).setMovementMethod(new ScrollingMovementMethod());
+                builder2.setView(dialogView);
+                // Add the buttons
+                builder2.setPositiveButton(R.string.t_ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                        startActivity(startIntent);
+                    }
+                });
+                builder2.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
 
-                addFragment(helpFragment);
+                    }
+                });
+                // Create the AlertDialog
+                AlertDialog dialog2 = builder2.create();
+
+                dialog2.show();
                 return true;
             case R.id.t_stats:
                 ActivityTrackingStatisticsFragment statsFragment = new ActivityTrackingStatisticsFragment();
@@ -79,11 +99,13 @@ public class ActivityTrackingActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tracking);
+
         progressBar = (ProgressBar) findViewById(R.id.t_progressBar);
         progressBar.setVisibility(View.VISIBLE);
 
         InitActivityTracking init = new InitActivityTracking();
         init.execute();
+
     }
 
     class InitActivityTracking extends AsyncTask<String, Integer, String> {
@@ -91,11 +113,11 @@ public class ActivityTrackingActivity extends Activity {
         @Override
         protected String doInBackground(String... strings) {
 
-//            SystemClock.sleep(100);
+            SystemClock.sleep(100);
             progressBar.setProgress(10);
             ActivityTrackingDatabaseHelper dbHelper = new ActivityTrackingDatabaseHelper(ActivityTrackingActivity.this);
             writeableDB = dbHelper.getWritableDatabase();
-//            SystemClock.sleep(200);
+            SystemClock.sleep(200);
             progressBar.setProgress(30);
             //populate activity list
             cursor = writeableDB.rawQuery("select * from " + ActivityTrackingDatabaseHelper.TABLE_NAME,null );
@@ -116,24 +138,23 @@ public class ActivityTrackingActivity extends Activity {
                 activityList.add(row);
                 cursor.moveToNext();
             }
-//            SystemClock.sleep(500);
+            SystemClock.sleep(500);
             progressBar.setProgress(80);
             final Intent intent = new Intent(ActivityTrackingActivity.this, ActivityTrackingAddActivity.class);
-            findViewById(R.id.newActivity).setOnClickListener(new View.OnClickListener() {
+            findViewById(R.id.t_newActivity).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     finish();
                     startActivity(intent);
                 }
             });
-//            SystemClock.sleep(200);
+            SystemClock.sleep(200);
             progressBar.setProgress(100);
             return null;
         }
 
         protected void onProgressUpdate(Integer ...values){
             super.onProgressUpdate(values);
-//            progressBar.setProgress(values[0]);
         }
 
         @Override

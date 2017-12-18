@@ -24,23 +24,24 @@
         <activity
             android:name="zhentingmai.androidfinalproject.AutomobileActivity"
             android:label="@string/title_activity_automobile" />
-
         <activity
-            android:name="sulijin.androidfinalproject.ActivityTrackingActivity"
+            android:name=".ActivityTrackingActivity"
+            android:label="@string/title_activity_tracking"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            android:label="@string/title_activity_tracking" />
-        <activity android:name="sulijin.androidfinalproject.ActivityTrackingAddActivity"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name=".ActivityTrackingAddActivity"
             android:label="@string/t_new_activity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name="sulijin.androidfinalproject.ActivityTrackingEditActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ActivityTrackingEditActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="tianjunjin.androidfinalproject.FoodActivity"
             android:label="@string/title_activity_food" />
         <activity android:name="xiasheng.androidfinalproject.AddHouseActivity" />
         <activity android:name="xiasheng.androidfinalproject.trackingHouseActivity" />
-        <activity android:name="xiasheng.androidfinalproject.HouseDetailActivity"></activity>
+        <activity android:name="xiasheng.androidfinalproject.HouseDetailActivity" />
         <activity
             android:name="zhentingmai.androidfinalproject.AutoHistoryActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -54,7 +55,6 @@
             android:name="zhentingmai.androidfinalproject.AActivity"
             android:label="@string/title_activity_a"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
     </application>
 
 </manifest>
