@@ -1,6 +1,8 @@
 package xiasheng.androidfinalproject;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +13,8 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -19,6 +23,7 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import java.util.ArrayList;
@@ -42,6 +47,46 @@ public class trackingHouseActivity extends Activity {
     private FrameLayout landscapeFrameLayout;
     private int requestCode = 1;
 
+    public boolean onOptionsItemSelected(MenuItem mi) {
+        switch (mi.getItemId()) {
+
+            case R.id.about:
+
+                FragmentAbout fragmentA = new FragmentAbout();
+                FragmentManager fragmentManager =getFragmentManager();
+                //remove previous fragment
+                if (fragmentManager.getBackStackEntryCount() > 0) {
+                    FragmentManager.BackStackEntry first = fragmentManager.getBackStackEntryAt(0);
+                    fragmentManager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                }
+
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.add(R.id.listview_Frame, fragmentA).addToBackStack(null).commit();
+
+                return true;
+            case R.id.helpthermo:
+                FragmentHelp FragmentH = new FragmentHelp();
+
+                FragmentManager FM =getFragmentManager();
+                //remove previous fragment
+                if (FM.getBackStackEntryCount() > 0) {
+                    FragmentManager.BackStackEntry first = FM.getBackStackEntryAt(0);
+                    FM.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                }
+
+                FragmentTransaction FT = FM.beginTransaction();
+                FT.add(R.id.listview_Frame, FragmentH).addToBackStack(null).commit();
+                return true;
+            default:
+                return super.onOptionsItemSelected(mi);
+
+    }
+    }
+        @Override
+        public boolean onCreateOptionsMenu (Menu m){
+            getMenuInflater().inflate(R.menu.toolbar_thermo, m );
+            return true;
+        }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

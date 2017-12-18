@@ -6,7 +6,13 @@
     android:layout_height="match_parent"
     tools:context="xiasheng.androidfinalproject.trackingHouseActivity">
 
-
+    <FrameLayout
+        android:id="@+id/listview_Frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/progressBar"
+        android:background="#d3dbf8"/>
 
     <TextView
         android:id="@+id/title"
@@ -32,6 +38,7 @@
         android:layout_below="@+id/title"
         />
 
+
     <Button
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
@@ -52,6 +59,7 @@
         android:layout_above="@+id/thermView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="420dp"
+
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

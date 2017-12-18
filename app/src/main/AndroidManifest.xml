@@ -9,6 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <!--android:theme="@style/AppBaseTheme">-->
+
+
         <activity android:name=".StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,10 +38,14 @@
         <activity android:name="zhentingmai.androidfinalproject.AutoHistoryActivity" />
         <activity android:name="zhentingmai.androidfinalproject.AutoSummaryActivity" />
         <activity android:name="zhentingmai.androidfinalproject.AutoDetailActivity" />
-        <activity android:name="xiasheng.androidfinalproject.AddHouseActivity" />
-        <activity android:name="xiasheng.androidfinalproject.trackingHouseActivity" />
+        <activity android:name="xiasheng.androidfinalproject.AddHouseActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name="xiasheng.androidfinalproject.trackingHouseActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name="xiasheng.androidfinalproject.FragmentThermo" />
-        <activity android:name="xiasheng.androidfinalproject.HouseDetailActivity"></activity>
+        <activity android:name="xiasheng.androidfinalproject.HouseDetailActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
     </application>
 
 </manifest>
