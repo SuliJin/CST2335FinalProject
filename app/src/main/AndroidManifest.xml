@@ -28,7 +28,7 @@
             android:name=".ActivityTrackingActivity"
             android:label="@string/title_activity_tracking"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light" />
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
         <activity
             android:name=".ActivityTrackingAddActivity"
             android:label="@string/t_new_activity"
