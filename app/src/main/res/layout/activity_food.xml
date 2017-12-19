@@ -7,52 +7,73 @@
     android:orientation="vertical"
     tools:context="tianjunjin.androidfinalproject.FoodActivity">
 
-    <TextView
-        android:id="@+id/toolbar_title_Food"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/foodActivityBar"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:background="@color/colorAccent"
-        android:gravity="center_horizontal"
-        android:text="FOOD"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@android:color/holo_blue_bright"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_height="wrap_content">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight=".75"
+                android:background="#13e8ef"
+                android:text="@string/food_activities"
+                android:padding="8dp"
+                android:textSize="15dp"
+                android:gravity="left|center_vertical"
+                android:textColor="#3F51B5"/>
 
-    <ListView
+            <Button
+                android:id="@+id/addButton_food"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text ="add"
+                android:layout_weight=".25"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:background="@color/colorPrimary"
+                />
+
+            <!--android:src="@drawable/ic_add_box_white_48dp"-->
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
+
+       <!--<TextView-->
+        <!--android:id="@+id/toolbar_title_Food"-->
+        <!--android:layout_width="320dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:background="@color/colorAccent"-->
+        <!--android:gravity="center_horizontal"-->
+        <!--android:text="FOOD"-->
+        <!--android:textAppearance="@style/TextAppearance.AppCompat.Display1"-->
+        <!--android:textColor="@android:color/holo_blue_bright"-->
+
+        <!--app:layout_constraintHorizontal_bias="0.5"-->
+        <!--app:layout_constraintStart_toStartOf="parent" />-->
+
+        <ListView
         android:id="@+id/ListView_food"
         android:layout_width="wrap_content"
-        android:layout_height="400dp"
-        android:layout_below="@id/toolbar_title_Food" />
-
-    <EditText
-        android:id="@+id/EditText_food"
-        android:layout_width="260dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:textSize="30sp"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/foodActivityBar"
         />
-        <Button
-            android:id="@+id/deleteButton_food"
-            android:layout_width="65dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:text="del"
-            android:layout_alignParentEnd="true"/>
-        <Button
-            android:id="@+id/addButton_food"
-            android:layout_width="65dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@id/deleteButton_food"
-            android:text="add"
+
+        <!--<Button-->
+         <!--android:id="@+id/addButton_food"-->
+         <!--android:layout_width="65dp"-->
+         <!--android:layout_height="wrap_content"-->
+         <!--android:text="add"-->
+         <!--android:layout_toRightOf="@+id/toolbar_title_Food"-->
             />
 
-    </RelativeLayout>
+</RelativeLayout>
 
 
