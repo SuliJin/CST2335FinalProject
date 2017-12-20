@@ -50,22 +50,8 @@ public class trackingHouseActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem mi) {
         switch (mi.getItemId()) {
 
-            case R.id.about:
-
-                FragmentAbout fragmentA = new FragmentAbout();
-                FragmentManager fragmentManager =getFragmentManager();
-                //remove previous fragment
-                if (fragmentManager.getBackStackEntryCount() > 0) {
-                    FragmentManager.BackStackEntry first = fragmentManager.getBackStackEntryAt(0);
-                    fragmentManager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                }
-
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(R.id.listview_Frame, fragmentA).addToBackStack(null).commit();
-
-                return true;
             case R.id.helpthermo:
-                FragmentHelp FragmentH = new FragmentHelp();
+                HouseHelpFragment FragmentH = new HouseHelpFragment();
 
                 FragmentManager FM =getFragmentManager();
                 //remove previous fragment
@@ -75,7 +61,7 @@ public class trackingHouseActivity extends Activity {
                 }
 
                 FragmentTransaction FT = FM.beginTransaction();
-                FT.add(R.id.listview_Frame, FragmentH).addToBackStack(null).commit();
+                FT.add(R.id.h_listview_Frame, FragmentH).addToBackStack(null).commit();
                 return true;
             default:
                 return super.onOptionsItemSelected(mi);
