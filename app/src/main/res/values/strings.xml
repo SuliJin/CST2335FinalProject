@@ -4,9 +4,7 @@
     <string name="title_activity_automobile">Gasoline</string>
     <string name="title_activity_house">Thermo</string>
     <string name="title_activity_tracking">Activity</string>
-    <string name="title_activity_food">Nutrition</string>
     <string name="t_new_activity">New Activity</string>
-    <string name="t_edit_activity">Update Activity</string>
     <string name="t_activities">Life is beautiful...</string>
     <string name="title_activity_new">New</string>
     <string name="t_ok">OK</string>
@@ -33,6 +31,10 @@
         where you can change the information, and update the activity by clicking the Update button,
         or delete the activity by clicking the Delete button. \n\n
     </string>
+    <string name="t_ok">OK</string>
+    <string name="t_cancel">Cancel</string>
+    <string name="t_save">Save</string>
+    <string name="t_stay">Stay in the page</string>
     <string-array name="t_activities">
         <item>Running</item>
         <item>Walking</item>
@@ -45,10 +47,31 @@
     <string name="auto_kilo">Kilometers</string>
     <string name="auto_avgPrice">Last Month Average Price</string>
     <string name="auto_totalCost">Last Month Total Cost($)</string>
+    <string name="auto_histRecord">History Consumption</string>
+    <string name="auto_histSummary">Consuming Summary</string>
+    <string name="auto_save">Save</string>
+    <string name="auto_saveConfirm">Information saved successfully!</string>
+    <string name="auto_cancel">Cancel</string>
+    <string name="auto_help">Help</string>
+    <string name="auto_ok">OK</string>
+    <string name="auto_helpValue">Author: Zhenting Mai. Gasolin app Version 1.0. Save, to save your entry. Cancel, to
+        cancel your entry. History Consumption, the records. Consuming Summary, the purchases per month.</string>
+    <string name="auto_noRecord">No Record</string>
+    <string name="auto_welcome">Welcome to use Gasoline App!</string>
+    <string name="auto_cancelValue">Do you want to cancel your entry?</string>
+    <string name="auto_yes">Yes</string>
+    <string name="auto_no">No</string>
+    <string name="auto_noCancel">Please continue to input your entry.</string>
+    <string name="auto_btUpdate">Update</string>
+    <string name="auto_btDelete">Delete</string>
+    <string name="auto_textViewDate">Date</string>
 
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_automobile2">Automobile2Activity</string>
     <string name="title_activity_a">AActivity</string>
+
+    <string name="title_activity_food">Nutrition</string>
 
     <string name="SUNDAY">SUNDAY</string>
     <string name="MONDAY">MONDAY</string>
@@ -108,6 +131,4 @@
     <string name="OK">OK</string>
     <string name="version">version: 1.0.0 </string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

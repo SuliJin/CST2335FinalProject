@@ -1,12 +1,13 @@
 package sulijin.androidfinalproject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.app.AlertDialog;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -14,7 +15,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.support.design.widget.Snackbar;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -35,9 +36,9 @@ public class ActivityTrackingAddActivity extends Activity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        EditText timeView = findViewById(R.id.t_time_value);
-
-        timeView.setText(ActivityTrackingDatabaseHelper.DATE_FORMAT.format(new Date()));
+        TextView timeView = findViewById(R.id.t_time_value);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy MMM dd hh:mm");
+        timeView.setText(format.format(new Date()));
 
         Button cancel = findViewById(R.id.t_cancel_new_activity);
         final Intent startIntent = new Intent(this, ActivityTrackingActivity.class);
@@ -76,7 +77,7 @@ public class ActivityTrackingAddActivity extends Activity {
             @Override
             public void onClick(View view) {
                 String type = ((Spinner)findViewById(R.id.t_type_value)).getSelectedItem().toString();
-                String time = ((EditText)findViewById(R.id.t_time_value)).getText().toString();
+                String time = ((TextView)findViewById(R.id.t_time_value)).getText().toString();
                 String duration = ((EditText)findViewById(R.id.t_duration_value)).getText().toString();
                 String comment = ((EditText)findViewById(R.id.t_comment_value)).getText().toString();
 

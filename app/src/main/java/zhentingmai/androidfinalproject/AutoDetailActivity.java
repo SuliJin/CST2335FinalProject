@@ -18,12 +18,12 @@ public class AutoDetailActivity extends Activity {
         autoHistFragment.setArguments(bundle);
         FragmentManager fragmentManager =getFragmentManager();
 
-        if (fragmentManager.getBackStackEntryCount() > 0) {
+        /*if (fragmentManager.getBackStackEntryCount() > 0) {
             FragmentManager.BackStackEntry first = fragmentManager.getBackStackEntryAt(0);
             fragmentManager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        }
+        }*/
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        //fragmentTransaction.replace(R.id.phoneFrameLayout, messageFragment).addToBackStack(null).commit();
-        fragmentTransaction.replace(R.id.histFrameLayout, autoHistFragment).addToBackStack(null).commit();
+        //fragmentTransaction.add(R.id.phoneFrameLayout, messageFragment).addToBackStack(null).commit();
+        fragmentTransaction.replace(R.id.autoDetailFrameLayout, autoHistFragment).addToBackStack(null).commit();
     }
 }

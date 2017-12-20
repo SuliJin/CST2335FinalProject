@@ -12,7 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import sulijin.androidfinalproject.R;
 
@@ -22,12 +26,13 @@ import sulijin.androidfinalproject.R;
 public class AutoHistFragment extends Fragment {
 
     private View view;
-    private TextView textViewTime;
-    private TextView textViewPrice;
-    private TextView textViewLiters;
-    private TextView textViewKilo;
-    private TextView textViewId;
+    private EditText editTextTime;
+    private EditText editTextPrice;
+    private EditText editTextLiters;
+    private EditText editTextKilo;
+    private EditText editTextId;
     private Button btDel;
+    private Button btUpdate;
     private AutoDatabaseHelper dpHelper;
 
     public AutoHistFragment() {
@@ -41,72 +46,61 @@ public class AutoHistFragment extends Fragment {
         // Inflate the layout for this fragment
         view=inflater.inflate(R.layout.fragment_auto_hist, container, false);
         dpHelper=new AutoDatabaseHelper(getActivity());
-        dpHelper.openDatabase();
+        dpHelper.setWritable();
         Bundle bundle = this.getArguments();
         final long id = bundle.getLong("id");
-        String time = bundle.getString("time");
+        String year = bundle.getString("year");
+        String month = bundle.getString("month");
+        String day = bundle.getString("day");
+
         String price = bundle.getString("price");
         String liters = bundle.getString("liters");
         String kilo = bundle.getString("kilo");
-        TextView textViewId=view.findViewById(R.id.fragmentId);
-        textViewId.setText("ID="+id);
-        TextView textViewTime=view.findViewById(R.id.fragmentTime);
-        textViewTime.setText("Date: "+time);
-        TextView textViewPrice=view.findViewById(R.id.fragmentPrice);
-        textViewPrice.setText("Price="+price);
-        TextView textViewLiters=view.findViewById(R.id.fragmentLiters);
-        textViewLiters.setText("Liters="+liters);
-        TextView textViewKilo=view.findViewById(R.id.fragmentKilo);
-        textViewKilo.setText("Kilo="+kilo);
+        editTextId=view.findViewById(R.id.fragmentId);
+        editTextId.setText(""+id);
+        editTextTime=view.findViewById(R.id.fragmentTime);
+        editTextTime.setText(year+"-"+month+"-"+day);
+        editTextPrice=view.findViewById(R.id.fragmentPrice);
+        editTextPrice.setText(price);
+        editTextLiters=view.findViewById(R.id.fragmentLiters);
+        editTextLiters.setText(liters);
+        editTextKilo=view.findViewById(R.id.fragmentKilo);
+        editTextKilo.setText(kilo);
 
-        btDel = view.findViewById(R.id.deleteAutoButton);
+        btDel = view.findViewById(R.id.autoFragmentDel);
         btDel.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
 
-               /* new AlertDialog.Builder(getActivity().getApplicationContext())
-                        .setTitle("Delete history")
-                        .setMessage("Do you want to delete?")
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent intent = new Intent();
-                                intent.putExtra("id",id);
-                                getActivity().setResult(Activity.RESULT_OK,intent);
-                                getActivity().finish();
-                            }
-                        })
-                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        })
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .show();*/
-               /* AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
-                builder.setTitle("Do you");
-                builder.setNeutralButton("yes", new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        *//*Intent intent = new Intent();
-                        intent.putExtra("id",id);
-                        getActivity().setResult(Activity.RESULT_OK,intent);
-                        getActivity().finish();*//*
-                    }
-                });
-                *//*builder.setNegativeButton("no", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });*//*
-                AlertDialog dialog = builder.create();
-                dialog.show();*/
+                dpHelper.delete(id);
+                getActivity().finish();
+                Intent intent = getActivity().getIntent();
+                startActivity(intent);
 
 
-                Intent intent = new Intent();
+               /* Intent intent = new Intent();
                 intent.putExtra("id",id);
                 getActivity().setResult(Activity.RESULT_OK,intent);
+                getActivity().finish();*/
+
+            }
+        });
+
+        btUpdate =view.findViewById(R.id.autoFragmentUpdate);
+
+        btUpdate.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                String strYear = calendar.get(Calendar.YEAR)+"";
+                String strMonth = calendar.get(Calendar.MONTH)+"";
+                String strDay = calendar.get(Calendar.DAY_OF_MONTH)+"";
+                String strPrice=editTextPrice.getText().toString();
+                String strLiters=editTextLiters.getText().toString();
+                String strKilo=editTextKilo.getText().toString();
+                dpHelper.update(id,strYear,strMonth,strDay,strPrice,strLiters,strKilo);
                 getActivity().finish();
+                Intent intent = getActivity().getIntent();
+                startActivity(intent);
             }
         });
 
