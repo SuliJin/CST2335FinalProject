@@ -75,6 +75,7 @@ public class AddHouseActivity extends Activity {
                 input.put(House_DatabaseHelper.Temperature, houseTemp);
                 writeableDB.insert(House_DatabaseHelper.TABLE_NAME,"", input);
                 Toast.makeText(getApplicationContext(),"You save the rule successfully",Toast.LENGTH_LONG).show();
+
                 finish();
                 startActivity(startIntent);
             }
