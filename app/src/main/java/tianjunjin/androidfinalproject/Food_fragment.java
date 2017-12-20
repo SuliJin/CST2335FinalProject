@@ -21,7 +21,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import sulijin.androidfinalproject.R;
-import sulijin.androidfinalproject.T_DatabaseHelper;
 
 /**
  * Created by Admin on 2017-12-14.
@@ -54,20 +53,20 @@ public class Food_fragment extends Fragment {
 //        String single_type = bundle_back.getString("type");
         Edit_type = view.findViewById(R.id.f_type_value);
 
-   //     String single_time = bundle_back.getString("time");
+        //     String single_time = bundle_back.getString("time");
         Edit_Time = view.findViewById(R.id.f_time_value);
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy MMM dd hh:mm");
         final String time = format.format(new Date());
         Edit_Time.setText(time);
 
-   //     String single_Calories = bundle_back.getString("Calories ");
+        //     String single_Calories = bundle_back.getString("Calories ");
         Edit_Calories = view.findViewById(R.id.f_Calories_value);
 
-   //     String single_Total_Fat = bundle_back.getString("Total_Fat");
+        //     String single_Total_Fat = bundle_back.getString("Total_Fat");
         Edit_Total_Fat = view.findViewById(R.id.f_Total_Fat_value);
 
-   //     String single_Total_Carbohydrate = bundle_back.getString("Total_Carbohydrate");
+        //     String single_Total_Carbohydrate = bundle_back.getString("Total_Carbohydrate");
         Edit_Total_Carbohydrate = view.findViewById(R.id.f_Carbohydrate_value);
 
         final Long single_ID = bundle_back.getLong("DB_ID");
@@ -125,41 +124,41 @@ public class Food_fragment extends Fragment {
 
 
 
-    deleteButton_food =view.findViewById(R.id.f_delete_button_food);
+        deleteButton_food =view.findViewById(R.id.f_delete_button_food);
         deleteButton_food.setOnClickListener(new View.OnClickListener()
-    {
-        @Override
-        public void onClick (View v){
+        {
+            @Override
+            public void onClick (View v){
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.sure_to_delete);
-        // Add the buttons
-        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                if (getActivity().getLocalClassName().equals("MessageDetails")) {
-                    Intent intent = new Intent();
-                    intent.putExtra("bundle_back", bundle_back);
-                    getActivity().setResult(2, intent);
-                    getActivity().finish();
-                } else {
-                    ((FoodActivity) getActivity()).delete(single_ID, single_position);
-                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle(R.string.sure_to_delete);
+                // Add the buttons
+                builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        if (getActivity().getLocalClassName().equals("MessageDetails")) {
+                            Intent intent = new Intent();
+                            intent.putExtra("bundle_back", bundle_back);
+                            getActivity().setResult(2, intent);
+                            getActivity().finish();
+                        } else {
+                            ((FoodActivity) getActivity()).delete(single_ID, single_position);
+                        }
+                    }
+                });
+
+                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                });
+                // Create the AlertDialog
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
             }
         });
-
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-
-            }
-        });
-        // Create the AlertDialog
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
-    }
-    });
         return view;
-}
+    }
 //    public boolean checkType(){
 //        if(Edit_type.getText()== null)
 //            return true;
