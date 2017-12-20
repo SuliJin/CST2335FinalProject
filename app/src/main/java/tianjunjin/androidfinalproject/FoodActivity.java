@@ -72,7 +72,6 @@ public class FoodActivity extends Activity {
             cursor_food.moveToNext();;
         }
 
-        tabletFrame = findViewById(R.id.food_tablet_frameLayout);
         if (tabletFrame == null) {
             isTablet = false;
             Log.i(ACTIVITY_NAME, "the frameLayout does not exist, it is on the phone");
@@ -88,17 +87,9 @@ public class FoodActivity extends Activity {
                 Bundle empty_bundle=new Bundle();
                 empty_bundle.putInt("forempty",1);
 
-                if (isTablet == true) {
-                    Food_fragment tablet_fragment = new Food_fragment();
-                    tablet_fragment.setArguments(empty_bundle);
-                    FragmentTransaction ft = getFragmentManager().beginTransaction();
-                    ft.replace(R.id.food_tablet_frameLayout, tablet_fragment);
-                    ft.commit();
-                } else {
                     Intent intent = new Intent(FoodActivity.this, food_frameLayout.class);
                     intent.putExtra("food_bundle" ,empty_bundle);
                     startActivityForResult(intent, 10);
-                }
             }
         });
 
@@ -121,17 +112,9 @@ public class FoodActivity extends Activity {
                 bundle.putInt("position", position);
                 bundle.putInt("forempty",2);
 
-                if (isTablet == false) {
                     Intent i = new Intent(FoodActivity.this, food_frameLayout.class);
                     i.putExtra("food_bundle", bundle);
                     startActivityForResult(i, 2);
-                } else {
-                    Food_fragment tablet_fragment = new Food_fragment();
-                    tablet_fragment.setArguments(bundle);
-                    FragmentTransaction ft = getFragmentManager().beginTransaction();
-                    ft.replace(R.id.food_tablet_frameLayout, tablet_fragment);
-                    ft.commit();
-                }
             }
         });
     }
