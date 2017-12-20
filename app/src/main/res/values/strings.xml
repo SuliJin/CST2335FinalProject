@@ -4,6 +4,7 @@
     <string name="title_activity_automobile">Gasoline</string>
     <string name="title_activity_house">Thermo</string>
     <string name="title_activity_tracking">Activity</string>
+    <string name="title_activity_food">Nutrition</string>
     <string name="t_new_activity">New Activity</string>
     <string name="t_edit_activity">Update Activity</string>
     <string name="t_activities">Life is beautiful...</string>
@@ -48,8 +49,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="title_activity_automobile2">Automobile2Activity</string>
     <string name="title_activity_a">AActivity</string>
-
-    <string name="title_activity_food">Nutrition</string>
 
     <string name="SUNDAY">SUNDAY</string>
     <string name="MONDAY">MONDAY</string>
