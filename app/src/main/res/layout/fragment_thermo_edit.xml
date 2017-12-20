@@ -4,37 +4,31 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/green"
-    android:layout_margin="10dp">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#8F91BF"    >
+
 
     <TextView
         android:id="@+id/fragmentId"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="19dp"
         android:fontFamily="@font/petit_formal_script"
         android:text="@string/ID" />
 
-    <!--<EditText-->
-        <!--android:id="@+id/fragmentWeek"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:layout_below="@+id/fragmentId"-->
-        <!--android:layout_marginTop="20dp"-->
-        <!--android:hint="@string/setDayofWeek" />-->
+
     <Spinner
         android:id="@+id/fragmentWeek"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/fragmentId"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="23dp"
         android:entries="@array/weekday"
-        android:layout_centerVertical="true"
-        android:fontFamily="@font/petit_formal_script"
-        />
+        android:fontFamily="@font/petit_formal_script" />
 
     <EditText
         android:id="@+id/fragmentHour"

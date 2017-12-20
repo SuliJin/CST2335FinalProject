@@ -1,16 +1,24 @@
 package xiasheng.androidfinalproject;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -19,6 +27,7 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +38,7 @@ import sulijin.androidfinalproject.R;
 import static xiasheng.androidfinalproject.House_DatabaseHelper.TABLE_NAME;
 
 
-public class trackingHouseActivity extends Activity {
+public class trackingHouseActivity extends AppCompatActivity {
     private static final String ACTIVITY_NAME = "TrackingHouseActivity";
     private SQLiteDatabase tempDB;
     private ArrayList<Map> userList = new ArrayList();
@@ -41,14 +50,35 @@ public class trackingHouseActivity extends Activity {
     private FrameLayout landscapeFrameLayout;
     private int requestCode = 1;
 
+    public boolean onOptionsItemSelected(MenuItem mi) {
+        switch (mi.getItemId()) {
+
+            case R.id.helpthermo:
+                AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+                builder2.setTitle(R.string.help);
+                LayoutInflater inflater = this.getLayoutInflater();
+                final View dialogView = inflater.inflate(R.layout.activity_thermo_help, null);
+                builder2.setView(dialogView);
+                builder2.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
+              AlertDialog dialog2 = builder2.create();
+                dialog2.show();
+                break;
+        }return true;
+    }
+        @Override
+        public boolean onCreateOptionsMenu (Menu m){
+            getMenuInflater().inflate(R.menu.toolbar_thermo, m );
+            return true;
+        }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_house);
-
         progressBar=(ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
-
 
         TrackingAsync init = new TrackingAsync();
         init.execute();
@@ -152,6 +182,7 @@ public class trackingHouseActivity extends Activity {
                         edit.putExtra("bundle", bundle);
                         startActivityForResult(edit, requestCode);
                     }
+
                 }
             });
         }
