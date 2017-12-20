@@ -15,4 +15,9 @@
         <item name="colorAccent">#333EFF</item>
     </style>
 
+    <style name="NavigationViewLineSeperator">
+        <item name="android:background">@drawable/line_seperator</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+    </style>
 </resources>

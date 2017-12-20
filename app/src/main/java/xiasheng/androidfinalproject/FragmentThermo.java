@@ -81,13 +81,13 @@ public class FragmentThermo extends Fragment {
         textDay.setSelection(spinnerPosition);
 
         textHour=view.findViewById(R.id.fragmentHour);
-        textHour.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "23")});
+//        textHour.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "23")});
        textHour.setText(hour,TextView.BufferType.EDITABLE);
         textMinute=view.findViewById(R.id.fragmentMinute);
-        textMinute.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "59")});
+//        textMinute.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "59")});
         textMinute.setText(minute,TextView.BufferType.EDITABLE);
         textTemp=view.findViewById(R.id.fragmentTemp);
-        textTemp.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "100")});
+//        textTemp.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "100")});
         textTemp.setText(temp,TextView.BufferType.EDITABLE);
         cursor.close();
 

@@ -46,7 +46,7 @@ public class ActivityTrackingAddActivity extends Activity {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(ActivityTrackingAddActivity.this);
-                builder1.setTitle("Do you want to go back?");
+                builder1.setTitle(getResources().getString(R.string.t_wanna_back));
                 // Add the buttons
                 builder1.setPositiveButton(R.string.t_ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -87,7 +87,8 @@ public class ActivityTrackingAddActivity extends Activity {
                 newData.put(ActivityTrackingDatabaseHelper.DURATION, duration);
                 newData.put(ActivityTrackingDatabaseHelper.COMMENT, comment);
                 writeableDB.insert(ActivityTrackingDatabaseHelper.TABLE_NAME,"", newData);
-                Toast toast = Toast.makeText(ActivityTrackingAddActivity.this, "Activity is saved successfully", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(ActivityTrackingAddActivity.this,
+                                            getResources().getString(R.string.t_act_save_success), Toast.LENGTH_SHORT);
                 toast.show();
                 finish();
                 startActivity(startIntent);
