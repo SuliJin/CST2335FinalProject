@@ -23,7 +23,7 @@
                 android:background="#13e8ef"
                 android:text="@string/t_activities"
                 android:padding="8dp"
-                android:textSize="15dp"
+                android:textSize="20dp"
                 android:gravity="left|center_vertical"
                 android:textColor="#3F51B5"/>
 
@@ -38,7 +38,18 @@
                 android:src="@drawable/ic_add_box_white_48dp"/>
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
-
+    <ProgressBar
+        android:id="@+id/t_progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/newActivityBar"
+        android:layout_marginTop="25dp"
+        android:background="#a7e5f6"
+        android:progress="@android:integer/config_shortAnimTime"
+        android:progressTint="@android:color/holo_red_light"
+        android:visibility="invisible" />
     <ListView
         android:id="@+id/t_activitListView"
         android:layout_width="match_parent"

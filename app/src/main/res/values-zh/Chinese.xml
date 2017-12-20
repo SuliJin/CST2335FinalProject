@@ -17,8 +17,25 @@
     <string name="auto_liters">油量（升）</string>
     <string name="auto_price">单价（美元/升）</string>
     <string name="auto_kilo">公里数</string>
-    <string name="auto_avgPrice">上月均价</string>
+    <string name="auto_avgPrice">上月均价（$）</string>
     <string name="auto_totalCost">上月支出（$）</string>
+    <string name="auto_histRecord">历史记录</string>
+    <string name="auto_histSummary">消费汇总</string>
+    <string name="auto_save">保存</string>
+    <string name="auto_saveConfirm">保存成功！</string>
+    <string name="auto_cancel">取消</string>
+    <string name="auto_help">帮助</string>
+    <string name="auto_ok">关闭</string>
+    <string name="auto_helpValue">作者: 麦振挺. 汽油消费应用 1.0. 保存, 指保存输入. 取消, 指取消输入. 历史消费, 指所有记录. 消费汇总, 指每个月消费汇总.</string>
+    <string name="auto_noRecord">无记录</string>
+    <string name="auto_welcome">欢迎使用汽车燃油统计软件</string>
+    <string name="auto_cancelValue">你要清除你的输入吗？</string>
+    <string name="auto_yes">是</string>
+    <string name="auto_no">否</string>
+    <string name="auto_noCancel">请继续输入记录！</string>
+    <string name="auto_btUpdate">更新</string>
+    <string name="auto_btDelete">删除</string>
+    <string name="auto_textViewDate">日期</string>
 
     <string name="SUNDAY">星期日</string>
     <string name="MONDAY">星期一</string>

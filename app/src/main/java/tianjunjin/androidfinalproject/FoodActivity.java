@@ -22,9 +22,6 @@ import java.util.ArrayList;
 
 import sulijin.androidfinalproject.R;
 
-import static tianjunjin.androidfinalproject.Database_nutrition.DB_food_Name;
-import static tianjunjin.androidfinalproject.Database_nutrition.key_food_message;
-import static tianjunjin.androidfinalproject.Database_nutrition.DB_food_Name;
 import static tianjunjin.androidfinalproject.Database_nutrition.key_food_message;
 
 public class FoodActivity extends Activity {
