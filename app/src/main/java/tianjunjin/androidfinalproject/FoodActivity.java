@@ -1,7 +1,6 @@
 package tianjunjin.androidfinalproject;
 
 import android.app.Activity;
-import android.app.FragmentTransaction;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -16,12 +15,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.sql.Array;
 import java.util.ArrayList;
 
 import sulijin.androidfinalproject.R;
@@ -87,7 +83,7 @@ public class FoodActivity extends Activity {
                 Bundle empty_bundle=new Bundle();
                 empty_bundle.putInt("forempty",1);
 
-                    Intent intent = new Intent(FoodActivity.this, food_frameLayout.class);
+                    Intent intent = new Intent(FoodActivity.this, FoodAddActivity.class);
                     intent.putExtra("food_bundle" ,empty_bundle);
                     startActivityForResult(intent, 10);
             }
@@ -112,7 +108,7 @@ public class FoodActivity extends Activity {
                 bundle.putInt("position", position);
                 bundle.putInt("forempty",2);
 
-                    Intent i = new Intent(FoodActivity.this, food_frameLayout.class);
+                    Intent i = new Intent(FoodActivity.this, FoodAddActivity.class);
                     i.putExtra("food_bundle", bundle);
                     startActivityForResult(i, 2);
             }

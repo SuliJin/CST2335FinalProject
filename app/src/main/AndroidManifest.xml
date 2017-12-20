@@ -19,7 +19,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="tianjunjin.androidfinalproject.NutritionActivity"
+            android:name="tianjunjin.androidfinalproject.FoodActivity"
+            android:label="@string/title_activity_nutrition" />
+        <activity
+            android:name="tianjunjin.androidfinalproject.FoodAddActivity"
             android:label="@string/title_activity_nutrition" />
         <activity
             android:name="zhentingmai.androidfinalproject.AutomobileActivity"
@@ -38,13 +41,9 @@
         <activity
             android:name=".ActivityTrackingEditActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="tianjunjin.androidfinalproject.FoodActivity"
-            android:label="@string/title_activity_food" />
     <activity android:name="zhentingmai.androidfinalproject.AutoHistoryActivity"/>
     <activity android:name="zhentingmai.androidfinalproject.AutoSummaryActivity"/>
     <activity  android:name="zhentingmai.androidfinalproject.AutoDetailActivity"/>
-        android:label="@string/title_activity_a"/>
     <activity android:name="xiasheng.androidfinalproject.AddHouseActivity"
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
     <activity android:name="xiasheng.androidfinalproject.trackingHouseActivity"
