@@ -11,6 +11,7 @@ import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -73,7 +74,11 @@ public class FragmentThermo extends Fragment {
         temp=cursor.getString(cursor.getColumnIndex(Temperature));
 
         textDay=view.findViewById(R.id.fragmentWeek);
-        textDay.getSelectedItem().toString();
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.weekday, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        textDay.setAdapter(adapter);
+        int spinnerPosition = adapter.getPosition(day);
+        textDay.setSelection(spinnerPosition);
 
         textHour=view.findViewById(R.id.fragmentHour);
 //        textHour.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "23")});

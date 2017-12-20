@@ -44,9 +44,13 @@
     <activity  android:name="zhentingmai.androidfinalproject.AutoDetailActivity"/>
     <activity android:name="zhentingmai.androidfinalproject.AActivity"
         android:label="@string/title_activity_a"/>
-    <activity android:name="xiasheng.androidfinalproject.AddHouseActivity"/>
-    <activity android:name="xiasheng.androidfinalproject.trackingHouseActivity"/>
+    <activity android:name="xiasheng.androidfinalproject.AddHouseActivity"
+        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+    <activity android:name="xiasheng.androidfinalproject.trackingHouseActivity"
+        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+    <activity android:name="xiasheng.androidfinalproject.FragmentThermo" />
     <activity android:name="xiasheng.androidfinalproject.HouseDetailActivity"
-        android:theme="@style/Theme.AppCompat.Light"/>
-    </application>
+        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" /> />
+
+
 </manifest>

@@ -87,7 +87,8 @@
     <string name="temp">Temperature(0-100)</string>
     <string name="title_activity_toolbar">Toolbar</string>
     <string name="about">about</string>
-    <string name="help">help>
+    <string name="help">帮助</string>
+    <string name="helpthermo">
         1. App Info \n\n
         Click menu -> About to show the application information. \n\n
         2. Help \n\n
