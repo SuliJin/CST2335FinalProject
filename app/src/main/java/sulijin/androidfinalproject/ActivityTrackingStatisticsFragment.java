@@ -97,11 +97,11 @@ public class ActivityTrackingStatisticsFragment extends Fragment {
 
     @NonNull
     private String getString(Map<String, Integer> minutePerActivityMap) {
-        String mpa = "";
+        String minutePerActivity = "";
         for (Map.Entry entry : minutePerActivityMap.entrySet()) {
-            mpa += entry.getKey() + " : " + entry.getValue() +"\n";
+            minutePerActivity += entry.getKey() + " : " + entry.getValue() +"\n";
         }
-        return mpa;
+        return minutePerActivity;
     }
 
 }

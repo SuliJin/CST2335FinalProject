@@ -133,7 +133,7 @@ public class Food_fragment extends Fragment {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle(R.string.sure_to_delete);
                 // Add the buttons
-                builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(R.string.t_ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         if (getActivity().getLocalClassName().equals("MessageDetails")) {
                             Intent intent = new Intent();

@@ -12,7 +12,7 @@
         android:layout_marginTop="40dp"
         android:fontFamily="sans-serif"
         android:textSize="25dp"
-        android:text="Duration per activity:\n" />
+        android:text="@string/t_duration_per_act" />
 
     <TextView
         android:id="@+id/t_minitePerActivity"
@@ -35,7 +35,7 @@
         android:layout_marginTop="240dp"
         android:fontFamily="sans-serif"
         android:textSize="25dp"
-        android:text="Count per activity:\n" />
+        android:text="@string/t_count_per_act" />
 
     <TextView
         android:id="@+id/t_activityCount"
@@ -52,9 +52,11 @@
         android:id="@+id/t_stats_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/t_activityCount"
         android:layout_gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/t_activityCount"
+        android:layout_marginTop="480dp"
+        android:background="#c2f2ff"
         android:text="@string/t_ok" />
 
 </RelativeLayout>

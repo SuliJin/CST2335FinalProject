@@ -4,10 +4,18 @@
     <string name="title_activity_automobile">Gasoline</string>
     <string name="title_activity_house">Thermo</string>
     <string name="title_activity_tracking">Activity</string>
+    <string name="title_activity_food">Nutrition</string>
+
+    <!-- activity tracking -->
     <string name="t_new_activity">New Activity</string>
     <string name="t_edit_activity">Update Activity</string>
     <string name="t_activities">Life is beautiful...</string>
-    <string name="title_activity_new">New</string>
+    <string name="t_wanna_back">Do you want to go back?</string>
+    <string name="t_wanna_update">Do you want to update activity?</string>
+    <string name="t_wanna_delete">Do you want to delete activity?</string>
+    <string name="t_act_save_success">Activity is saved successfully</string>
+    <string name="t_act_update_success">Activity is updated successfully</string>
+    <string name="t_act_delete_success">Activity is deleted successfully</string>
     <string name="t_ok">OK</string>
     <string name="t_cancel">Cancel</string>
     <string name="t_save">Save</string>
@@ -39,6 +47,18 @@
         <item>Swimming</item>
         <item>Skating</item>
     </string-array>
+    <string name="t_type">Type</string>
+    <string name="t_time">Time</string>
+    <string name="t_duration">Duration</string>
+    <string name="t_comment">Comment</string>
+    <string name="t_count_per_act">Count per activity:\n</string>
+    <string name="t_duration_per_act">Duration per activity:\n</string>
+    <string name="t_start_at">start at </string>
+    <string name="t_for"> for </string>
+    <string name="t_min_note"> minutes. Note: </string>
+    <string name="t_help_title">Help</string>
+    <string name="t_stats_title">Statistics</string>
+    <!-- auto -->
     <string name="auto_liters">Liters</string>
     <string name="auto_price">Price($/L)</string>
     <string name="auto_kilo">Kilometers</string>
@@ -63,14 +83,9 @@
     <string name="auto_btDelete">Delete</string>
     <string name="auto_textViewDate">Date</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_automobile2">Automobile2Activity</string>
-    <string name="title_activity_a">AActivity</string>
 
-    <string name="title_activity_food">Nutrition</string>
-
-    <string name="SUNDAY">SUNDAY</string>
+     <string name="SUNDAY">SUNDAY</string>
     <string name="MONDAY">MONDAY</string>
     <string name="TUESDAY">TUESDAY</string>
     <string name="WEDNESDAY">WEDNESDAY</string>
@@ -127,5 +142,5 @@
     <string name="author">author:Xia Sheng</string>
     <string name="OK">OK</string>
     <string name="version">version: 1.0.0 </string>
-
+    <string name="sure_to_delete">Are you sure to delete the record?</string>
 </resources>

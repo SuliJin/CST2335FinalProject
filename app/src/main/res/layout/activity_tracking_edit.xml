@@ -37,6 +37,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="34dp"
         android:layout_marginEnd="37dp"
+        android:background="#d3dbf8"
         android:text="@string/t_update" />
 
     <Button
@@ -46,6 +47,7 @@
         android:layout_alignBaseline="@+id/t_button_update_activity"
         android:layout_alignBottom="@+id/t_button_update_activity"
         android:layout_centerHorizontal="true"
+        android:background="#d3dbf8"
         android:text="@string/t_delete" />
 
     <Button
@@ -55,6 +57,7 @@
         android:layout_alignTop="@+id/t_button_delete_activity"
         android:layout_marginEnd="27dp"
         android:layout_toStartOf="@+id/t_button_delete_activity"
+        android:background="#d3dbf8"
         android:text="@string/t_cancel" />
 
 

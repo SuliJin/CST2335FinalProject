@@ -56,7 +56,7 @@ public class ActivityTrackingActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.t_help:
                 AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
-                builder2.setTitle("Help");
+                builder2.setTitle(getResources().getString(R.string.t_help_title));
                 LayoutInflater inflater = this.getLayoutInflater();
                 final View dialogView = inflater.inflate(R.layout.fragment_activity_tracking_help, null);
                 ((TextView)dialogView.findViewById(R.id.t_help)).setMovementMethod(new ScrollingMovementMethod());
@@ -133,7 +133,9 @@ public class ActivityTrackingActivity extends AppCompatActivity {
                 row.put(ActivityTrackingDatabaseHelper.TIME, time);
                 row.put(ActivityTrackingDatabaseHelper.DURATION, duration);
                 row.put(ActivityTrackingDatabaseHelper.COMMENT, comment);
-                row.put(DESCRIPTION, "start at " + time +", " + type + " for " + duration + " minutes. Note: " + comment);
+                row.put(DESCRIPTION, getResources().getString(R.string.t_start_at) + time +", " + type +
+                        getResources().getString(R.string.t_for) + duration +
+                        getResources().getString(R.string.t_min_note)+ comment);
 
                 activityList.add(row);
                 cursor.moveToNext();
