@@ -19,8 +19,13 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="tianjunjin.androidfinalproject.NutritionActivity"
+            android:label="@string/title_activity_nutrition" />
+        <activity
             android:name="zhentingmai.androidfinalproject.AutomobileActivity"
             android:label="@string/title_activity_automobile" />
+
+
         <activity
             android:name=".ActivityTrackingActivity"
             android:label="@string/title_activity_tracking"
@@ -39,7 +44,6 @@
     <activity android:name="zhentingmai.androidfinalproject.AutoHistoryActivity"/>
     <activity android:name="zhentingmai.androidfinalproject.AutoSummaryActivity"/>
     <activity  android:name="zhentingmai.androidfinalproject.AutoDetailActivity"/>
-    <activity android:name="zhentingmai.androidfinalproject.AActivity"
         android:label="@string/title_activity_a"/>
     <activity android:name="xiasheng.androidfinalproject.AddHouseActivity"
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />

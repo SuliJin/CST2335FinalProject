@@ -42,7 +42,7 @@
     <string name="auto_liters">Liters</string>
     <string name="auto_price">Price($/L)</string>
     <string name="auto_kilo">Kilometers</string>
-    <string name="auto_avgPrice">Last Month Average Price</string>
+    <string name="auto_avgPrice">Last Month Average Price($)</string>
     <string name="auto_totalCost">Last Month Total Cost($)</string>
     <string name="auto_histRecord">History Consumption</string>
     <string name="auto_histSummary">Consuming Summary</string>
