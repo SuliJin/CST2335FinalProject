@@ -1,22 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#c2f2ff"
     tools:context="sulijin.androidfinalproject.ActivityTrackingActivity">
-    <TextView
-        android:id="@+id/toolbar_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@color/colorAccent"
-        android:gravity="center_horizontal"
-        android:text="@string/title_activity_tracking"
 
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@android:color/holo_blue_bright"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-</android.support.constraint.ConstraintLayout>
+    <ProgressBar
+        android:id="@+id/t_progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp"
+        android:background="#c2f2ff"
+        android:progress="@android:integer/config_shortAnimTime"
+        android:progressTint="@android:color/holo_red_light"
+        android:visibility="invisible" />
+    <FrameLayout
+        android:id="@+id/t_listview_Frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:background="#d3dbf8"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/t_newActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_margin="16dp"
+        app:layout_anchor="@id/t_listview_Frame"
+        app:layout_anchorGravity="bottom|right|end"
+        android:src="@drawable/ic_note_add_black_48dp" />
+</RelativeLayout>

@@ -22,7 +22,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight=".75"
                 android:background="#13e8ef"
-                android:text="@string/title_activity_food"
+                android:text="@string/food_activities"
                 android:padding="8dp"
                 android:textSize="15dp"
                 android:gravity="left|center_vertical"

@@ -32,7 +32,7 @@ public class Database_nutrition extends SQLiteOpenHelper {
                 + key_Carbohydrate + " TEXT"
                 + ")";
         db.execSQL(CREATE_TABLE_MSG);
-}
+    }
     @Override
     public void onOpen(SQLiteDatabase db){}
     public void onUpgrade(SQLiteDatabase db,int newVersion, int oldVersion ){
@@ -41,7 +41,4 @@ public class Database_nutrition extends SQLiteOpenHelper {
         onCreate(db);
     }
 }
-
-
-
 

@@ -1,0 +1,104 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#cccc99"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="zhentingmai.androidfinalproject.AutoHistFragment">
+
+
+
+    <!-- TODO: Update blank fragment layout -->
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_gravity="fill"
+        android:columnCount="2">
+
+
+        <TextView
+            android:id="@+id/autoFragmentTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/auto_textViewDate" />
+
+        <EditText
+            android:id="@+id/fragmentTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name" />
+
+        <TextView
+            android:id="@+id/autoFragmentPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/auto_price" />
+
+        <EditText
+            android:id="@+id/fragmentPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name" />
+
+        <TextView
+            android:id="@+id/autoFragmentLiters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/auto_liters"/>
+
+        <EditText
+            android:id="@+id/fragmentLiters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name" />
+
+        <TextView
+            android:id="@+id/autoFragmentKilo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/auto_kilo" />
+
+        <EditText
+            android:id="@+id/fragmentKilo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name" />
+
+        <TextView
+            android:id="@+id/autoFragmentId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ID=" />
+
+        <EditText
+            android:id="@+id/fragmentId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name" />
+
+        <Button
+            android:id="@+id/autoFragmentDel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/auto_btDelete" />
+
+        <Button
+            android:id="@+id/autoFragmentUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/auto_btUpdate" />
+    </GridLayout>
+
+
+</FrameLayout>

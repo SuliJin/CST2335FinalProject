@@ -15,17 +15,16 @@ public class food_frameLayout extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_frame_layout);
 
-            //        open bundle_phone
-            Bundle bundle = getIntent().getBundleExtra("food_bundle");
+        //        open bundle_phone
+        Bundle bundle = getIntent().getBundleExtra("food_bundle");
 //        load bundle into the new Messagefragment
-            Food_fragment food_fragment = new Food_fragment();
-            food_fragment.setArguments(bundle);
+        Food_fragment food_fragment = new Food_fragment();
+        food_fragment.setArguments(bundle);
 //        load the new MessageFragment into the emptyFrame with ft
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.food_empty_frameLayout, food_fragment);
-            ft.addToBackStack(null);
-            ft.commit();
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.food_empty_frameLayout, food_fragment);
+        ft.addToBackStack(null);
+        ft.commit();
 
-        }
     }
-
+}

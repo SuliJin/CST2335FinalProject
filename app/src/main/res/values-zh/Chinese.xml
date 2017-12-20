@@ -5,4 +5,127 @@
     <string name="title_activity_automobile">汽车燃油</string>
     <string name="title_activity_house">室温调节</string>
     <string name="title_activity_tracking">户外活动</string>
+
+    <!-- activity tracking -->
+    <string name="t_new_activity">添加</string>
+    <string name="t_edit_activity">更新</string>
+    <string name="t_activities">美丽新生活</string>
+    <string name="t_wanna_back">你想回去啊?</string>
+    <string name="t_wanna_update">你想把活动改了?</string>
+    <string name="t_wanna_delete">你想把活动删了?</string>
+    <string name="t_act_save_success">活动整完了</string>
+    <string name="t_act_update_success">活动改完了</string>
+    <string name="t_act_delete_success">活动删完了</string>
+    <string name="t_ok">行</string>
+    <string name="t_cancel">算了</string>
+    <string name="t_save">存盘</string>
+    <string name="t_update">改动</string>
+    <string name="t_delete">删了</string>
+    <string name="t_stay">还在这待着</string>
+    <string name="t_author">作者: 金素莉</string>
+    <string name="t_version">版本: 1.0.0</string>
+    <string name="t_help">
+        作者: 金素莉 \t\t 版本: 1.0.0 \n
+        -----------------------------------------\n\n
+        1. 帮助 \n\n
+        点 menu -> Help 显示帮助菜单. \n\n
+        2. 活动总结 \n\n
+        点 menu -> Statistics 显示活动总结。一个月每个活动整几次，每个活动整多长时间. \n\n
+        3. 添加活动 \n\n
+        点击添加图标去添加新活动页面。你可在那输入信息，点击存盘来保存新活动。\n\n
+        4. 改动活动 \n\n
+        在活动列表那嘎达,点击你想改动的那条，完了去改动活动页面，就可以进行改动。也可以删除选择的那条。 \n\n
+    </string>
+    <string-array name="t_activities">
+        <item>撒鸭子</item>
+        <item>走道</item>
+        <item>骑车子</item>
+        <item>游泳</item>
+        <item>滑出溜</item>
+    </string-array>
+    <string name="t_type">活动</string>
+    <string name="t_time">时间</string>
+    <string name="t_duration">搞多久</string>
+    <string name="t_comment">评语</string>
+    <string name="t_count_per_act">每个活动整几次:\n</string>
+    <string name="t_duration_per_act">每个活动整多长时间:\n</string>
+    <string name="t_start_at">在</string>
+    <string name="t_for"> </string>
+    <string name="t_min_note">分钟. 评语: </string>
+    <string name="t_help_title">帮助</string>
+    <string name="t_stats_title">统计</string>
+
+    <!-- auto -->
+    <string name="auto_liters">油量（升）</string>
+    <string name="auto_price">单价（美元/升）</string>
+    <string name="auto_kilo">公里数</string>
+    <string name="auto_avgPrice">上月均价（$）</string>
+    <string name="auto_totalCost">上月支出（$）</string>
+    <string name="auto_histRecord">历史记录</string>
+    <string name="auto_histSummary">消费汇总</string>
+    <string name="auto_save">保存</string>
+    <string name="auto_saveConfirm">保存成功！</string>
+    <string name="auto_cancel">取消</string>
+    <string name="auto_help">帮助</string>
+    <string name="auto_ok">关闭</string>
+    <string name="auto_helpValue">作者: 麦振挺. 汽油消费应用 1.0. 保存, 指保存输入. 取消, 指取消输入. 历史消费, 指所有记录. 消费汇总, 指每个月消费汇总.</string>
+    <string name="auto_noRecord">无记录</string>
+    <string name="auto_welcome">欢迎使用汽车燃油统计软件</string>
+    <string name="auto_cancelValue">你要清除你的输入吗？</string>
+    <string name="auto_yes">是</string>
+    <string name="auto_no">否</string>
+    <string name="auto_noCancel">请继续输入记录！</string>
+    <string name="auto_btUpdate">更新</string>
+    <string name="auto_btDelete">删除</string>
+    <string name="auto_textViewDate">日期</string>
+
+    <string name="SUNDAY">星期日</string>
+    <string name="MONDAY">星期一</string>
+    <string name="TUESDAY">星期二</string>
+    <string name="WEDNESDAY">星期三</string>
+    <string name="THURSDAY">星期四</string>
+    <string name="FRIDAY">星期五</string>
+    <string name="SATURDAY">星期六</string>
+
+    <string-array name="weekday">
+        <item>@string/SUNDAY</item>
+        <item>@string/MONDAY</item>
+        <item>@string/TUESDAY</item>
+        <item>@string/WEDNESDAY</item>
+        <item>@string/THURSDAY</item>
+        <item>@string/FRIDAY</item>
+        <item>@string/SATURDAY</item>
+    </string-array>
+
+    <string name="addNew">添加温度条目</string>
+    <string name="delete">删除温度条目</string>
+    <string name="save">保存</string>
+    <string name="setDayofWeek">设置星期几</string>
+    <string name="setTemp">设置温度(0-100)</string>
+    <string name="setHour">设置小时(0-23)</string>
+    <string name="setMinute">设置分钟(0-59)</string>
+    <string name="deleterule">删除此条目</string>
+    <string name="cancel">取消</string>
+    <string name="saveAsNewRule">设为新条目</string>
+    <string name="add">添加</string>
+    <string name="day">日</string>
+    <string name="hour">小时(0-23)</string>
+    <string name="minute">分钟(0-59)</string>
+    <string name="temp">温度(0-100)</string>
+    <string name="about">关于</string>
+    <string name="ID">序号</string>
+    <string name="help">帮助</string>
+    <string name="helpthermo">
+        1. App介绍 \n\n
+        点击菜单 -> 关于，显示应用详细信息 \n\n
+        2. 帮助 \n\n
+        点击菜单 -> 帮助， 显示如何使用应用。 \n\n
+        3. 添加新活动 \n\n
+        点击“添加温度条目”进入添加页面，录入新活动的信息点击按钮“保存” \n\n
+        4. 修改活动\n\n
+        点击活动列表进行活动修改：更改信息并点击按钮“保存”更新此活动，或者点击“设为新条目”存为新的活动，也可以点击“删除温度条目”删除此项活动。\n\n
+    </string>
+    <string name="author">作者:盛夏</string>
+    <string name="OK">确定</string>
+    <string name="version">版本：1.0.0</string>
 </resources>
