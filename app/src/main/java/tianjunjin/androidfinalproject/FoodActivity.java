@@ -19,6 +19,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import sulijin.androidfinalproject.R;
 
@@ -26,7 +28,7 @@ public class FoodActivity extends Activity {
 
     ListView listView_food;
     Button addButton_food;
-    ArrayList<Food_information> food_list;
+    ArrayList<Map> food_list;
     FoodAdapter foodAdapter;
     protected static final String ACTIVITY_NAME = "FoodActivity ";
     ContentValues cValues_food;
@@ -58,12 +60,13 @@ public class FoodActivity extends Activity {
         cursor_food.moveToFirst();
 
         while (!cursor_food.isAfterLast()) {
-            Food_information food_information = new Food_information();
-            food_information.food = cursor_food.getString(cursor_food.getColumnIndex(Database_nutrition.key_food_TYPE));
-            food_information.time = cursor_food.getString(cursor_food.getColumnIndex(Database_nutrition.key_TIME ));
-            food_information.calories = cursor_food.getString(cursor_food.getColumnIndex(Database_nutrition.key_Calories));
-            food_information.total_Fat = cursor_food.getString(cursor_food.getColumnIndex(Database_nutrition.key_Total_Fat));
-            food_information.Carbohydrate = cursor_food.getString(cursor_food.getColumnIndex(Database_nutrition.key_Carbohydrate));
+            Map<String,Object> food_information =new HashMap<>();
+            food_information.put("id",cursor_food.getColumnIndex(Database_nutrition.key_food_RowID));
+            food_information.put("food",cursor_food.getColumnIndex(Database_nutrition.key_food_TYPE));
+            food_information.put("time",cursor_food.getColumnIndex(Database_nutrition.key_TIME ));
+            food_information.put("calories",cursor_food.getColumnIndex(Database_nutrition.key_Calories));
+            food_information.put("total_Fat",cursor_food.getColumnIndex(Database_nutrition.key_Total_Fat));
+            food_information.put("Carbohydrate",cursor_food.getColumnIndex(Database_nutrition.key_Carbohydrate));
             food_list.add(food_information);
             cursor_food.moveToNext();;
         }
@@ -83,9 +86,9 @@ public class FoodActivity extends Activity {
                 Bundle empty_bundle=new Bundle();
                 empty_bundle.putInt("forempty",1);
 
-                    Intent intent = new Intent(FoodActivity.this, FoodAddActivity.class);
-                    intent.putExtra("food_bundle" ,empty_bundle);
-                    startActivityForResult(intent, 10);
+                Intent intent = new Intent(FoodActivity.this, FoodAddActivity.class);
+                intent.putExtra("food_bundle" ,empty_bundle);
+                startActivityForResult(intent, 10);
             }
         });
 
@@ -94,27 +97,19 @@ public class FoodActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1,
                                     int position, long id) {
-                Food_information food_information = food_list.get(position);
-                Long DB_ID = foodAdapter.getItemId(position);
-
+                //   Food_info rmation food_information = food_list.get(position);
+                //   Long DB_ID = foodAdapter.getItem(position);
                 Bundle bundle = new Bundle();
-                bundle.putString("type", food_information.food);
-                bundle.putString("time", food_information.time);
-                bundle.putString("calories", food_information.calories);
-                bundle.putString("total_Fat", food_information.total_Fat);
-                bundle.putString("carbohydrate", food_information.Carbohydrate);
-
-                bundle.putLong("DB_ID", DB_ID);
-                bundle.putInt("position", position);
+                bundle.putString("id", foodAdapter.getItemId(position)+"");
                 bundle.putInt("forempty",2);
 
-                    Intent i = new Intent(FoodActivity.this, FoodAddActivity.class);
-                    i.putExtra("food_bundle", bundle);
-                    startActivityForResult(i, 2);
+                Intent i = new Intent(FoodActivity.this, FoodAddActivity.class);
+                i.putExtra("food_bundle", bundle);
+                startActivityForResult(i, 2);
             }
         });
     }
-    private class FoodAdapter extends ArrayAdapter<Food_information> {
+    private class FoodAdapter extends ArrayAdapter<Map<String, Object>> {
 
         public FoodAdapter(Context ctx) {
             super(ctx, 0);
@@ -124,8 +119,13 @@ public class FoodActivity extends Activity {
             return food_list.size();
         }
 
-        public Food_information getItem(int position) {
+        public Map<String, Object> getItem(int position) {
+            //   Map<String,Object> food_item = getItem(posision);
             return food_list.get(position);
+        }
+        public long getItemId(int position){
+            Map<String,Object> food_item = getItem(position);
+            return Long.parseLong(food_item.get("id").toString());
         }
 
         public View getView(int position, View convertView, ViewGroup parent) {
@@ -134,13 +134,12 @@ public class FoodActivity extends Activity {
             food_item_result = inflater.inflate(R.layout.food_item, null);
 
             TextView message = (TextView) food_item_result.findViewById(R.id.food_item_text);
-            Food_information fi = food_list.get(position);
-            String detail = "Food: "+fi.food + "Time:" +fi.time + "calory:"+fi.calories + "Fat:"+ fi.total_Fat + "carbo:"+fi.Carbohydrate;
-            message.setText(detail); // get the string at position
+            Map<String,Object> food_view= getItem(position);
+            String detail = food_view.get("food").toString()+ food_view.get("time").toString()+ food_view.get("calories").toString()+food_view.get("total_Fat").toString()+food_view.get("Carbohydrate").toString();
+            message.setText(detail);
             return food_item_result;
         }
     }
-
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == 2) {
             Bundle bundle_return = data.getBundleExtra("newbundle");
@@ -150,32 +149,37 @@ public class FoodActivity extends Activity {
             calories = bundle_return.getString("calories");
             total_fat= bundle_return.getString("total_Fat");
             carbohydrate = bundle_return.getString("carbohydrate");
-            save(new Food_information(type,time,calories,total_fat,carbohydrate));
+            Map<String,Object>  food_map = new HashMap();
+            food_map.put("type",type);
+            food_map.put("time",time);
+            food_map.put("calories",calories);
+            food_map.put("total_Fat",total_fat);
+            food_map.put("carbohydrate",carbohydrate);
+            save(food_map);
         }
     }
-
     public void delete(Long id,int position) {
         sqLiteDatabase_nutrition .delete(Database_nutrition.DB_food_table , Database_nutrition.key_food_RowID + " = " + id, null);
         food_list.remove(position);
         foodAdapter.notifyDataSetChanged();
     }
 
-    public void save(Food_information food_information) {
+    public void save(Map<String,Object> save_food) {
         ContentValues values = new ContentValues();
-        values.put(Database_nutrition.key_food_TYPE, food_information.food);
-        values.put(Database_nutrition.key_TIME, food_information.time);
-        values.put(Database_nutrition.key_Calories, food_information.calories);
-        values.put(Database_nutrition.key_Total_Fat, food_information.total_Fat);
-        values.put(Database_nutrition.key_Carbohydrate, food_information.Carbohydrate);
+        values.put(Database_nutrition.key_food_TYPE, save_food.get("food").toString());
+        values.put(Database_nutrition.key_TIME, save_food.get("time").toString());
+        values.put(Database_nutrition.key_Calories, save_food.get("calories").toString());
+        values.put(Database_nutrition.key_Total_Fat, save_food.get("total_Fat").toString());
+        values.put(Database_nutrition.key_Carbohydrate, save_food.get("Carbohydrate").toString());
 
-    //    if(add_clicked==true) {
-            sqLiteDatabase_nutrition.insert(Database_nutrition.DB_food_table, null, values);
-            cursor_food = sqLiteDatabase_nutrition.rawQuery("select * from " + database_nutrition_object.DB_food_table, null);
-            food_list.add(food_information);
-            cursor_food.moveToFirst();
-            foodAdapter.notifyDataSetChanged();
-            refreshActivity();
- //       }
+        //    if(add_clicked==true) {
+        sqLiteDatabase_nutrition.insert(Database_nutrition.DB_food_table, null, values);
+        cursor_food = sqLiteDatabase_nutrition.rawQuery("select * from " + database_nutrition_object.DB_food_table, null);
+        food_list.add(save_food);
+        cursor_food.moveToFirst();
+        foodAdapter.notifyDataSetChanged();
+        refreshActivity();
+        //       }
 //        else{
 //            sqLiteDatabase_nutrition.update(Database_nutrition.DB_food_table, values, Database_nutrition.key_food_RowID +" = " + DB_ID, null);
 //            cursor_food = sqLiteDatabase_nutrition.rawQuery("select * from " + database_nutrition_object.DB_food_table,null);
@@ -184,8 +188,8 @@ public class FoodActivity extends Activity {
 //        }
     }
     public void refreshActivity(){
-            finish();
-            Intent intent = getIntent();
-            startActivity(intent);
+        finish();
+        Intent intent = getIntent();
+        startActivity(intent);
     }
 }

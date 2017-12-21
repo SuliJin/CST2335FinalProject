@@ -20,6 +20,8 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import sulijin.androidfinalproject.R;
 
@@ -120,12 +122,16 @@ public class Food_fragment extends Fragment {
                     getActivity().setResult(2, intent);
                     getActivity().finish();
                 } else {
-                    ((FoodActivity) getActivity()).save(new Food_information(type, time, calories, total_Fat, carbohydrate));
+                    Map<String,Object> food_map = new HashMap();
+                    food_map.put("type",type);
+                    food_map.put("time",time);
+                    food_map.put("calories",calories);
+                    food_map.put("total_Fat",total_Fat);
+                    food_map.put("carbohydrate",carbohydrate);
+                    ((FoodActivity) getActivity()).save(food_map);
                 }
             }
         });
-
-
 
         deleteButton_food =view.findViewById(R.id.f_delete_button_food);
         deleteButton_food.setOnClickListener(new View.OnClickListener()
