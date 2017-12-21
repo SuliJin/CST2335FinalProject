@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -31,8 +32,9 @@ public class Food_fragment extends Fragment {
     View view;
     Button cancelButton_food, saveButton_food, deleteButton_food;
     EditText Edit_type, Edit_Calories, Edit_Total_Fat, Edit_Total_Carbohydrate;
-    TextView Edit_Time;
+    EditText Edit_Time;
     Boolean tablet_mode;
+    SQLiteDatabase sqLiteDatabase_nutrition;
 
     public Food_fragment() {
         tablet_mode = false;
@@ -47,6 +49,7 @@ public class Food_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.activity_food_fragment, container, false);
+        sqLiteDatabase_nutrition = new Database_nutrition(getActivity()).getWritableDatabase();
 
         final Bundle bundle_back = this.getArguments();
 
@@ -141,7 +144,10 @@ public class Food_fragment extends Fragment {
                             getActivity().setResult(2, intent);
                             getActivity().finish();
                         } else {
-                            ((FoodActivity) getActivity()).delete(single_ID, single_position);
+                            sqLiteDatabase_nutrition .delete(Database_nutrition.DB_food_table , Database_nutrition.key_food_RowID + " = " + id, null);
+                            Intent foodAct = new Intent(getActivity(), FoodActivity.class);
+                            getActivity().finish();
+                            getActivity().startActivity(foodAct);
                         }
                     }
                 });
