@@ -1,6 +1,5 @@
 package xiasheng.androidfinalproject;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -53,7 +52,7 @@ public class FragmentThermo extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-       View view = inflater.inflate(R.layout.fragment_thermo_edit, container, false);
+       View view = inflater.inflate(R.layout.fragment_house_edit, container, false);
 
         bundle = this.getArguments();
        id = bundle.getString("id");
@@ -81,33 +80,28 @@ public class FragmentThermo extends Fragment {
         textDay.setSelection(spinnerPosition);
 
         textHour=view.findViewById(R.id.fragmentHour);
-//        textHour.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "23")});
-       textHour.setText(hour,TextView.BufferType.EDITABLE);
+        textHour.setText(hour,TextView.BufferType.EDITABLE);
+        textHour.setFilters(new InputFilter[]{ new InputFilterMinMax("00", "23")});
+
         textMinute=view.findViewById(R.id.fragmentMinute);
-//        textMinute.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "59")});
         textMinute.setText(minute,TextView.BufferType.EDITABLE);
+        textMinute.setFilters(new InputFilter[]{ new InputFilterMinMax("00", "59")});
+
         textTemp=view.findViewById(R.id.fragmentTemp);
-//        textTemp.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "100")});
         textTemp.setText(temp,TextView.BufferType.EDITABLE);
+        textTemp.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "50")});
+
         cursor.close();
 
         del = view.findViewById(R.id.button_delete_fg_h);
         del.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View var1) {
-//                if (isLandscape) {
                     tempDB.delete(House_DatabaseHelper.TABLE_NAME, ID + "=" + id, null);
                     getActivity().finish();
                     getActivity().getFragmentManager().beginTransaction().remove(FragmentThermo.this).commit();
                     Intent intent = getActivity().getIntent();
                     startActivity(intent);
-//                }
-//                else {
-//                    Intent ret = new Intent();
-//                    ret.putExtra("id", id);
-//                    getActivity().setResult(Activity.RESULT_OK, ret);
-//                    getActivity().finish();
-//              }
             }
         });
 
@@ -126,23 +120,14 @@ public class FragmentThermo extends Fragment {
                 input.put(Temperature, temp);
                 tempDB.update(House_DatabaseHelper.TABLE_NAME,input, "_id="+id , null );
 
-
-//                if (isLandscape) {
                     getActivity().finish();
                     getActivity().getFragmentManager().beginTransaction().remove(FragmentThermo.this).commit();
                     Intent intent = getActivity().getIntent();
                     startActivity(intent);
-//                }
-//                else {
-//                    Intent ret = new Intent();
-//                    ret.putExtra("id", id);
-//                    getActivity().setResult(Activity.RESULT_OK, ret);
-//                    getActivity().finish();
-//                }
+
             }
 
         });
-
 
         saveNew = view.findViewById(R.id.button_saveNewRule_fg_h);
         saveNew.setOnClickListener(new View.OnClickListener() {
@@ -160,23 +145,14 @@ public class FragmentThermo extends Fragment {
                 input.put(Temperature, temp);
                 tempDB.insert(House_DatabaseHelper.TABLE_NAME, ID, input );
 
-//                if (isLandscape) {
-
                     getActivity().finish();
                     getActivity().getFragmentManager().beginTransaction().remove(FragmentThermo.this).commit();
                     Intent intent = getActivity().getIntent();
                     startActivity(intent);
-//                }
-//                else {
-//                    Intent ret = new Intent();
-//                    ret.putExtra("id", id);
-//                    getActivity().setResult(Activity.RESULT_OK, ret);
-//                    getActivity().finish();
-//                }
+
             }
 
         });
         return view;
     }
-
     }

@@ -6,11 +6,6 @@
     android:layout_height="match_parent"
     tools:context="xiasheng.androidfinalproject.trackingHouseActivity">
 
-    <!--<android.support.design.widget.AppBarLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:theme="@style/AppBarOverlay"-->
-        <!--android:id="@+id/appBarLayout">-->
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -19,23 +14,12 @@
 
             app:popupTheme="@style/PopupOverlay" />
 
-    <!--</android.support.design.widget.AppBarLayout>-->
-
-    <!--<LinearLayout-->
-
-        <!--android:id="@+id/thermolist"-->
-
-        <!--android:layout_width="match_parent"-->
-
-        <!--android:layout_height="match_parent"-->
-        <!--android:orientation="vertical">-->
-    <ListView
+        <ListView
         android:id="@+id/thermView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="1"/>
 
-        />
-    <!--</LinearLayout>-->
 
 
     <android.support.design.widget.FloatingActionButton
@@ -50,8 +34,6 @@
         android:layout_marginBottom="100dp"
         app:layout_anchorGravity="bottom|right|end"
         android:src="@drawable/addnote" />
-
-
 
     <ProgressBar
 

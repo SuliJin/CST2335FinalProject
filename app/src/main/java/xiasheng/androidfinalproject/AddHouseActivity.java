@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.text.InputFilter;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -28,28 +29,25 @@ public class AddHouseActivity extends Activity {
     EditText temp;
     private final double default_temp = 20.0;
     protected static final String ACTIVITY_NAME = "HouseActivity";
-
     SQLiteDatabase writeableDB;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_house_add);
-        //this.deleteDatabase("HouseTemperature1");
+
         day = (Spinner) findViewById(R.id.spinner);
         hour = (NumberPicker) findViewById(R.id.numberPicker1);
         minutes = (NumberPicker) findViewById(R.id.numberPicker2);
         temp = (EditText) findViewById(R.id.editText1);
+        temp.setFilters(new InputFilter[]{new InputFilterMinMax("0", "50")});
         House_DatabaseHelper dbHelper = new House_DatabaseHelper(this);
         writeableDB = dbHelper.getWritableDatabase();
-        //dbHelper.openDatabase();
 
-        hour.setMinValue(0);
+        hour.setMinValue(00);
         hour.setMaxValue(23);
-        minutes.setMinValue(0);
+        minutes.setMinValue(00);
         minutes.setMaxValue(59);
-
 
         save = (Button) findViewById(R.id.savebutton);
         cancel = (Button) findViewById(R.id.cancelbutton);
@@ -105,4 +103,3 @@ public class AddHouseActivity extends Activity {
             });
     }
 }
-

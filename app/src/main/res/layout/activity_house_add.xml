@@ -7,8 +7,6 @@
     android:orientation="vertical"
     tools:context="xiasheng.androidfinalproject.AddHouseActivity">
 
-
-
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -65,8 +63,7 @@
         android:layout_below="@+id/textView3"
         android:layout_marginStart="60dp"
         android:fontFamily="@font/petit_formal_script"
-        android:max="23"
-        android:min="1" />
+ />
 
     <NumberPicker
     android:id="@+id/numberPicker2"
@@ -75,8 +72,7 @@
     android:layout_alignTop="@+id/numberPicker1"
         android:layout_marginLeft="180dp"
     android:fontFamily="@font/petit_formal_script"
-    android:max="59"
-    android:min="00" />
+ />
 
     <TextView
     android:layout_width="wrap_content"
@@ -101,7 +97,8 @@
     android:fontFamily="@font/petit_formal_script"
     android:inputType="number"
         android:layout_marginRight="35dp"
-    android:labelFor="@string/setTemp" />
+    android:labelFor="@string/setTemp"
+       />
 
 
     <Button
