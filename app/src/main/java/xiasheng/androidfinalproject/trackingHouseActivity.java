@@ -50,6 +50,8 @@ public class trackingHouseActivity extends AppCompatActivity {
     private FrameLayout landscapeFrameLayout;
     private int requestCode = 1;
 
+
+
     public boolean onOptionsItemSelected(MenuItem mi) {
         switch (mi.getItemId()) {
 
@@ -83,6 +85,92 @@ public class trackingHouseActivity extends AppCompatActivity {
         TrackingAsync init = new TrackingAsync();
         init.execute();
 
+
+        ListView listview = findViewById(R.id.thermView);
+        therAdapter=new ChatAdapter(trackingHouseActivity.this);
+        listview.setAdapter(therAdapter);
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            //public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+//                    landscapeFrameLayout = (FrameLayout) findViewById(R.id.landscapeFrameLayout);
+//
+//                    if(landscapeFrameLayout == null){
+//                        isLandscape = false;
+//                        Log.i(ACTIVITY_NAME, "The phone is on portrait layout.");
+//                    }
+//                    else {
+//                        isLandscape = true;
+//                        Log.i(ACTIVITY_NAME, "The phone is on landscape layout.");
+//                    }
+
+                Bundle bundle = new Bundle();
+                bundle.putString("id",therAdapter.getItemId(position)+"");
+                bundle.putString("description",therAdapter.getItem(position)+"");
+
+//                    bundle.putBoolean("isLandscape", isLandscape);
+
+//                    final Intent edit=new Intent(trackingHouseActivity.this,HouseDetailActivity.class);
+//                    if(isLandscape == true){
+                FragmentThermo messageFragment = new FragmentThermo();
+                messageFragment.setArguments(bundle);
+
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.h_listview_Frame,messageFragment).addToBackStack(null).commit();;
+
+                // fragmentTransaction.add(R.id.landscapeFrameLayout, messageFragment).addToBackStack(null).commit();
+//                    }
+//                    else{
+//                        edit.putExtra("bundle", bundle);
+//                        startActivityForResult(edit, requestCode);
+//                        therAdapter.notifyDataSetChanged();
+//                    }
+
+            }
+        });
+
+    }
+    private class ChatAdapter extends ArrayAdapter<Map<String, Object>> {
+        public ChatAdapter(Context ctx) {
+            super(ctx, 0);
+        }
+
+        public int getCount() {
+            return userList.size();
+        }
+
+        public Map<String, Object> getItem(int position) {
+            return userList.get(position);
+        }
+
+        public long getItemId(int position){
+            Map<String, Object> content = getItem(position);
+            return Long.parseLong(content.get("id").toString());
+        }
+
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            View result = inflater.inflate(R.layout.activity_track_temperature, parent, false);
+            if (!userList.isEmpty()) {
+                Map<String, Object> content = getItem(position);
+                TextView message1 = (TextView) result.findViewById(R.id.record);
+                message1.setText(content.get("description").toString());
+            }
+            return result;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (this.requestCode == requestCode && data != null) {
+            Long id = data.getLongExtra("id", -1);
+            tempDB.delete(TABLE_NAME, House_DatabaseHelper.ID + "=" + id, null);
+            refreshActivity();
+        }
     }
 
     class TrackingAsync extends AsyncTask<String, Integer, String>{
@@ -142,91 +230,9 @@ public class trackingHouseActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
+           therAdapter.notifyDataSetChanged();
             progressBar.setVisibility(View.INVISIBLE );
-            ListView listview = findViewById(R.id.thermView);
-            therAdapter=new ChatAdapter(trackingHouseActivity.this);
-            listview.setAdapter(therAdapter);
 
-
-            listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                //public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                    landscapeFrameLayout = (FrameLayout) findViewById(R.id.landscapeFrameLayout);
-
-                    if(landscapeFrameLayout == null){
-                        isLandscape = false;
-                        Log.i(ACTIVITY_NAME, "The phone is on portrait layout.");
-                    }
-                    else {
-                        isLandscape = true;
-                        Log.i(ACTIVITY_NAME, "The phone is on landscape layout.");
-                    }
-                    Bundle bundle = new Bundle();
-                    bundle.putString("id",therAdapter.getItemId(position)+"");
-                    bundle.putBoolean("isLandscape", isLandscape);
-
-                    final Intent edit=new Intent(trackingHouseActivity.this,HouseDetailActivity.class);
-                    if(isLandscape == true){
-                        FragmentThermo messageFragment = new FragmentThermo();
-                        messageFragment.setArguments(bundle);
-                        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.landscapeFrameLayout,messageFragment);
-                        fragmentTransaction.addToBackStack(null);
-                        fragmentTransaction.commit();
-                        // fragmentTransaction.add(R.id.landscapeFrameLayout, messageFragment).addToBackStack(null).commit();
-                    }
-                    else{
-
-                        edit.putExtra("bundle", bundle);
-                        startActivityForResult(edit, requestCode);
-                    }
-
-                }
-            });
-        }
-    }
-    private void init() {
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (this.requestCode == requestCode && data != null) {
-            Long id = data.getLongExtra("id", -1);
-            tempDB.delete(TABLE_NAME, House_DatabaseHelper.ID + "=" + id, null);
-            refreshActivity();
-        }
-    }
-    private class ChatAdapter extends ArrayAdapter<Map<String, Object>> {
-        public ChatAdapter(Context ctx) {
-            super(ctx, 0);
-        }
-
-        public int getCount() {
-            return userList.size();
-        }
-
-        public Map<String, Object> getItem(int position) {
-            return userList.get(position);
-        }
-
-        public long getItemId(int position){
-            Map<String, Object> content = getItem(position);
-            return Long.parseLong(content.get("id").toString());
-        }
-
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            LayoutInflater inflater = LayoutInflater.from(getContext());
-            View result = inflater.inflate(R.layout.activity_track_temperature, parent, false);
-            if (!userList.isEmpty()) {
-                Map<String, Object> content = getItem(position);
-                TextView message1 = (TextView) result.findViewById(R.id.record);
-                message1.setText(content.get("description").toString());
-          }
-            return result;
         }
     }
 

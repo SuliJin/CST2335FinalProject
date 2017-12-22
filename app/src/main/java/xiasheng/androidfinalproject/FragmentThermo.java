@@ -95,18 +95,19 @@ public class FragmentThermo extends Fragment {
         del.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View var1) {
-                if (isLandscape) {
+//                if (isLandscape) {
                     tempDB.delete(House_DatabaseHelper.TABLE_NAME, ID + "=" + id, null);
                     getActivity().finish();
                     getActivity().getFragmentManager().beginTransaction().remove(FragmentThermo.this).commit();
                     Intent intent = getActivity().getIntent();
                     startActivity(intent);
-                }
-                else {
-                    Intent ret = new Intent();
-                    ret.putExtra("id", id);
-                    getActivity().setResult(Activity.RESULT_OK, ret);
-                    getActivity().finish();                }
+//                }
+//                else {
+//                    Intent ret = new Intent();
+//                    ret.putExtra("id", id);
+//                    getActivity().setResult(Activity.RESULT_OK, ret);
+//                    getActivity().finish();
+//              }
             }
         });
 
@@ -126,18 +127,18 @@ public class FragmentThermo extends Fragment {
                 tempDB.update(House_DatabaseHelper.TABLE_NAME,input, "_id="+id , null );
 
 
-                if (isLandscape) {
+//                if (isLandscape) {
                     getActivity().finish();
                     getActivity().getFragmentManager().beginTransaction().remove(FragmentThermo.this).commit();
                     Intent intent = getActivity().getIntent();
                     startActivity(intent);
-                }
-                else {
-                    Intent ret = new Intent();
-                    ret.putExtra("id", id);
-                    getActivity().setResult(Activity.RESULT_OK, ret);
-                    getActivity().finish();
-                }
+//                }
+//                else {
+//                    Intent ret = new Intent();
+//                    ret.putExtra("id", id);
+//                    getActivity().setResult(Activity.RESULT_OK, ret);
+//                    getActivity().finish();
+//                }
             }
 
         });
@@ -159,19 +160,19 @@ public class FragmentThermo extends Fragment {
                 input.put(Temperature, temp);
                 tempDB.insert(House_DatabaseHelper.TABLE_NAME, ID, input );
 
-                if (isLandscape) {
+//                if (isLandscape) {
 
                     getActivity().finish();
                     getActivity().getFragmentManager().beginTransaction().remove(FragmentThermo.this).commit();
                     Intent intent = getActivity().getIntent();
                     startActivity(intent);
-                }
-                else {
-                    Intent ret = new Intent();
-                    ret.putExtra("id", id);
-                    getActivity().setResult(Activity.RESULT_OK, ret);
-                    getActivity().finish();
-                }
+//                }
+//                else {
+//                    Intent ret = new Intent();
+//                    ret.putExtra("id", id);
+//                    getActivity().setResult(Activity.RESULT_OK, ret);
+//                    getActivity().finish();
+//                }
             }
 
         });
