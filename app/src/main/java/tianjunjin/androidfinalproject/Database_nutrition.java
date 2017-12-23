@@ -7,8 +7,8 @@ import android.util.Log;
 
 public class Database_nutrition extends SQLiteOpenHelper {
 
-    public static String DB_food_Name = "Nutrition5.db";
-    public static int DB_version =2;
+    public static String DB_food_Name = "Nutrition7.db";
+    public static int DB_version =1;
     public static final String DB_food_table = "Nutrition_Table";
     public static final String key_food_RowID = "_id";
     public final static String key_food_TYPE = "type";

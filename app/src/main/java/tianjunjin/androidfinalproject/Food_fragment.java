@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,12 +18,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import sulijin.androidfinalproject.ActivityTrackingActivity;
+import sulijin.androidfinalproject.ActivityTrackingAddActivity;
 import sulijin.androidfinalproject.R;
 
 /**
@@ -34,7 +38,7 @@ public class Food_fragment extends Fragment {
     View view;
     Button cancelButton_food, saveButton_food, deleteButton_food;
     EditText Edit_type, Edit_Calories, Edit_Total_Fat, Edit_Total_Carbohydrate;
-    EditText Edit_Time;
+    TextView Edit_Time;
     Boolean tablet_mode;
     SQLiteDatabase sqLiteDatabase_nutrition;
 
@@ -51,36 +55,24 @@ public class Food_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.activity_food_fragment, container, false);
-        sqLiteDatabase_nutrition = new Database_nutrition(getActivity()).getWritableDatabase();
 
         final Bundle bundle_back = this.getArguments();
 
-//        String single_type = bundle_back.getString("type");
         Edit_type = view.findViewById(R.id.f_type_value);
-
-        //     String single_time = bundle_back.getString("time");
         Edit_Time = view.findViewById(R.id.f_time_value);
-
-        SimpleDateFormat format = new SimpleDateFormat("yyyy MMM dd hh:mm");
-        final String time = format.format(new Date());
-        Edit_Time.setText(time);
-
-        //     String single_Calories = bundle_back.getString("Calories ");
+        deleteButton_food = view.findViewById(R.id.f_delete_button_food);
+        saveButton_food=view.findViewById(R.id.f_save_button_food);
+        cancelButton_food= view.findViewById(R.id.f_cancel_button_food);
         Edit_Calories = view.findViewById(R.id.f_Calories_value);
-
-        //     String single_Total_Fat = bundle_back.getString("Total_Fat");
         Edit_Total_Fat = view.findViewById(R.id.f_Total_Fat_value);
-
-        //     String single_Total_Carbohydrate = bundle_back.getString("Total_Carbohydrate");
         Edit_Total_Carbohydrate = view.findViewById(R.id.f_Carbohydrate_value);
 
         final Long single_ID = bundle_back.getLong("DB_ID");
-//        id_TextView = view.findViewById(R.id.id_TextView);
-//        id_TextView.setText(String.valueOf(single_ID));
-
         final int single_position = bundle_back.getInt("position");
 
-        if (bundle_back.getLong("forempty") == 1) {
+        if (bundle_back.getInt("forempty") == 1) {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy MMM dd hh:mm");
+            Edit_Time.setText(format.format(new Date()));
             deleteButton_food.setEnabled(false);
         } else {
             Edit_type.setText(bundle_back.getString("type"));
@@ -89,8 +81,6 @@ public class Food_fragment extends Fragment {
             Edit_Total_Fat.setText(bundle_back.getString("total_Fat"));
             Edit_Total_Carbohydrate.setText(bundle_back.getString("carbohydrate"));
         }
-
-
 //        try {
 //            int num = Integer.parseInt(type);
 //            Log.i("", num + " is a number");
@@ -98,11 +88,12 @@ public class Food_fragment extends Fragment {
 //            Log.i("", type + " is not a number");
 //        }
 
+        sqLiteDatabase_nutrition = new Database_nutrition(getActivity()).getWritableDatabase();
 
-        Button save = view.findViewById(R.id.f_save_button_food);
-        save.setOnClickListener(new View.OnClickListener() {
+        saveButton_food.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String time = Edit_Time.getText().toString();
                 String type = Edit_type.getText().toString();
                 String calories = Edit_Calories.getText().toString();
                 String total_Fat = Edit_Total_Fat.getText().toString();
@@ -110,7 +101,7 @@ public class Food_fragment extends Fragment {
 //                if (getActivity().getLocalClassName().equals("Food_fragment")) {
                 if (tablet_mode == false) {
                     Bundle newbundle = new Bundle();
-
+                    newbundle.putLong("DB_ID",single_ID);
                     newbundle.putString("type", type);
                     newbundle.putString("time", time);
                     newbundle.putString("calories", calories);
@@ -122,7 +113,7 @@ public class Food_fragment extends Fragment {
                     getActivity().setResult(2, intent);
                     getActivity().finish();
                 } else {
-                    Map<String,Object> food_map = new HashMap();
+                    Map<String,String> food_map = new HashMap();
                     food_map.put("type",type);
                     food_map.put("time",time);
                     food_map.put("calories",calories);
@@ -132,38 +123,51 @@ public class Food_fragment extends Fragment {
                 }
             }
         });
-
         deleteButton_food =view.findViewById(R.id.f_delete_button_food);
         deleteButton_food.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View v){
-
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle(R.string.sure_to_delete);
-                // Add the buttons
                 builder.setPositiveButton(R.string.t_ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        if (getActivity().getLocalClassName().equals("MessageDetails")) {
+                        if (tablet_mode == false){
                             Intent intent = new Intent();
                             intent.putExtra("bundle_back", bundle_back);
-                            getActivity().setResult(2, intent);
+                            getActivity().setResult(20, intent);
                             getActivity().finish();
                         } else {
-                            sqLiteDatabase_nutrition .delete(Database_nutrition.DB_food_table , Database_nutrition.key_food_RowID + " = " + id, null);
+                            sqLiteDatabase_nutrition .delete(Database_nutrition.DB_food_table , Database_nutrition.key_food_RowID + " = " +single_ID, null);
                             Intent foodAct = new Intent(getActivity(), FoodActivity.class);
                             getActivity().finish();
                             getActivity().startActivity(foodAct);
                         }
                     }
                 });
-
                 builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-
                     }
                 });
-                // Create the AlertDialog
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+        cancelButton_food.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle(R.string.sure_to_cancel);
+                // Add the buttons
+                builder.setPositiveButton(R.string.f_ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                            getActivity().finish();
+                    }
+                });
+                builder.setNegativeButton(R.string.f_cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
                 AlertDialog dialog = builder.create();
                 dialog.show();
 

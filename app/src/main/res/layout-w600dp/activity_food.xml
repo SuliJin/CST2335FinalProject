@@ -7,9 +7,17 @@
     android:orientation="vertical"
     tools:context="tianjunjin.androidfinalproject.FoodActivity">
 
+    <FrameLayout
+
+        android:id="@+id/Food_tablet_frameLayout"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        />
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/foodActivityBar"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content">
 
         <LinearLayout
@@ -41,23 +49,24 @@
 </android.support.v7.widget.Toolbar>
         <ListView
         android:id="@+id/ListView_food"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/foodActivityBar">
         </ListView>
 
-    <ProgressBar
-        android:id="@+id/progressBar_f"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="304dp"
-        tools:visibility="visible"
-        android:layout_centerInParent="true"
-       />
-    android:layout_below="@+id/ListView_food"
+
+
+    <!--<ProgressBar-->
+        <!--android:id="@+id/progressBar"-->
+        <!--style="?android:attr/progressBarStyleHorizontal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="30dp"-->
+        <!--tools:layout_editor_absoluteX="0dp"-->
+        <!--tools:layout_editor_absoluteY="304dp"-->
+        <!--tools:visibility="visible"-->
+        <!--android:layout_below="@+id/ListView_food"/>-->
+
 
 </RelativeLayout>
 

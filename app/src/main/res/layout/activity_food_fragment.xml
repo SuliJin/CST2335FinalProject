@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/f_type_value"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="5dp"
         android:textSize="15dp"
         android:text="Type" />
 
@@ -22,8 +22,9 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/f_save_button_food"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="10dp"
         android:textSize="15dp" />
+
 
     <TextView
         android:id="@+id/f_time_label"
@@ -35,15 +36,25 @@
         android:textSize="15dp" />
 
 
-    <EditText
+    <TextView
         android:id="@+id/f_time_value"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/f_type_value"
         android:layout_below="@+id/f_type_value"
-        android:layout_marginTop="31dp"
-        android:inputType="date"
+        android:layout_marginTop="20dp"
         android:textSize="15dp" />
+
+    <!--<EditText-->
+        <!--android:id="@+id/f_time_value"-->
+        <!--android:layout_width="250dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignStart="@+id/f_type_value"-->
+        <!--android:layout_below="@+id/f_type_value"-->
+        <!--android:layout_marginTop="31dp"-->
+        <!--android:inputType="date"-->
+        <!--android:textSize="15dp" />-->
+
 
     <TextView
         android:id="@+id/f_Calories_label"
@@ -51,9 +62,9 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/f_time_label"
         android:layout_below="@+id/f_time_value"
-        android:layout_marginTop="31dp"
-        android:textSize="15dp"
-        android:text="Calories" />
+        android:layout_marginTop="30dp"
+        android:text="Calories"
+        android:textSize="15dp" />
 
     <EditText
         android:id="@+id/f_Calories_value"
@@ -70,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/f_Calories_value"
         android:layout_alignStart="@+id/f_Calories_label"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="15dp"
         android:layout_toStartOf="@+id/f_Calories_value"
         android:textSize="15dp"
         android:text="Total_Fat" />
@@ -90,7 +101,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/f_Total_Fat_label"
         android:layout_alignStart="@+id/f_Calories_label"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="15dp"
         android:layout_toStartOf="@+id/f_Calories_value"
         android:textSize="15dp"
         android:text="Carbohydrate" />
@@ -110,44 +121,37 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="34dp"
-        android:layout_marginEnd="37dp"
+
+
         android:text="Save" />
 
     <Button
         android:id="@+id/f_delete_button_food"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/f_Total_Fat_label"
-        android:layout_alignTop="@+id/f_save_button_food"
-        android:layout_marginStart="27dp"
+        android:layout_alignEnd="@+id/f_save_button_food"
+        android:layout_above="@+id/f_cancel_button_food"
+
         android:text="delete" />
 
-    <!--<Button-->
-        <!--android:id="@+id/deleteButton_food"-->
-        <!--android:layout_width="65dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:text="del"-->
-        <!--android:layout_toLeftOf="@id/cancelButton_food"-->
-        <!--/>-->
+    <Button
+        android:id="@+id/f_cancel_button_food"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/f_save_button_food"
+        android:layout_above="@+id/f_save_button_food"
 
-    <!--<Button-->
-        <!--android:id="@+id/saveButton_food"-->
-        <!--android:layout_width="65dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_toLeftOf="@id/deleteButton_food"-->
-        <!--android:text="save" />-->
 
-    <!--<Button-->
-        <!--android:id="@+id/cancelButton_food"-->
-        <!--android:layout_width="65dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:text="can" />-->
+        android:text="cancel" />
+    android:layout_alignTop="@+id/f_save_button_food"
+    android:layout_alignStart="@+id/f_Total_Fat_label"
+    android:layout_alignTop="@+id/f_save_button_food"
+    android:layout_alignStart="@+id/f_Total_Fat_value"
 
+    android:layout_marginBottom="34dp"
+    android:layout_marginStart="17dp"
+    android:layout_marginStart="7dp"
+    android:layout_marginEnd="37dp"
 </RelativeLayout>
 
 
