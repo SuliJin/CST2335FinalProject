@@ -161,7 +161,7 @@ public class trackingHouseActivity extends AppCompatActivity {
             String minutes = cursor.getString(cursor.getColumnIndex(House_DatabaseHelper.MINUTE));
             String temperature = cursor.getString(cursor.getColumnIndex(House_DatabaseHelper.Temperature));
             row.put("Day of  Week", day);
-            row.put("description", day + " , "+ hour +": "  + minutes + " , "+  temperature);
+            row.put("description", day + " , "+ hour +": "  + minutes + " , "+ "Temp -> "+ temperature);
             userList.add(row);
             cursor.moveToNext();
         }
