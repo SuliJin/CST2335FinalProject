@@ -45,7 +45,7 @@
     <activity android:name="zhentingmai.androidfinalproject.AutoSummaryActivity"/>
     <activity  android:name="zhentingmai.androidfinalproject.AutoDetailActivity"/>
         android:label="@string/title_activity_a"/>
-    <activity android:name="xiasheng.androidfinalproject.AddHouseActivity"
+    <activity android:name="xiasheng.androidfinalproject.Fragment_AddThermo"
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
     <activity android:name="xiasheng.androidfinalproject.trackingHouseActivity"
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" /><![CDATA[

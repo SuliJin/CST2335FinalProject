@@ -172,8 +172,11 @@ public class trackingHouseActivity extends AppCompatActivity {
             findViewById(R.id.addButton).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                        Intent intent = new Intent(trackingHouseActivity.this, AddHouseActivity.class);
-                        startActivityForResult(intent, requestCode);
+                        //Intent intent = new Intent(trackingHouseActivity.this, AddHouseActivity.class);
+
+                    Fragment_AddThermo messageFragment = new Fragment_AddThermo();
+                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                    fragmentTransaction.add(R.id.h_listview_Frame,messageFragment).addToBackStack(null).commit();
                     }
 //                }
             });
