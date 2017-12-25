@@ -85,7 +85,7 @@
 
     <string name="title_activity_automobile2">Automobile2Activity</string>
 
-     <string name="SUNDAY">SUNDAY</string>
+    <string name="SUNDAY">SUNDAY</string>
     <string name="MONDAY">MONDAY</string>
     <string name="TUESDAY">TUESDAY</string>
     <string name="WEDNESDAY">WEDNESDAY</string>
@@ -148,6 +148,15 @@
     <string name="f_wanna_back">go back to save?</string>
     <string name="f_ok">yes</string>
     <string name="f_cancel">no</string>
+    <string name="f_history">history records</string>
+    <string name="f_newrecord">enter new records</string>
+    <string name="title_activity_f">food</string>
+    <string name="f_welcome">welcom</string>
+    <string name="f_saveConfirm">food information saved</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

@@ -55,9 +55,7 @@ public class Food_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.activity_food_fragment, container, false);
-
         final Bundle bundle_back = this.getArguments();
-
         Edit_type = view.findViewById(R.id.f_type_value);
         Edit_Time = view.findViewById(R.id.f_time_value);
         deleteButton_food = view.findViewById(R.id.f_delete_button_food);
@@ -98,7 +96,6 @@ public class Food_fragment extends Fragment {
                 String calories = Edit_Calories.getText().toString();
                 String total_Fat = Edit_Total_Fat.getText().toString();
                 String carbohydrate = Edit_Total_Carbohydrate.getText().toString();
-//                if (getActivity().getLocalClassName().equals("Food_fragment")) {
                 if (tablet_mode == false) {
                     Bundle newbundle = new Bundle();
                     newbundle.putLong("DB_ID",single_ID);
@@ -121,8 +118,8 @@ public class Food_fragment extends Fragment {
                     food_map.put("carbohydrate",carbohydrate);
                     ((FoodActivity) getActivity()).save(food_map);
                 }
-            }
-        });
+    }
+});
         deleteButton_food =view.findViewById(R.id.f_delete_button_food);
         deleteButton_food.setOnClickListener(new View.OnClickListener()
         {

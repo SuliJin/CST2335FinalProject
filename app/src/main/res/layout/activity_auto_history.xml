@@ -21,12 +21,8 @@
         <ListView
 
             android:id="@+id/listView_history"
-            android:divider="#990033"
-            android:dividerHeight="2px"
             android:layout_width="match_parent"
-
             android:layout_height="match_parent"
-
             android:layout_alignParentBottom="false"
 
             android:layout_alignParentEnd="true"
@@ -34,6 +30,10 @@
             android:layout_alignParentStart="true"
 
             android:layout_alignParentTop="true"
+
+            android:divider="#990033"
+
+            android:dividerHeight="2px"
 
             />
     </LinearLayout>

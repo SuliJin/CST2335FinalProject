@@ -4,23 +4,32 @@ import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +39,7 @@ import sulijin.androidfinalproject.ActivityTrackingActivity;
 import sulijin.androidfinalproject.ActivityTrackingAddActivity;
 import sulijin.androidfinalproject.ActivityTrackingDatabaseHelper;
 import sulijin.androidfinalproject.ActivityTrackingListViewFragment;
+import sulijin.androidfinalproject.ActivityTrackingStatisticsFragment;
 import sulijin.androidfinalproject.R;
 
 public class FoodActivity extends Activity {
@@ -50,7 +60,7 @@ public class FoodActivity extends Activity {
     Long DB_ID;
     private ProgressBar progressBar;
 
-       @Override
+    @Override
        protected void onCreate(Bundle savedInstanceState) {
            super.onCreate(savedInstanceState);
            setContentView(R.layout.activity_food);
@@ -61,6 +71,7 @@ public class FoodActivity extends Activity {
            addButton_food = (Button) findViewById(R.id.addButton_food);
            foodAdapter = new FoodAdapter(this);
            tabletFrame = findViewById(R.id.Food_tablet_frameLayout);
+
 
            FoodQuery foodQuery=new FoodQuery();
            foodQuery.execute();
@@ -95,7 +106,6 @@ public class FoodActivity extends Activity {
            addButton_food.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 add_clicked = true;
                 Bundle empty_bundle = new Bundle();
                 empty_bundle.putInt("forempty", 1);
@@ -109,7 +119,7 @@ public class FoodActivity extends Activity {
                     FragmentTransaction ft = getFragmentManager().beginTransaction();
                     ft.replace(R.id.Food_tablet_frameLayout, tablet_fragment);
                     ft.commit();}
-            }
+           }
            });
           listView_food.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -135,7 +145,8 @@ public class FoodActivity extends Activity {
                 if(isTablet == false){
                 Intent i = new Intent(FoodActivity.this, FoodAddActivity.class);
                 i.putExtra("food_bundle", bundle);
-                startActivityForResult(i, 2);}
+                startActivityForResult(i, 2);
+                }
                 else{
                     Food_fragment  tablet_fragment= new Food_fragment();
                     tablet_fragment.setArguments(bundle);
@@ -180,9 +191,13 @@ public class FoodActivity extends Activity {
 
         @Override
         protected void onPostExecute(String result) {
+            listView_food.setAdapter(foodAdapter);
             progressBar.setVisibility(View.INVISIBLE);
         }
     }
+
+
+
           private class FoodAdapter extends ArrayAdapter<Map<String, String>> {
 
           public FoodAdapter(Context ctx) {
@@ -194,7 +209,6 @@ public class FoodActivity extends Activity {
         }
 
           public Map<String, String> getItem(int position) {
-            //   Map<String,Object> food_item = getItem(posision);
             return food_list.get(position);
           }
           public long getItemId(int position) {
@@ -203,7 +217,7 @@ public class FoodActivity extends Activity {
           }
           public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = FoodActivity.this.getLayoutInflater();
-           food_item_result = null;
+            food_item_result = null;
             food_item_result = inflater.inflate(R.layout.food_item, null);
 
 
@@ -215,6 +229,8 @@ public class FoodActivity extends Activity {
             return food_item_result;
           }
           }
+
+
           protected void onActivityResult(int requestCode, int resultCode, Intent data) {
           if (resultCode == 2) {
             Bundle bundle_return = data.getBundleExtra("newbundle");
@@ -273,4 +289,4 @@ public class FoodActivity extends Activity {
           Intent intent = getIntent();
           startActivity(intent);
           }
-          }
+}

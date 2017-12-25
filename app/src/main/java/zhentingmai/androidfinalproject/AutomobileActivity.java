@@ -89,7 +89,6 @@ public class AutomobileActivity extends AppCompatActivity {
         String totalCostValue=aHelper.getTotal();
         totalCost.setText(totalCostValue);
 
-
         save.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 //ContentValues cValues=new ContentValues();
@@ -111,7 +110,6 @@ public class AutomobileActivity extends AppCompatActivity {
                 refreshActivity();
             }
         });
-
 
         Button historyButton = findViewById(R.id.button_history);
         final Intent historyIntent = new Intent(this, AutoHistoryActivity.class);
