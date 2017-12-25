@@ -6,10 +6,20 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context="tianjunjin.androidfinalproject.f_activity">
 
+
+
+<GridLayout
+android:id="@+id/f_gridlayout"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="#83a8ef"
+android:columnCount="2"
+android:orientation="horizontal">
+
     <android.support.design.widget.AppBarLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:theme="@style/AppBarOverlay">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -20,17 +30,14 @@ tools:context="tianjunjin.androidfinalproject.f_activity">
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:popupTheme="@style/Theme.AppCompat.Light"
             >
-    </android.support.v7.widget.Toolbar>
+        </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
-
-<GridLayout
-android:id="@+id/f_gridlayout"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-    android:background="#83a8ef"
-android:columnCount="2"
-android:orientation="horizontal">
+    <TextView
+    android:id="@+id/textView_blank1"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    />
 
     <TextView
         android:id="@+id/textView_title"
@@ -42,10 +49,12 @@ android:orientation="horizontal">
         android:textSize="30dp"
         />
     <TextView
-        android:id="@+id/textView_blank1"
+        android:id="@+id/textView_blank"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         />
+
+
     <Button
         android:id="@+id/f_button_history"
         android:layout_width="180dp"
@@ -85,10 +94,16 @@ android:orientation="horizontal">
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/textView_blank4"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        />
+
     <FrameLayout
         android:id="@+id/f_FrameLayout"
-        android:layout_width="50dp"
-        android:layout_height="300dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/f_progressBar"
         android:background="#d3dbf8"/>
@@ -102,7 +117,7 @@ android:orientation="horizontal">
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_dialog_email" />
-    android:layout_marginTop="200dp"
+
 
 
 </android.support.design.widget.CoordinatorLayout>

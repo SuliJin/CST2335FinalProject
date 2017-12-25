@@ -31,9 +31,6 @@
         android:orientation="horizontal"
         android:id="@+id/auto"
         >
-
-
-
         <TextView
             android:id="@+id/textView_title"
             android:layout_width="180dp"

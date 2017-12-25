@@ -41,7 +41,7 @@ public class f_activity extends Activity {
     Database_nutrition f_db;
     SQLiteDatabase f_sqldb;
     Cursor f_c;
-    Toolbar toolbar;
+  //  Toolbar toolbar;
     protected static final String ACTIVITY_NAME = " f_activity ";
 
     @Override
@@ -54,7 +54,7 @@ public class f_activity extends Activity {
         frameLayout = findViewById(R.id.f_FrameLayout);
         textView=(TextView )findViewById (R.id.textView_title);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+ //       toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
