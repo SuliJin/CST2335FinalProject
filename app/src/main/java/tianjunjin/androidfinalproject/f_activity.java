@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,15 +13,25 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
+import android.text.method.ScrollingMovementMethod;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toolbar;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import sulijin.androidfinalproject.ActivityTrackingActivity;
+import sulijin.androidfinalproject.ActivityTrackingStatisticsFragment;
 import sulijin.androidfinalproject.R;
 
 public class f_activity extends Activity {
@@ -40,8 +51,8 @@ public class f_activity extends Activity {
         progressBar.setVisibility(View.VISIBLE);
         frameLayout = findViewById(R.id.f_FrameLayout);
 
-     //   Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-     //   setSupportActionBar(toolbar);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -57,11 +68,18 @@ public class f_activity extends Activity {
         Button f_historyButton = (Button) findViewById(R.id.f_button_history);
         f_historyButton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View view) {
-                addFragment( new F_listView_fragment());
-            }}
-        );
+          @Override
+          public void onClick(View view) {
+              //     addFragment(new F_listView_fragment());
+              FragmentManager fragmentManager = getFragmentManager();
+              //remove previous fragment
+              if (fragmentManager.getBackStackEntryCount() > 0) {
+                  FragmentManager.BackStackEntry first = fragmentManager.getBackStackEntryAt(0);
+                  fragmentManager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+              }
+              FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+              fragmentTransaction.replace(R.id.f_FrameLayout, new F_listView_fragment()).addToBackStack(null).commit();
+          }});
 
         final Button f_newEntryButton = (Button) findViewById(R.id.f_button_new);
         final Intent f_newEntry = new Intent(this, F_NewEntryActivity.class);
@@ -73,6 +91,7 @@ public class f_activity extends Activity {
             }
         });
     }
+}
 //    class FoodQuery extends AsyncTask<String, Integer, String> {
 //        @Override
 //        protected String doInBackground(String... strings) {
@@ -108,16 +127,15 @@ public class f_activity extends Activity {
 //            progressBar.setVisibility(View.INVISIBLE);
 //        }
 //    }
-
-    private void addFragment(Fragment fragment) {
-
-        FragmentManager fragmentManager =getFragmentManager();
-        //remove previous fragment
-        if (fragmentManager.getBackStackEntryCount() > 0) {
-            FragmentManager.BackStackEntry first = fragmentManager.getBackStackEntryAt(0);
-            fragmentManager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        }
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.listView_history, fragment).addToBackStack(null).commit();
-    }
-    }
+//    private void addFragment(Fragment fragment) {
+//
+//        FragmentManager fragmentManager =getFragmentManager();
+//        //remove previous fragment
+//        if (fragmentManager.getBackStackEntryCount() > 0) {
+//            FragmentManager.BackStackEntry first = fragmentManager.getBackStackEntryAt(0);
+//            fragmentManager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+//        }
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        fragmentTransaction.replace(R.id.f_FrameLayout, new F_listView_fragment()).addToBackStack(null).commit();
+//    }
+//    }
