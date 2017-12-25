@@ -28,7 +28,7 @@ tools:context="tianjunjin.androidfinalproject.f_activity">
 android:id="@+id/f_gridlayout"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:background="#83a8ef"
+    android:background="#83a8ef"
 android:columnCount="2"
 android:orientation="horizontal">
 
@@ -39,7 +39,8 @@ android:orientation="horizontal">
         android:layout_gravity="bottom"
         android:gravity="bottom"
         android:text="@string/title_activity_f"
-        android:textSize="24sp" />
+        android:textSize="30dp"
+        />
     <TextView
         android:id="@+id/textView_blank1"
         android:layout_width="match_parent"
@@ -83,15 +84,14 @@ android:orientation="horizontal">
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
     <FrameLayout
         android:id="@+id/f_FrameLayout"
-        android:layout_width="match_parent"
+        android:layout_width="50dp"
         android:layout_height="300dp"
-        android:layout_below="@+id/f_progressBar"
         android:layout_alignParentBottom="true"
-        android:background="#d3dbf8"
-        >
-    </FrameLayout>
+        android:layout_below="@+id/f_progressBar"
+        android:background="#d3dbf8"/>
 
 </GridLayout>
 
@@ -103,5 +103,6 @@ android:orientation="horizontal">
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_dialog_email" />
     android:layout_marginTop="200dp"
+
 
 </android.support.design.widget.CoordinatorLayout>

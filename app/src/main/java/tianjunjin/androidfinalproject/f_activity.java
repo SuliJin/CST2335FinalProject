@@ -37,9 +37,11 @@ import sulijin.androidfinalproject.R;
 public class f_activity extends Activity {
     private ProgressBar progressBar;
     FrameLayout frameLayout;
+    TextView textView;
     Database_nutrition f_db;
     SQLiteDatabase f_sqldb;
     Cursor f_c;
+    Toolbar toolbar;
     protected static final String ACTIVITY_NAME = " f_activity ";
 
     @Override
@@ -50,8 +52,9 @@ public class f_activity extends Activity {
         progressBar = (ProgressBar) findViewById(R.id.f_progressBar);
         progressBar.setVisibility(View.VISIBLE);
         frameLayout = findViewById(R.id.f_FrameLayout);
+        textView=(TextView )findViewById (R.id.textView_title);
 
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -127,15 +130,4 @@ public class f_activity extends Activity {
 //            progressBar.setVisibility(View.INVISIBLE);
 //        }
 //    }
-//    private void addFragment(Fragment fragment) {
 //
-//        FragmentManager fragmentManager =getFragmentManager();
-//        //remove previous fragment
-//        if (fragmentManager.getBackStackEntryCount() > 0) {
-//            FragmentManager.BackStackEntry first = fragmentManager.getBackStackEntryAt(0);
-//            fragmentManager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
-//        }
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        fragmentTransaction.replace(R.id.f_FrameLayout, new F_listView_fragment()).addToBackStack(null).commit();
-//    }
-//    }
