@@ -29,15 +29,14 @@ public class F_DetailActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_f_detail);
  //       final Bundle bundle_back = this.getArguments();
-
-        Edit_type = view.findViewById(R.id.type_value);
-        Edit_Time = view.findViewById(R.id.time_value);
-        delete = view.findViewById(R.id.f_Delete);
-        update=view.findViewById(R.id.f_Update);
-        cancel= view.findViewById(R.id.f_Cancel);
-        Edit_Calories = view.findViewById(R.id.calories_value);
-        Edit_Total_Fat = view.findViewById(R.id.total_fat_value);
-        Edit_Total_Carbohydrate = view.findViewById(R.id.carbohydrate_value);
+        Edit_type = findViewById(R.id.type_value);
+        Edit_Time = findViewById(R.id.time_value);
+        delete = findViewById(R.id.f_Delete);
+        update=findViewById(R.id.f_Update);
+        cancel= findViewById(R.id.f_Cancel);
+        Edit_Calories = findViewById(R.id.calories_value);
+        Edit_Total_Fat = findViewById(R.id.total_fat_value);
+        Edit_Total_Carbohydrate = findViewById(R.id.carbohydrate_value);
 
         final Database_nutrition dbHelper = new Database_nutrition(this);
         writeableDB = dbHelper.getWritableDatabase();
@@ -76,6 +75,7 @@ public class F_DetailActivity extends Activity {
                 builder1.setPositiveButton(R.string.t_ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //update value
+//                        int id =
                         String type = Edit_type.getText().toString();
                         String time =  Edit_Time .getText().toString();
                         String calories  =  Edit_Calories .getText().toString();

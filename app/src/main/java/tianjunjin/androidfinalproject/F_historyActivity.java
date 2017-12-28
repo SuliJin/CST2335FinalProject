@@ -68,12 +68,12 @@ public class F_historyActivity extends Activity {
 
             while (!f_c.isAfterLast()) {
                 Map<String, String> f_infor = new HashMap<>();
-                f_infor.put("id", Database_nutrition.key_food_RowID);
-                f_infor.put("type", Database_nutrition.key_food_TYPE);
-                f_infor.put("time", Database_nutrition.key_TIME);
-                f_infor.put("calories", Database_nutrition.key_Calories);
-                f_infor.put("total_Fat", Database_nutrition.key_Total_Fat);
-                f_infor.put("carbohydrate", Database_nutrition.key_Carbohydrate);
+                f_infor.put("id", f_c.getString(f_c.getColumnIndex(Database_nutrition.key_food_RowID)));
+                f_infor.put("type", f_c.getString(f_c.getColumnIndex(Database_nutrition.key_food_TYPE)));
+                f_infor.put("time", f_c.getString(f_c.getColumnIndex(Database_nutrition.key_TIME)));
+                f_infor.put("calories", f_c.getString(f_c.getColumnIndex(Database_nutrition.key_Calories)));
+                f_infor.put("total_Fat", f_c.getString(f_c.getColumnIndex(Database_nutrition.key_Total_Fat)));
+                f_infor.put("carbohydrate", f_c.getString(f_c.getColumnIndex(Database_nutrition.key_Carbohydrate)));
                 foodList.add(f_infor);
                 f_c.moveToNext();
             }

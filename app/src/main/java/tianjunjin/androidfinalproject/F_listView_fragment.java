@@ -42,6 +42,7 @@ public class F_listView_fragment extends Fragment {
     public F_listView_fragment() {
     }
     public void init(ArrayList<Map> foodList) {
+
         this.foodList = foodList;
     }
 
@@ -54,7 +55,7 @@ public class F_listView_fragment extends Fragment {
         foodAdapter = new FoodAdapter(getActivity());
 
         listView.setAdapter(foodAdapter);
-                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -71,9 +72,9 @@ public class F_listView_fragment extends Fragment {
                     bundle.putLong("id",idInDb);
                     bundle.putString("type", message.get(Database_nutrition.key_food_TYPE));
                     bundle.putString("time", message.get(Database_nutrition.key_TIME ));
-                    bundle.putString("calories", message.get(Database_nutrition.key_Calories));
-                    bundle.putString("total_Fat", message.get(Database_nutrition.key_Total_Fat ));
-                    bundle.putString("carbohydrate", message.get(Database_nutrition. key_Carbohydrate));
+                    bundle.putString("calories", message.get("calories"));
+                    bundle.putString("total_Fat", message.get("total_Fat" ));
+                    bundle.putString("carbohydrate", message.get("carbohydrate"));
                     Intent intent = new Intent(getActivity(), F_DetailActivity .class);
                     intent.putExtra("bundle", bundle);
                     getActivity().finish();
@@ -98,8 +99,8 @@ public class F_listView_fragment extends Fragment {
             return foodList.get(position);
         }
         public long getItemId(int position) {
-            f_c.moveToPosition(position);
-            return Long.parseLong(f_c.getString(f_c.getColumnIndex(DB.key_food_RowID)));
+            String id = foodList.get(position).get("id").toString();
+            return Long.parseLong(id);
         }
 //        public long getItemId(int position){
 //            Map<String, String> content = getItem(position);

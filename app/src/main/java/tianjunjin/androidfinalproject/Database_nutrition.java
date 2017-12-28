@@ -62,6 +62,7 @@ public class Database_nutrition extends SQLiteOpenHelper {
     }
 
     public void insert(String type, String time, String calories, String total_Fat, String carbohydrate) {
+        f_database = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(key_food_TYPE, type);
         values.put(key_TIME, time);
@@ -73,11 +74,13 @@ public class Database_nutrition extends SQLiteOpenHelper {
     }
 
     public void delete(Long id) {
+        f_database = getWritableDatabase();
         f_database.execSQL("DELETE FROM " +DB_food_table + " WHERE " + key_food_RowID + " = " + id);
     }
 
 
     public void update(Long id,String type, String time, String calories, String total_Fat, String carbohydrate) {
+        f_database = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(key_food_TYPE, type);
         values.put(key_TIME, time);
