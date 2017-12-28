@@ -78,8 +78,6 @@ public class FoodActivity extends Activity {
 //         listView_food.setAdapter(foodAdapter);
 //           database_nutrition_object = new Database_nutrition(this);
 //           sqLiteDatabase_nutrition = database_nutrition_object.getWritableDatabase();
-////            SystemClock.sleep(200);
-////            progressBar.setProgress(30);
 //           cursor_food = sqLiteDatabase_nutrition.rawQuery("select * from " + Database_nutrition.DB_food_table, null);
 //           cursor_food.moveToFirst();
 //
@@ -229,8 +227,6 @@ public class FoodActivity extends Activity {
             return food_item_result;
           }
           }
-
-
           protected void onActivityResult(int requestCode, int resultCode, Intent data) {
           if (resultCode == 2) {
             Bundle bundle_return = data.getBundleExtra("newbundle");

@@ -5,9 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-
-import java.util.Calendar;
 
 import sulijin.androidfinalproject.R;
 
@@ -92,6 +89,16 @@ public class Database_nutrition extends SQLiteOpenHelper {
     }
 
     Cursor c;
+
+        public String getAvg(){
+         c= f_database.rawQuery("SELECT AVG(" + key_Calories +") FROM "+ DB_food_table,null);
+        c.moveToFirst();
+        String avg = c.getString(0);
+        if(avg==null)
+            return context.getString( R.string.f_noReord);
+        else
+            return avg;
+    }
 
 //    public String getAvg(){
 //       /* Calendar calendar = Calendar.getInstance();

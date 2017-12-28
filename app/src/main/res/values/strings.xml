@@ -153,10 +153,29 @@
     <string name="title_activity_f">food</string>
     <string name="f_welcome">welcom</string>
     <string name="f_saveConfirm">food information saved</string>
+    <string name="f_delete_success">food information deleted</string>
+    <string name="f_calories_eaten">total calories</string>
+    <string name="f_average_calories">average calories</string>
+    <string name="f_help">
+        Author: Tianjun Jin \t\t Version: 1.0.0 \n
+        -----------------------------------------\n\n
+        1. Help \n\n
+        Click menu -> Help to show the helps about how to use the app. \n\n
+        2. Add Activity \n\n
+        Click the ENTER NEW RECORDS button to navigate to new activity page,
+        where you can enter the information for new activity, and save new activity by clicking the Save button. \n\n
+        3. History Activity \n\n
+        Click the HISTORY RECORDS button to navigate to another new activity page,
+        where the list of the history records will be listed and in the records list to navigate to the page to edit these records.
+        where you can change the information, and update the activity by clicking the Update button,
+        or delete the activity by clicking the Delete button. \n\n
+        4.When clicking the AVERAGE CALORIES button to show the average calories in the records
+        5.When clicking the CALORIES_EATEN button to show the total calories eatten the day before.
 
+    </string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="f_noReord">no records</string>
 
 </resources>

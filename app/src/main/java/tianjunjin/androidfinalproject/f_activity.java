@@ -1,16 +1,11 @@
 package tianjunjin.androidfinalproject;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -26,12 +21,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import sulijin.androidfinalproject.ActivityTrackingActivity;
-import sulijin.androidfinalproject.ActivityTrackingStatisticsFragment;
 import sulijin.androidfinalproject.R;
 
 public class f_activity extends Activity {
@@ -41,21 +30,59 @@ public class f_activity extends Activity {
     Database_nutrition f_db;
     SQLiteDatabase f_sqldb;
     Cursor f_c;
-  //  Toolbar toolbar;
+    Toolbar toolbar;
     protected static final String ACTIVITY_NAME = " f_activity ";
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        final Intent startIntent = new Intent(this, f_activity.class);
+        switch (item.getItemId()) {
+            case R.id.f_help:
+                AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+                builder2.setTitle(getResources().getString(R.string.t_help_title));
+                LayoutInflater inflater = this.getLayoutInflater();
+                final View dialogView = inflater.inflate(R.layout.fragment_f_help, null);
+                ((TextView)dialogView.findViewById(R.id.f_help)).setMovementMethod(new ScrollingMovementMethod());
+                builder2.setView(dialogView);
+                // Add the buttons
+                builder2.setPositiveButton(R.string.t_ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                        startActivity(startIntent);
+                    }
+                });
+                builder2.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                });
+                // Create the AlertDialog
+                AlertDialog dialog2 = builder2.create();
+
+                dialog2.show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar_menu_f, menu);
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_f_activity);
 
-        progressBar = (ProgressBar) findViewById(R.id.f_progressBar);
-        progressBar.setVisibility(View.VISIBLE);
-        frameLayout = findViewById(R.id.f_FrameLayout);
+//        progressBar = (ProgressBar) findViewById(R.id.f_progressBar);
+//        progressBar.setVisibility(View.VISIBLE);
         textView=(TextView )findViewById (R.id.textView_title);
 
- //       toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+  //      toolbar = (Toolbar) findViewById(R.id.toolbar_f);
+  //      setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -69,19 +96,12 @@ public class f_activity extends Activity {
 //        foodQuery.execute();
 
         Button f_historyButton = (Button) findViewById(R.id.f_button_history);
+        final Intent f_history = new Intent(this,F_historyActivity.class);
         f_historyButton.setOnClickListener(new View.OnClickListener() {
 
           @Override
           public void onClick(View view) {
-              //     addFragment(new F_listView_fragment());
-              FragmentManager fragmentManager = getFragmentManager();
-              //remove previous fragment
-              if (fragmentManager.getBackStackEntryCount() > 0) {
-                  FragmentManager.BackStackEntry first = fragmentManager.getBackStackEntryAt(0);
-                  fragmentManager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
-              }
-              FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-              fragmentTransaction.replace(R.id.f_FrameLayout, new F_listView_fragment()).addToBackStack(null).commit();
+              startActivity(f_history);
           }});
 
         final Button f_newEntryButton = (Button) findViewById(R.id.f_button_new);
@@ -93,6 +113,24 @@ public class f_activity extends Activity {
                 startActivity(f_newEntry);
             }
         });
+//        final Button average =(Button) findViewById(R.id.f_average_calories);
+//        average.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String averageCalory = "The average calory is "+f_db.getAvg();
+//                Snackbar.make(view,averageCalory , Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
+//        final Button total  =(Button) findViewById(R.id.f_calories_eaten);
+//        average.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String totalCalories = "Today is "+          "The total calory eaten yesterday is "+f_db.getAvg();
+//                Snackbar.make(view,averageCalory , Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
     }
 }
 //    class FoodQuery extends AsyncTask<String, Integer, String> {

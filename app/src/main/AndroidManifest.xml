@@ -54,7 +54,9 @@
         />
         <activity android:name="tianjunjin.androidfinalproject.f_activity" />
         <activity android:name="tianjunjin.androidfinalproject.F_NewEntryActivity" />
-        <activity android:name="tianjunjin.androidfinalproject.F_detail"></activity>
+        <activity android:name="tianjunjin.androidfinalproject.F_detail" />
+        <activity android:name="tianjunjin.androidfinalproject.F_historyActivity" />
+        <activity android:name="tianjunjin.androidfinalproject.F_DetailActivity" />
     </application>
 
 </manifest>

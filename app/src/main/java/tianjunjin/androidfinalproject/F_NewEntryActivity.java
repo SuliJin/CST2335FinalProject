@@ -18,7 +18,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 import sulijin.androidfinalproject.R;
-import zhentingmai.androidfinalproject.AutomobileActivity;
 
 public class F_NewEntryActivity extends Activity {
     EditText Edittype,Edittime,Editcarlories,Edittotal_Fat,Editcarbohydrate;

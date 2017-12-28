@@ -106,7 +106,6 @@ public class ActivityTrackingListViewFragment extends Fragment {
             }
             return result;
         }
-
         public long getItemId(int position){
             Map<String, Object> content = getItem(position);
             return Long.parseLong(content.get("id").toString());
