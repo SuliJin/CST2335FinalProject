@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -69,7 +70,6 @@ public class AutomobileActivity extends AppCompatActivity {
         });
 
 
-
         liters=(EditText) findViewById(R.id.editText_litresValue);
         price =(EditText) findViewById(R.id.editText_priceValue);
         kilo = (EditText) findViewById(R.id.editText_kilosValue);
@@ -97,9 +97,8 @@ public class AutomobileActivity extends AppCompatActivity {
 
                 Calendar calendar = Calendar.getInstance();
                 String strYear = calendar.get(Calendar.YEAR)+"";
-                String strMonth = calendar.get(Calendar.MONTH)+"";
+                String strMonth = calendar.get(Calendar.MONTH)+1+"";
                 String strDay = calendar.get(Calendar.DAY_OF_MONTH)+"";
-
 
                 String strPrice=price.getText().toString();
                 String strLiters=liters.getText().toString();
@@ -156,35 +155,10 @@ public class AutomobileActivity extends AppCompatActivity {
                 });
                 AlertDialog dialog = builder.create();
                 dialog.show();
-
                 //Snackbar.make(view, "You have cancel the entry", Snackbar.LENGTH_LONG).show();
-
             }
         });
     }
-   /* private class SaveAdapter extends ArrayAdapter<String>{
-        public SaveAdapter(Context ctx){super(ctx,0);}
-        public int getCount(){return list.size();}
-        public String getItem(int position){return list.get(position);}
-
-        public long getItemId(int position){
-            c.moveToPosition(position);
-            return c.getLong(c.getColumnIndex(aHelper.KEY_ID));
-        }
-
-        public View getView(int position, View convertView, ViewGroup parent){
-            AutoHistoryActivity history=new AutoHistoryActivity();
-            LayoutInflater inflater=history.getLayoutInflater();
-            View result = null;
-            result=inflater.inflate(R.layout.auto_record, null);
-            TextView liters=(TextView)result.findViewById(R.id.textView_litersRecord);
-            liters.setText(getItem(position));
-
-
-            return result;
-        }
-    }*/
-
 
     public boolean onCreateOptionsMenu(Menu m){
         getMenuInflater().inflate(R.menu.toolbar_menu,m);
@@ -196,25 +170,24 @@ public class AutomobileActivity extends AppCompatActivity {
             case R.id.help:
                 Log.d("Toolbar","help is selected");
                 AlertDialog.Builder builder=new AlertDialog.Builder(this);
-                builder.setMessage(R.string.auto_helpValue);
-                builder.setNeutralButton(R.string.auto_ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //finish();
-                    }
-                });
+                builder.setTitle(R.string.auto_helpTitle);
+
+
+                builder.setItems(new String[]{getResources().getString(R.string.auto_helpAuthor),
+                        getResources().getString(R.string.auto_helpHist),getResources().getString(R.string.auto_helpSum),
+                        getResources().getString(R.string.auto_helpSave),getResources().getString(R.string.auto_helpCancel),
+                        getResources().getString(R.string.auto_helpUpdate),getResources().getString(R.string.auto_helpInquire)},null);
+                //builder.setMessage(R.string.auto_helpValue);
+
+                builder.setNegativeButton(R.string.auto_ok,null);
                 AlertDialog dialog = builder.create();
                 dialog.show();
-
-                /*Toast t = Toast.makeText(this, "Version1.0 Zhenting Mai", Toast.LENGTH_LONG);
-                t.show();*/
                 break;
-
         }
         return true;
     }
-    @Override
 
+    @Override
     protected void onResume() {
         super.onResume();
         Log.i(ACTIVITY_NAME, "In onResume()");

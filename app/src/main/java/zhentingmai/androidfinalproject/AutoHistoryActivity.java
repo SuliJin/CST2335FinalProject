@@ -42,55 +42,6 @@ public class AutoHistoryActivity extends Activity {
     CarAdapter carAdapter;
     private ProgressBar progressBar;
 
-
-
-    /*class carInfo{
-        private String id;
-        private String year;
-        private String month;
-        private String day;
-
-        private String price;
-        private String liters;
-        private String kilo;
-
-        public carInfo(String id, String year, String month, String day, String price, String liters, String kilo) {
-            this.id = id;
-            this.year = year;
-            this.month = month;
-            this.day = day;
-            this.price = price;
-            this.liters = liters;
-            this.kilo = kilo;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public String getYear() {
-            return year;
-        }
-        public String getMonth() {
-            return month;
-        }
-        public String getDay() {
-            return day;
-        }
-
-        public String getPrice() {
-            return price;
-        }
-
-        public String getLiters() {
-            return liters;
-        }
-
-        public String getKilo() {
-            return kilo;
-        }
-    }*/
-
     private class CarAdapter extends ArrayAdapter<AutoInfo> {
         public CarAdapter(Context ctx) {
             super(ctx, 0);
@@ -119,7 +70,7 @@ public class AutoHistoryActivity extends Activity {
             liters.setText(getResources().getString(R.string.auto_liters) +": "+getItem(position).getLiters());
             price.setText(getResources().getString(R.string.auto_price) +": "+getItem(position).getPrice());
             kilo.setText(getResources().getString(R.string.auto_kilo) +": "+getItem(position).getKilo());
-            time.setText(getItem(position).getYear()+"-"+getItem(position).getMonth()+ " - "+getItem(position).getDay());
+            time.setText(getItem(position).getYear()+" - "+getItem(position).getMonth()+ " - "+getItem(position).getDay());
 
             return view;
         }
@@ -139,40 +90,11 @@ public class AutoHistoryActivity extends Activity {
         listView.setAdapter(carAdapter);
 
         aHelper = new AutoDatabaseHelper(this);
-        //aHelper.openDatabase();
         aHelper.setWritable();
 
-
-        //list.add(new carInfo("4","25","18","18","2222"));
         DatabaseQuery query=new DatabaseQuery();
         query.execute();
 
-       /* aHelper=new AutoDatabaseHelper(this);
-        aHelper.openDatabase();
-
-        cursor=aHelper.read();
-        cursor.moveToFirst();
-
-        int colIndexId=cursor.getColumnIndex(AutoDatabaseHelper.KEY_ID);
-        int colIndexPrice=cursor.getColumnIndex(AutoDatabaseHelper.KEY_PRICE);
-        int colIndexLiters=cursor.getColumnIndex(AutoDatabaseHelper.KEY_LITERS);
-        int colIndexKilo=cursor.getColumnIndex(AutoDatabaseHelper.KEY_KILO);
-        int colIndexTime=cursor.getColumnIndex(AutoDatabaseHelper.KEY_TIME);
-
-        while(!cursor.isAfterLast()){
-            list.add(new carInfo(cursor.getString(colIndexId),cursor.getString(colIndexTime),cursor.getString(colIndexPrice),cursor.getString(colIndexLiters),cursor.getString(colIndexKilo)));
-            cursor.moveToNext();
-        }
-*/
-
-
-//        cursor =db.rawQuery("select "+AutoDatabaseHelper.KEY_LITERS+" from " + AutoDatabaseHelper.TABLE_NAME,null);
-
-//        int colIndexLiter= cursor.getColumnIndex(AutoDatabaseHelper.KEY_LITERS);
-        //int colIndexPrice=c.getColumnIndex(AutoDatabaseHelper.KEY_PRICE);
-        //int colIndexKilo=c.getColumnIndex(AutoDatabaseHelper.KEY_KILO);
-
-        //final Intent intent = new Intent(this,AutoDetailActivity.class);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -189,20 +111,12 @@ public class AutoHistoryActivity extends Activity {
 
 
                 AutoHistFragment autoHistFragment = new AutoHistFragment();
-                //Bundle bundle = getIntent().getBundleExtra("bundle");
                 autoHistFragment.setArguments(bundle);
                 FragmentManager fragmentManager =getFragmentManager();
 
-        /*if (fragmentManager.getBackStackEntryCount() > 0) {
-            FragmentManager.BackStackEntry first = fragmentManager.getBackStackEntryAt(0);
-            fragmentManager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        }*/
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                //fragmentTransaction.add(R.id.phoneFrameLayout, messageFragment).addToBackStack(null).commit();
-                fragmentTransaction.replace(R.id.autoHistFrameLayout, autoHistFragment).addToBackStack(null).commit();
 
-               /* intent.putExtra("bundle",bundle);
-                startActivityForResult(intent,5);*/
+                fragmentTransaction.replace(R.id.autoHistFrameLayout, autoHistFragment).addToBackStack(null).commit();
             }
         });
     }
@@ -248,13 +162,13 @@ public class AutoHistoryActivity extends Activity {
                             cursor.getString(colIndexLiters), cursor.getString(colIndexKilo)));
                     cursor.moveToNext();
                 }
-                SystemClock.sleep(400);
+                SystemClock.sleep(300);
                 publishProgress(25);
-                SystemClock.sleep(400);
+                SystemClock.sleep(300);
                 publishProgress(50);
-                SystemClock.sleep(400);
+                SystemClock.sleep(300);
                 publishProgress(75);
-                SystemClock.sleep(400);
+                SystemClock.sleep(300);
                 publishProgress(100);
             }catch(Exception e){
                 e.printStackTrace();
@@ -293,7 +207,7 @@ public class AutoHistoryActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //aHelper.closeDatabase();
+        aHelper.closeDatabase();
         Log.i(ACTIVITY_NAME, "In onDestroy()");
     }
 

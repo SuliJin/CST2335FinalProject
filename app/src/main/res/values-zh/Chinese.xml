@@ -25,7 +25,15 @@
     <string name="auto_saveConfirm">保存成功！</string>
     <string name="auto_cancel">取消</string>
     <string name="auto_help">帮助</string>
-    <string name="auto_ok">关闭</string>
+    <string name="auto_ok">确定</string>
+    <string name="auto_helpTitle">汽油消费应用 1.0</string>
+    <string name="auto_helpAuthor">作者： 麦振挺</string>
+    <string name="auto_helpSave">“保存”——点击保存目前的输入</string>
+    <string name="auto_helpCancel">"取消“——点击取消目前输入</string>
+    <string name="auto_helpHist">“历史”——点击查看所有历史消费记录</string>
+    <string name="auto_helpSum">“汇总”——点击查看年度月消费汇总</string>
+    <string name="auto_helpUpdate">修改数据——查看历史记录并点击需修改数据的条目进行修改</string>
+    <string name="auto_helpInquire">查阅历年汇总——进入年度月消费汇总页面并输入查阅年份</string>
     <string name="auto_helpValue">作者: 麦振挺. 汽油消费应用 1.0. 保存, 指保存输入. 取消, 指取消输入. 历史消费, 指所有记录. 消费汇总, 指每个月消费汇总.</string>
     <string name="auto_noRecord">无记录</string>
     <string name="auto_welcome">欢迎使用汽车燃油统计软件</string>
@@ -36,6 +44,20 @@
     <string name="auto_btUpdate">更新</string>
     <string name="auto_btDelete">删除</string>
     <string name="auto_textViewDate">日期</string>
+    <string name="auto_jan">一月份</string>
+    <string name="auto_feb">二月份</string>
+    <string name="auto_mar">三月份</string>
+    <string name="auto_apr">四月份</string>
+    <string name="auto_may">五月份</string>
+    <string name="auto_jun">六月份</string>
+    <string name="auto_jul">七月份</string>
+    <string name="auto_aug">八月份</string>
+    <string name="auto_sep">九月份</string>
+    <string name="auto_oct">十月份</string>
+    <string name="auto_nov">十一月</string>
+    <string name="auto_dec">十二月</string>
+    <string name="autoSum_yearHint">年份</string>
+    <string name="autoSum_inquire">查询</string>
 
     <string name="SUNDAY">星期日</string>
     <string name="MONDAY">星期一</string>

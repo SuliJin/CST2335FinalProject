@@ -4,25 +4,267 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="zhentingmai.androidfinalproject.AutoHistoryActivity">
 
-    <ListView
-
-        android:id="@+id/auto_summary"
-
+    <TextView
+        android:id="@+id/autoSum_year"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:text="year" />
 
+    <GridLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#83a8ef"
+        android:columnCount="2"
+        android:orientation="horizontal"
+        android:id="@+id/auto_summary"
+        >
 
-        android:layout_alignParentBottom="false"
+        <TextView
+            android:id="@+id/autoSum_Jan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="@string/auto_jan"
+            android:layout_gravity="center"
+            android:textSize="24sp" />
 
-        android:layout_alignParentEnd="true"
+        <TextView
+            android:id="@+id/autoSum_JanValue"
+            android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
+            android:textSize="24sp"
+            android:text="value"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content" />
 
-        android:layout_alignParentStart="true"
+        <TextView
+            android:id="@+id/autoSum_Feb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="@string/auto_feb"
+            android:layout_gravity="center"
+            android:textSize="24sp" />
 
-        android:layout_alignParentTop="true"
+        <TextView
+            android:id="@+id/autoSum_FebValue"
+            android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
+            android:textSize="24sp"
+            android:text="value"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content" />
 
-        />
+        <TextView
+            android:id="@+id/autoSum_Mar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="@string/auto_mar"
+            android:layout_gravity="center"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/autoSum_MarValue"
+            android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
+            android:textSize="24sp"
+            android:text="value"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/autoSum_Apr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="@string/auto_apr"
+            android:layout_gravity="center"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/autoSum_AprValue"
+            android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
+            android:textSize="24sp"
+            android:text="value"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/autoSum_May"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="@string/auto_may"
+            android:layout_gravity="center"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/autoSum_MayValue"
+            android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
+            android:textSize="24sp"
+            android:text="value"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/autoSum_Jun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="@string/auto_jun"
+            android:layout_gravity="center"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/autoSum_JunValue"
+            android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
+            android:textSize="24sp"
+            android:text="value"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/autoSum_Jul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="@string/auto_jul"
+            android:layout_gravity="center"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/autoSum_JulValue"
+            android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
+            android:textSize="24sp"
+            android:text="value"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/autoSum_Aug"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="@string/auto_aug"
+            android:layout_gravity="center"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/autoSum_AugValue"
+            android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
+            android:textSize="24sp"
+            android:text="value"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/autoSum_Sep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="@string/auto_sep"
+            android:layout_gravity="center"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/autoSum_SepValue"
+            android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
+            android:textSize="24sp"
+            android:text="value"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/autoSum_Oct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="@string/auto_oct"
+            android:layout_gravity="center"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/autoSum_OctValue"
+            android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
+            android:textSize="24sp"
+            android:text="value"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/autoSum_Nov"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="@string/auto_nov"
+            android:layout_gravity="center"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/autoSum_NovValue"
+            android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
+            android:textSize="24sp"
+            android:text="value"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/autoSum_Dec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center"
+            android:text="@string/auto_dec"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/autoSum_DecValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:textSize="24sp"
+            android:layout_gravity="center"
+            android:text="value" />
+
+
+        <EditText
+            android:id="@+id/autoSum_yearSelect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:textSize="24sp"
+            android:layout_gravity="center"
+            android:hint="@string/autoSum_yearHint" />
+
+        <Button
+            android:id="@+id/autoSum_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="@string/autoSum_inquire"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            />
+
+
+
+
+
+    </GridLayout>
 
 
 </LinearLayout>
