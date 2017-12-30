@@ -176,6 +176,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="f_noReord">no records</string>
+    <string name="f_noRecord">no records</string>
+    <string name="f_update_success">Information is updated successful</string>
 
 </resources>

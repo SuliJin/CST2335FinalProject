@@ -61,6 +61,14 @@ public class F_historyActivity extends Activity {
         protected String doInBackground(String... strings) {
             SystemClock.sleep(100);
             progressBar.setProgress(10);
+            SystemClock.sleep(300);
+            progressBar.setProgress(20);
+            SystemClock.sleep(500);
+            progressBar.setProgress(30);
+            SystemClock.sleep(500);
+            progressBar.setProgress(40);
+            SystemClock.sleep(500);
+            progressBar.setProgress(50);
             f_db = new Database_nutrition(F_historyActivity.this);
             f_sqldb = f_db.getWritableDatabase();
             f_c = f_sqldb.rawQuery("select * from " + Database_nutrition.DB_food_table, null);
@@ -68,15 +76,22 @@ public class F_historyActivity extends Activity {
 
             while (!f_c.isAfterLast()) {
                 Map<String, String> f_infor = new HashMap<>();
-                f_infor.put("id", Database_nutrition.key_food_RowID);
-                f_infor.put("type", Database_nutrition.key_food_TYPE);
-                f_infor.put("time", Database_nutrition.key_TIME);
-                f_infor.put("calories", Database_nutrition.key_Calories);
-                f_infor.put("total_Fat", Database_nutrition.key_Total_Fat);
-                f_infor.put("carbohydrate", Database_nutrition.key_Carbohydrate);
+                f_infor.put("id", f_c.getString(f_c.getColumnIndex(Database_nutrition.key_food_RowID)));
+                f_infor.put("type", f_c.getString(f_c.getColumnIndex(Database_nutrition.key_food_TYPE)));
+                f_infor.put("time", f_c.getString(f_c.getColumnIndex(Database_nutrition.key_TIME)));
+                f_infor.put("calories", f_c.getString(f_c.getColumnIndex(Database_nutrition.key_Calories)));
+                f_infor.put("total_Fat", f_c.getString(f_c.getColumnIndex(Database_nutrition.key_Total_Fat)));
+                f_infor.put("carbohydrate", f_c.getString(f_c.getColumnIndex(Database_nutrition.key_Carbohydrate)));
+
                 foodList.add(f_infor);
                 f_c.moveToNext();
             }
+            SystemClock.sleep(500);
+            progressBar.setProgress(70);
+            SystemClock.sleep(500);
+            progressBar.setProgress(80);
+            SystemClock.sleep(500);
+            progressBar.setProgress(90);
             SystemClock.sleep(500);
             progressBar.setProgress(100);
             return null;

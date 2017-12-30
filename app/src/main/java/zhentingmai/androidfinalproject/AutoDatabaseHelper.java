@@ -138,6 +138,7 @@ public class AutoDatabaseHelper extends SQLiteOpenHelper {
         else
             return avg;
 
+
     }
 
     public String getTotal(){
