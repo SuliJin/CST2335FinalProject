@@ -4,13 +4,42 @@
     <string name="title_activity_automobile">Gasoline</string>
     <string name="title_activity_house">Thermo</string>
     <string name="title_activity_tracking">Activity</string>
+    <string name="title_activity_food">Nutrition</string>
+
+    <!-- activity tracking -->
     <string name="t_new_activity">New Activity</string>
+    <string name="t_edit_activity">Update Activity</string>
     <string name="t_activities">Life is beautiful...</string>
-    <string name="title_activity_new">New</string>
+    <string name="t_wanna_back">Do you want to go back?</string>
+    <string name="t_wanna_update">Do you want to update activity?</string>
+    <string name="t_wanna_delete">Do you want to delete activity?</string>
+    <string name="t_act_save_success">Activity is saved successfully</string>
+    <string name="t_act_update_success">Activity is updated successfully</string>
+    <string name="t_act_delete_success">Activity is deleted successfully</string>
     <string name="t_ok">OK</string>
     <string name="t_cancel">Cancel</string>
     <string name="t_save">Save</string>
+    <string name="t_update">Update</string>
+    <string name="t_delete">Delete</string>
     <string name="t_stay">Stay in the page</string>
+    <string name="t_author">Author: Suli Jin</string>
+    <string name="t_version">Version: 1.0.0</string>
+    <string name="t_help">
+        Author: Suli Jin \t\t Version: 1.0.0 \n
+        -----------------------------------------\n\n
+        1. Help \n\n
+        Click menu -> Help to show the helps about how to use the app. \n\n
+        2. Activity Statistics \n\n
+        Click menu -> Statistics to display how many minutes of activity the user does per month,
+        and also show how much activity the user did per month. \n\n
+        3. Add Activity \n\n
+        Click the add icon to navigate to new activity page,
+        where you can enter the information for new activity, and save new activity by clicking the Save button. \n\n
+        4. Edit Activity \n\n
+        Click the item in the activity list to navigate to the page to edit activity,
+        where you can change the information, and update the activity by clicking the Update button,
+        or delete the activity by clicking the Delete button. \n\n
+    </string>
     <string-array name="t_activities">
         <item>Running</item>
         <item>Walking</item>
@@ -18,6 +47,18 @@
         <item>Swimming</item>
         <item>Skating</item>
     </string-array>
+    <string name="t_type">Type</string>
+    <string name="t_time">Time</string>
+    <string name="t_duration">Duration</string>
+    <string name="t_comment">Comment</string>
+    <string name="t_count_per_act">Count per activity:\n</string>
+    <string name="t_duration_per_act">Duration per activity:\n</string>
+    <string name="t_start_at">start at </string>
+    <string name="t_for"> for </string>
+    <string name="t_min_note"> minutes. Note: </string>
+    <string name="t_help_title">Help</string>
+    <string name="t_stats_title">Statistics</string>
+    <!-- auto -->
     <string name="auto_liters">Liters</string>
     <string name="auto_price">Price($/L)</string>
     <string name="auto_kilo">Kilometers</string>
@@ -65,14 +106,9 @@
     <string name="autoSum_inquire">Inquire</string>
 
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_automobile2">Automobile2Activity</string>
-    <string name="title_activity_a">AActivity</string>
 
-    <string name="title_activity_food">Nutrition</string>
-
-    <string name="SUNDAY">SUNDAY</string>
+     <string name="SUNDAY">SUNDAY</string>
     <string name="MONDAY">MONDAY</string>
     <string name="TUESDAY">TUESDAY</string>
     <string name="WEDNESDAY">WEDNESDAY</string>
@@ -95,15 +131,39 @@
     <string name="delete">Delete temperature rule</string>
     <string name="save">save</string>
     <string name="setDayofWeek">Set Day of Week</string>
-    <string name="setTemp">set temperature</string>
-    <string name="setHour">Set hour</string>
-    <string name="setMinute">Set minute</string>
+    <string name="setTemp">set temperature(0-100)</string>
+    <string name="setHour">Set hour(0-23)</string>
+    <string name="setMinute">Set minute(0-59)</string>
     <string name="deleterule">Delete this rule</string>
     <string name="cancel">Cancel</string>
     <string name="saveAsNewRule">Save as new rule</string>
     <string name="add">Add</string>
     <string name="day">day</string>
-    <string name="hour">hour</string>
-    <string name="minute">minute</string>
-    <string name="temp">Temperature</string>
+    <string name="hour">hour(0-23)</string>
+    <string name="minute">minute(0-59)</string>
+    <string name="temp">Temperature(0-100)</string>
+    <string name="title_activity_toolbar">Toolbar</string>
+    <string name="about">about</string>
+    <string name="help">帮助</string>
+    <string name="helpthermo">
+        1. App Info \n\n
+        Click menu -> About to show the application information. \n\n
+        2. Help \n\n
+        Click menu -> Help to show the helps about how to use the app. \n\n
+        3. Add Activity \n\n
+        Click the "Add new temperature rule" button to navigate to new activity page,
+        where you can enter the information for new activity, and save new activity by clicking the "Save" button. \n\n
+        4. Edit Activity \n\n
+        Click the item in the activity list to navigate to the page to edit activity,
+        where you can change the information, and update the activity by clicking the "Save" button, or add as a new activity by clicking the "Save As new rule" button,
+        or delete the activity by clicking the "Delete this rule" button. \n\n
+
+    </string>
+    <string name="ID">ID</string>
+    <color name="green">#ff00ff00</color>
+    <string name="title_activity_toolbar_thermo">Toolbar_thermo</string>
+    <string name="author">author:Xia Sheng</string>
+    <string name="OK">OK</string>
+    <string name="version">version: 1.0.0 </string>
+    <string name="sure_to_delete">Are you sure to delete the record?</string>
 </resources>

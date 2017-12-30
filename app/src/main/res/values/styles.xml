@@ -7,6 +7,17 @@
 
     <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light"    />
 
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#FFFF00</item>
+        <item name="colorPrimaryDark">#800000</item>
+        <item name="colorAccent">#333EFF</item>
+    </style>
+
+    <style name="NavigationViewLineSeperator">
+        <item name="android:background">@drawable/line_seperator</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+    </style>
 </resources>

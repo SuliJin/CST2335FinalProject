@@ -1,6 +1,8 @@
 package xiasheng.androidfinalproject;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -33,10 +35,10 @@ public class House_DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL("CREATE TABLE " +TABLE_NAME+"(_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                                                 DAY + " text, " +
-                                                 HOUR + " text, " +
-                                                 MINUTE + " text, " +
-                                                 Temperature + " text );");
+                DAY + " text, " +
+                HOUR + " text, " +
+                MINUTE + " text, " +
+                Temperature + " text );");
         Log.i(ACTIVITY_NAME, "Table " + TABLE_NAME + " is created.");
     }
 
@@ -46,24 +48,24 @@ public class House_DatabaseHelper extends SQLiteOpenHelper {
         Log.i(ACTIVITY_NAME, "Table " + TABLE_NAME + " is upgraded, oldVersion= " + oldVer
                 + " newVersion=" + newVer);
     }
-//    @Override
-//    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion)
-//    {
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME); //delete what was there previously
-//        onCreate(db);
-//        //  Log.i("ChatDatabaseHelper", "Calling onCreate");
-//        Log.i(ACTIVITY_NAME, "Table " + TABLE_NAME + " is downgraded, newVersion=" + newVersion + "oldVersion=" + oldVersion);
-//    }
-//    public void openDatabase() {
-//        database = getWritableDatabase();
-//    }
+    @Override
+    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion)
+    {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME); //delete what was there previously
+        onCreate(db);
+        //  Log.i("ChatDatabaseHelper", "Calling onCreate");
+        Log.i(ACTIVITY_NAME, "Table " + TABLE_NAME + " is downgraded, newVersion=" + newVersion + "oldVersion=" + oldVersion);
+    }
+    public void openDatabase() {
+        database = getWritableDatabase();
+    }
 
-//    public void closeDatabase() {
-//        if (database != null && database.isOpen()) {
-//            database.close();
-//        }
-//    }
-/*
+    public void closeDatabase() {
+        if (database != null && database.isOpen()) {
+            database.close();
+        }
+    }
+
     public void insert(String day, String hour, String minute, String temp) {
         ContentValues values = new ContentValues();
         values.put(DAY, day);
@@ -90,13 +92,11 @@ public class House_DatabaseHelper extends SQLiteOpenHelper {
 
     protected Cursor read() {
         return database.query(TABLE_NAME, null, null, null, null, null, null);
-    }   */
-@Override
-public void onOpen(SQLiteDatabase db)
-{
-}
+    }
+    @Override
+    public void onOpen(SQLiteDatabase db)
+    {
+    }
 
 
 }
-
-

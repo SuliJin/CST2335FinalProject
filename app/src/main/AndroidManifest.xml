@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name="sulijin.androidfinalproject.StartActivity"
+    <activity
+            android:name=".StartActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,31 +27,30 @@
 
 
         <activity
-            android:name="sulijin.androidfinalproject.ActivityTrackingActivity"
-            android:theme="@style/AppTheme"
-            android:label="@string/title_activity_tracking" />
+            android:name=".ActivityTrackingActivity"
+            android:label="@string/title_activity_tracking"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
         <activity
-            android:name="sulijin.androidfinalproject.ActivityTrackingAddActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:name=".ActivityTrackingAddActivity"
             android:label="@string/t_new_activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ActivityTrackingEditActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="tianjunjin.androidfinalproject.FoodActivity"
             android:label="@string/title_activity_food" />
-
-
-        <activity android:name="xiasheng.androidfinalproject.AddHouseActivity" />
-        <activity android:name="xiasheng.androidfinalproject.trackingHouseActivity" />
-
-        <activity android:name="zhentingmai.androidfinalproject.AutoHistoryActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name="zhentingmai.androidfinalproject.AutoSummaryActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name="zhentingmai.androidfinalproject.AutoDetailActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-
-
-
+    <activity android:name="zhentingmai.androidfinalproject.AutoHistoryActivity"/>
+    <activity android:name="zhentingmai.androidfinalproject.AutoSummaryActivity"/>
+    <activity  android:name="zhentingmai.androidfinalproject.AutoDetailActivity"/>
+        android:label="@string/title_activity_a"/>
+    <activity android:name="xiasheng.androidfinalproject.AddHouseActivity"
+        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+    <activity android:name="xiasheng.androidfinalproject.trackingHouseActivity"
+        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+    <activity android:name="xiasheng.androidfinalproject.HouseDetailActivity"
+        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" /> />
     </application>
 
 </manifest>
