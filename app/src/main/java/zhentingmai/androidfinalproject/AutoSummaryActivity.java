@@ -90,9 +90,9 @@ public class AutoSummaryActivity extends Activity {
         aHelper = new AutoDatabaseHelper(this);
         aHelper.setWritable();
 
-        SumQuery query=new SumQuery();
-        query.execute();
-        //display(thisYear);
+        /*SumQuery query=new SumQuery();
+        query.execute();*/
+        display(thisYear);
 
         yearSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,11 +161,11 @@ public class AutoSummaryActivity extends Activity {
         decSum.setText(aHelper.getSum(thisYear).get(11));
     }
 
-    public class SumQuery extends AsyncTask<Void,Integer,Void> {
+   /* public class SumQuery extends AsyncTask<Void,Integer,Void> {
         @Override
         protected Void doInBackground(Void...params) {
             try {
-
+                 //list=null;
                 for(int i=1; i<=12; i++) {
                     String monthSum =aHelper.getMonthSum(thisYear,i);
                     list.add(monthSum);}
@@ -200,6 +200,6 @@ public class AutoSummaryActivity extends Activity {
             Log.i(ACTIVITY_NAME, "In onPostExecute");
         }
     }
-
+*/
 
 }
