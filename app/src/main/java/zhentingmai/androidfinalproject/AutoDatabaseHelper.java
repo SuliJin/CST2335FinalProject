@@ -118,24 +118,29 @@ public class AutoDatabaseHelper extends SQLiteOpenHelper {
 
     public String getAvg(){
 
-        if(iMonth==1)
-            c=db.rawQuery("SELECT AVG(" + KEY_PRICE +") FROM "+TABLE_NAME + " WHERE " +
-                    KEY_YEAR + " = " + (iYear-1) + " AND " + KEY_MONTH + " = " + 12,null);
-        else
-            c=db.rawQuery("SELECT AVG(" + KEY_PRICE +") FROM "+TABLE_NAME + " WHERE " +
-                    KEY_YEAR + " = " + iYear + " AND " + KEY_MONTH + " = " + (iMonth-1),null);
+       try {
+           if (iMonth == 1)
+               c = db.rawQuery("SELECT AVG(" + KEY_PRICE + ") FROM " + TABLE_NAME + " WHERE " +
+                       KEY_YEAR + " = " + (iYear -1) + " AND " + KEY_MONTH + " = " + 12, null);
+           else
+               c = db.rawQuery("SELECT AVG(" + KEY_PRICE + ") FROM " + TABLE_NAME + " WHERE " +
+                       KEY_YEAR + " = " + iYear + " AND " + KEY_MONTH + " = " + (iMonth -1), null);
 
-        c.moveToFirst();
-        String avg = c.getString(0);
-        if(avg==null)
-            return context.getString( R.string.auto_noRecord);
-        else
-            return String.format("%.2f",avg);
+           c.moveToFirst();
+           String avg = c.getString(0);
+           if (avg == null)
+               return context.getString(R.string.auto_noRecord);
+           else
+               return String.format("%.2f", avg);
+       }finally {
+           if(c != null)
+               c.close();
+       }
     }
 
     public String getTotal(){
 
-        if(iMonth==1)
+        try{if(iMonth==1)
             c=db.rawQuery("SELECT SUM(" + KEY_PRICE +") FROM "+TABLE_NAME + " WHERE " +
                     KEY_YEAR + " = " + (iYear-1) + " AND " + KEY_MONTH + " = " + 12,null);
         else
@@ -152,52 +157,78 @@ public class AutoDatabaseHelper extends SQLiteOpenHelper {
             double dAvgPrice = Double.parseDouble(getAvg());
             String total = String.format("%.2f",dCost*dAvgPrice);
             return total;
+        }}finally {
+            if(c != null)
+                c.close();
         }
     }
 
 
     public ArrayList<String> getSum(int thisYear) {
         ArrayList<String> list = new ArrayList<>();
-        for(int i=1; i<=12; i++) {
-            c = db.rawQuery("SELECT SUM (" + KEY_LITERS + ")FROM " + TABLE_NAME + " WHERE " +
-                    KEY_YEAR + " = " + thisYear + " AND " + KEY_MONTH + " = " + i, null);
-            c.moveToFirst();
-            String strLiterSum = c.getString(0);
+        String strLiterSum =null;
+        String strPriceAvg =null;
+           for (int i = 1; i <= 12; i++) {
+               try {
+                   c = db.rawQuery("SELECT SUM (" + KEY_LITERS + ")FROM " + TABLE_NAME + " WHERE " +
+                       KEY_YEAR + " = " + thisYear + " AND " + KEY_MONTH + " = " + i, null);
+               c.moveToFirst();
+               strLiterSum = c.getString(0);
+               } finally {
+                   if(c != null)
+                       c.close();
+               }
+              try { c = db.rawQuery("SELECT AVG (" + KEY_PRICE + ")FROM " + TABLE_NAME + " WHERE " +
+                       KEY_YEAR + " = " + thisYear + " AND " + KEY_MONTH + " = " + i, null);
+               c.moveToFirst();
+               strPriceAvg = c.getString(0);
+              } finally {
+                  if(c != null)
+                      c.close();
+              }
+               if (strLiterSum == null || strPriceAvg == null) {
+                   list.add(context.getString(R.string.auto_noRecord));
+               } else {
+                   double sumLiter = Double.parseDouble(strLiterSum);
+                   double avgPrice = Double.parseDouble(strPriceAvg);
+                   list.add(String.format("$" + "%.2f", avgPrice * sumLiter));
+               }
+           }
 
-            c = db.rawQuery("SELECT AVG (" + KEY_PRICE + ")FROM " + TABLE_NAME + " WHERE " +
-                    KEY_YEAR + " = " + thisYear + " AND " + KEY_MONTH + " = " + i, null);
-            c.moveToFirst();
-            String strPriceAvg = c.getString(0);
 
-            if (strLiterSum == null || strPriceAvg == null) {
-                list.add(context.getString(R.string.auto_noRecord));
-            } else {
-                double sumLiter = Double.parseDouble(strLiterSum);
-                double avgPrice = Double.parseDouble(strPriceAvg);
-                list.add(String.format("$"+"%.2f",avgPrice * sumLiter));
-            }
-        }
         return list;
     }
 
     public String getMonthSum(int thisYear, int i){
-        c = db.rawQuery("SELECT SUM (" + KEY_LITERS + ")FROM " + TABLE_NAME + " WHERE " +
-                KEY_YEAR + " = " + thisYear + " AND " + KEY_MONTH + " = " + i, null);
-        c.moveToFirst();
-        String strLiterSum = c.getString(0);
+            String strLiterSum =null;
+            String strPriceAvg =null;
+            try {
+                c = db.rawQuery("SELECT SUM (" + KEY_LITERS + ")FROM " + TABLE_NAME + " WHERE " +
+                    KEY_YEAR + " = " + thisYear + " AND " + KEY_MONTH + " = " + i, null);
+                c.moveToFirst();
+                strLiterSum = c.getString(0);
+            } finally {
+                if(c != null)
+                    c.close();
+            }
 
-        c = db.rawQuery("SELECT AVG (" + KEY_PRICE + ")FROM " + TABLE_NAME + " WHERE " +
-                KEY_YEAR + " = " + thisYear + " AND " + KEY_MONTH + " = " + i, null);
-        c.moveToFirst();
-        String strPriceAvg = c.getString(0);
+            try {
+                c = db.rawQuery("SELECT AVG (" + KEY_PRICE + ")FROM " + TABLE_NAME + " WHERE " +
+                    KEY_YEAR + " = " + thisYear + " AND " + KEY_MONTH + " = " + i, null);
+                 c.moveToFirst();
+                 strPriceAvg = c.getString(0);
+            } finally {
+                if(c != null)
+                    c.close();
+            }
+            if (strLiterSum == null || strPriceAvg == null) {
+                return context.getString(R.string.auto_noRecord);
+            } else {
+                double sumLiter = Double.parseDouble(strLiterSum);
+                double avgPrice = Double.parseDouble(strPriceAvg);
+                return String.format("$" + "%.2f", avgPrice * sumLiter);
+            }
 
-        if (strLiterSum == null || strPriceAvg == null) {
-            return context.getString(R.string.auto_noRecord);
-        } else {
-            double sumLiter = Double.parseDouble(strLiterSum);
-            double avgPrice = Double.parseDouble(strPriceAvg);
-            return String.format("$"+"%.2f", avgPrice * sumLiter);
-        }
     }
 
    /* public Cursor getSumCursor(){
