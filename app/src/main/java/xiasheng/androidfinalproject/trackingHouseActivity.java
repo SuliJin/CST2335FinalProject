@@ -41,8 +41,6 @@ public class trackingHouseActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private ChatAdapter therAdapter;
     private House_DatabaseHelper dbHelper;
-    private Boolean isLandscape;
-    private FrameLayout landscapeFrameLayout;
     private int requestCode = 1;
 
     public boolean onOptionsItemSelected(MenuItem mi) {

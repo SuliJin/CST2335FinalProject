@@ -45,7 +45,7 @@ public class FragmentThermo extends Fragment {
     String temp;
     Bundle bundle;
     String id;
-    boolean isLandscape;
+
 
     public FragmentThermo() {
     }
@@ -56,8 +56,6 @@ public class FragmentThermo extends Fragment {
 
         bundle = this.getArguments();
        id = bundle.getString("id");
-       isLandscape = bundle.getBoolean("isLandscape");
-
 
         dbHelper = new House_DatabaseHelper(getActivity());
         tempDB = dbHelper.getWritableDatabase();
