@@ -13,7 +13,6 @@ import java.text.SimpleDateFormat;
  */
 
 public class ActivityTrackingDatabaseHelper extends SQLiteOpenHelper {
-    public static  final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy MMM dd hh:mm");
     public final static String LOGGER_NAME = "ChatDatabaseHelper";
     public final static String DATABASE_NAME = "T_Activity_DB";
     public final static String TABLE_NAME = "T_Activity_Table";

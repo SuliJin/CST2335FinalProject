@@ -51,8 +51,8 @@
     <string name="t_time">Time</string>
     <string name="t_duration">Duration</string>
     <string name="t_comment">Comment</string>
-    <string name="t_count_per_act">Count per activity:\n</string>
-    <string name="t_duration_per_act">Duration per activity:\n</string>
+    <string name="t_count_per_act">Count per activity for this month:\n</string>
+    <string name="t_duration_per_act">Activity duration per month (in minutes): \n</string>
     <string name="t_start_at">start at </string>
     <string name="t_for"> for </string>
     <string name="t_min_note"> minutes. Note: </string>

@@ -47,8 +47,8 @@
     <string name="t_time">时间</string>
     <string name="t_duration">搞多久</string>
     <string name="t_comment">评语</string>
-    <string name="t_count_per_act">每个活动整几次:\n</string>
-    <string name="t_duration_per_act">每个活动整多长时间:\n</string>
+    <string name="t_count_per_act">这个月每个活动整几次:\n</string>
+    <string name="t_duration_per_act">每个活动整多长时间 （分钟）:\n</string>
     <string name="t_start_at">在</string>
     <string name="t_for"> </string>
     <string name="t_min_note">分钟. 评语: </string>
