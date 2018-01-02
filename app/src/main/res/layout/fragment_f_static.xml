@@ -1,13 +1,65 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+>
+
+<TextView
+    android:id="@+id/f_average_calories"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="tianjunjin.androidfinalproject.f_staticFragment">
+    android:layout_height="60dp"
+    android:gravity="center"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true"
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    android:fontFamily="sans-serif"
+    android:textSize="25dp"
+    android:text="@string/f_average_calories" />
 
-</FrameLayout>
+<TextView
+    android:id="@+id/f_average_calories_value"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="left"
+    android:layout_alignParentStart="true"
+    android:layout_below="@id/f_average_calories"
+    android:layout_marginLeft="150dp"
+    android:fontFamily="sans-serif"
+    android:textSize="25dp"/>
+
+<TextView
+    android:id="@+id/f_total_calories"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true"
+    android:layout_marginTop="100dp"
+    android:fontFamily="sans-serif"
+    android:textSize="25dp"
+    android:text="@string/f_total_calories" />
+
+<TextView
+    android:id="@+id/f_total_calories_value"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentStart="true"
+    android:layout_marginLeft="150dp"
+    android:fontFamily="sans-serif"
+    android:gravity="left"
+    android:layout_below="@id/f_total_calories"
+    android:textSize="25dp" />
+
+<Button
+    android:id="@+id/t_stats_ok"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true"
+    android:layout_alignStart="@+id/t_activityCount"
+    android:layout_gravity="center"
+    android:layout_marginTop="150dp"
+    android:background="#c2f2ff"
+    android:text="@string/t_ok" />
+
+</RelativeLayout>
+

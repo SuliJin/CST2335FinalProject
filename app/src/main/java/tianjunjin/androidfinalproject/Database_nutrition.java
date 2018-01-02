@@ -25,8 +25,6 @@ public class Database_nutrition extends SQLiteOpenHelper {
     public final static String key_Carbohydrate= "Carbohydrate";
 
     public SQLiteDatabase f_database;
-
-    private Context context;
     private Cursor c;
 
 
@@ -80,13 +78,13 @@ public class Database_nutrition extends SQLiteOpenHelper {
 
         f_database.insert(DB_food_table, null, values);
     }
-
     public void delete(Long id) {
-        f_database = getWritableDatabase();
-        f_database.execSQL("DELETE FROM " +DB_food_table + " WHERE " + key_food_RowID + " = " + id);
+        f_database = this.getWritableDatabase();
+
+        f_database.delete(DB_food_table,  key_food_RowID + " = " + id, null);
     }
     public void update(Long id,String type, String time, String calories, String total_Fat, String carbohydrate) {
-        f_database = getWritableDatabase();
+        f_database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(key_food_TYPE, type);
         values.put(key_TIME, time);
@@ -124,18 +122,19 @@ public class Database_nutrition extends SQLiteOpenHelper {
         return caloriesLastDay;
     }
     public double getAvg(){
-        c = f_database.rawQuery("select * from " + DB_food_table,null);
+        f_database = getWritableDatabase();
         double total = 0.00;
         double avg = 0.00;
-        while(!c.isAfterLast()) {
-            int num = Integer.parseInt(c.getString(c.getColumnIndex(key_food_RowID)));
-            c.moveToNext();
+
+         c = f_database.rawQuery("select count( * ) from " + DB_food_table ,null);
+            int num = c.getCount();
+        c = f_database.rawQuery("select * from " + DB_food_table,null);
             for(int i = 0; i< num; i++){
                 c.moveToPosition(i);
                 total += Double.parseDouble(c.getString(c.getColumnIndex(key_Calories)));
             }
             avg = total/num;
-        }
+
         c.close();
         return avg;
     }

@@ -4,7 +4,6 @@
     <string name="title_activity_automobile">Gasoline</string>
     <string name="title_activity_house">Thermo</string>
     <string name="title_activity_tracking">Activity</string>
-    <string name="title_activity_food">Nutrition</string>
 
     <!-- activity tracking -->
     <string name="t_new_activity">New Activity</string>
@@ -149,13 +148,13 @@
     <string name="f_ok">yes</string>
     <string name="f_cancel">no</string>
     <string name="f_history">history records</string>
-    <string name="f_newrecord">enter new records</string>
+    <string name="f_newrecord">new records</string>
     <string name="title_activity_f">food</string>
     <string name="f_welcome">welcom</string>
     <string name="f_saveConfirm">food information saved</string>
     <string name="f_delete_success">food information deleted</string>
-    <string name="f_calories_eaten">total calories</string>
-    <string name="f_average_calories">average calories</string>
+    <string name="f_total_calories">Total calories taken yesterday :</string>
+    <string name="f_average_calories">Average calories :</string>
     <string name="f_help">
         Author: Tianjun Jin \t\t Version: 1.0.0 \n
         -----------------------------------------\n\n
@@ -178,5 +177,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="f_noRecord">no records</string>
     <string name="f_update_success">Information is updated successful</string>
+    <string name="f_static">static</string>
+    <string name="title_activity_food">food</string>
 
 </resources>

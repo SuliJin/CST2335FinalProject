@@ -1,6 +1,9 @@
 package tianjunjin.androidfinalproject;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -9,27 +12,23 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
+import android.support.v7.widget.Toolbar;
 import sulijin.androidfinalproject.R;
 
-public class f_activity extends Activity {
-    private ProgressBar progressBar;
+public class f_activity extends AppCompatActivity{
     TextView textView;
     Database_nutrition f_db;
-    SQLiteDatabase f_sqldb;
-    Cursor f_c;
     Toolbar toolbar;
     protected static final String ACTIVITY_NAME = " f_activity ";
 
@@ -37,6 +36,7 @@ public class f_activity extends Activity {
         final Intent startIntent = new Intent(this, f_activity.class);
         switch (item.getItemId()) {
             case R.id.f_help:
+
                 AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
                 builder2.setTitle(getResources().getString(R.string.t_help_title));
                 LayoutInflater inflater = this.getLayoutInflater();
@@ -70,7 +70,8 @@ public class f_activity extends Activity {
         final Intent startIntent = new Intent(this, f_activity.class);
         textView = (TextView) findViewById(R.id.textView_title);
         f_db = new Database_nutrition(this);
-
+        toolbar = (Toolbar)findViewById(R.id.toolbar_f);
+       setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -100,43 +101,26 @@ public class f_activity extends Activity {
                 startActivity(f_newEntry);
             }
         });
-        final Button average =(Button) findViewById(R.id.f_average_calories);
-        average.setOnClickListener(new View.OnClickListener() {
+        final Button f_static =(Button) findViewById(R.id.f_static);
+        f_static.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String averageCalory = "The average calory is "+f_db.getAvg();
-
-                AlertDialog.Builder builder= new AlertDialog.Builder(getApplication());
-                builder.setMessage(averageCalory);
-                // Add the buttons
-                builder.setPositiveButton(R.string.t_ok, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        finish();
-                        startActivity(startIntent);
-                    }
-                });
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            }
-        });
-        final Button total  =(Button) findViewById(R.id.f_calories_eaten);
-        total.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String totalCalories = "The total calory eaten yesterday is "+f_db.getTotal();
-                AlertDialog.Builder builder= new AlertDialog.Builder(getApplication());
-                builder.setMessage(totalCalories);
-                                // Add the buttons
-                builder.setPositiveButton(R.string.t_ok, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        finish();
-                        startActivity(startIntent);
-                    }
-                });
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                F_staticFragment static_fragment= new F_staticFragment();
+                addFragment(static_fragment);
             }
         });
     }
+    private void addFragment(Fragment fragment) {
+
+        FragmentManager fragmentManager =getFragmentManager();
+        //remove previous fragment
+        if (fragmentManager.getBackStackEntryCount() > 0) {
+            FragmentManager.BackStackEntry first = fragmentManager.getBackStackEntryAt(0);
+            fragmentManager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.f_static_framelayout, fragment).addToBackStack(null).commit();
+    }
+
 
 }

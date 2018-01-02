@@ -47,7 +47,7 @@
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
         />
         <activity android:name="tianjunjin.androidfinalproject.f_activity"
-            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+            android:label="@string/title_activity_food"/>
         <activity android:name="tianjunjin.androidfinalproject.F_NewEntryActivity" />
         <activity android:name="tianjunjin.androidfinalproject.F_historyActivity" />
         <activity android:name="tianjunjin.androidfinalproject.F_DetailActivity" />
