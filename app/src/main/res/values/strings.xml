@@ -145,7 +145,7 @@
 
     <string name="sure_to_cancel">sure to cancel?</string>
     <string name="f_wanna_back">go back to save?</string>
-    <string name="f_ok">yes</string>
+    <string name="f_ok">ok</string>
     <string name="f_cancel">no</string>
     <string name="f_history">history records</string>
     <string name="f_newrecord">new records</string>

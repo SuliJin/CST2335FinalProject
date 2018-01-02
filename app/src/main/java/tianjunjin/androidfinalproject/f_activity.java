@@ -36,17 +36,14 @@ public class f_activity extends AppCompatActivity{
         final Intent startIntent = new Intent(this, f_activity.class);
         switch (item.getItemId()) {
             case R.id.f_help:
-
                 AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
                 builder2.setTitle(getResources().getString(R.string.t_help_title));
                 LayoutInflater inflater = this.getLayoutInflater();
                 final View dialogView = inflater.inflate(R.layout.fragment_f_help, null);
                 ((TextView)dialogView.findViewById(R.id.f_help)).setMovementMethod(new ScrollingMovementMethod());
                 builder2.setView(dialogView);
-                builder2.setPositiveButton(R.string.t_ok, new DialogInterface.OnClickListener() {
+                builder2.setPositiveButton(R.string.f_ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        finish();
-                        startActivity(startIntent);
                     }
                 });
                 AlertDialog dialog2 = builder2.create();
@@ -56,7 +53,6 @@ public class f_activity extends AppCompatActivity{
                 return super.onOptionsItemSelected(item);
         }
     }
-
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.toolbar_menu_f, menu);
