@@ -98,11 +98,6 @@ public class F_DetailActivity extends Activity {
                 builder.setPositiveButton(R.string.t_ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-//                        writeableDB.delete(Database_nutrition.DB_food_table , Database_nutrition.key_food_RowID + " = " +single_ID, null);
-//                        Intent foodAct = new Intent(getActivity(), FoodActivity.class);
-//                        getActivity().finish();
-//                        getActivity().startActivity(foodAct);
-
                         dbHelper.delete(rowId);
                         Toast toast = Toast.makeText(F_DetailActivity.this,
                                 getResources().getString(R.string.f_delete_success), Toast.LENGTH_SHORT);
@@ -137,7 +132,6 @@ public class F_DetailActivity extends Activity {
                 });
                 AlertDialog dialog = builder.create();
                 dialog.show();
-
             }
         });
 

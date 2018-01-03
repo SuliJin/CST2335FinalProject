@@ -139,23 +139,10 @@
     <string name="f_welcome">欢迎</string>
     <string name="f_saveConfirm">信息成功保存</string>
     <string name="f_delete_success">信息删除</string>
-    <string name="f_calories_eaten">卡路里总数</string>
+    <string name="f_total_calories">卡路里总数 :</string>
     <string name="f_average_calories">平均卡路里</string>
     <string name="f_help">
-        Author: Tianjun Jin \t\t Version: 1.0.0 \n
-        -----------------------------------------\n\n
-        1. Help \n\n
-        Click menu -> Help to show the helps about how to use the app. \n\n
-        2. Add Activity \n\n
-        Click the ENTER NEW RECORDS button to navigate to new activity page,
-        where you can enter the information for new activity, and save new activity by clicking the Save button. \n\n
-        3. History Activity \n\n
-        Click the HISTORY RECORDS button to navigate to another new activity page,
-        where the list of the history records will be listed and in the records list to navigate to the page to edit these records.
-        where you can change the information, and update the activity by clicking the Update button,
-        or delete the activity by clicking the Delete button. \n\n
-        4.When clicking the AVERAGE CALORIES button to show the average calories in the records
-        5.When clicking the CALORIES_EATEN button to show the total calories eatten the day before.
+
         作者： 靳二十一。 版本：1.0.0
         1. 帮助
         点击帮助 -> 解释怎样使用这个软件
@@ -173,5 +160,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="f_noRecord">没有记录</string>
     <string name="f_update_success">信息成功更新</string>
+    <string name="f_static">统计</string>
+    <string name="f_type">要食物信息</string>
+    <string name="f_calories">卡路里信息</string>
+    <string name="f_total_Fat">脂肪信息</string>
+    <string name="f_carbohydrate">这个信息不能少</string>
 
 </resources>

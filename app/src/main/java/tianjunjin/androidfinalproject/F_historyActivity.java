@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -84,6 +85,7 @@ public class F_historyActivity extends Activity {
                 f_infor.put("carbohydrate", f_c.getString(f_c.getColumnIndex(Database_nutrition.key_Carbohydrate)));
 
                 foodList.add(f_infor);
+                Collections.reverse(foodList );
                 f_c.moveToNext();
             }
             SystemClock.sleep(500);

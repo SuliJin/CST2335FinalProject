@@ -46,7 +46,8 @@ public class F_staticFragment extends android.app.Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().finish();
+
+
             }
         });
 

@@ -14,20 +14,17 @@ import sulijin.androidfinalproject.R;
 
 public class Database_nutrition extends SQLiteOpenHelper {
 
-    public static String DB_food_Name = "f_db";
+    public static String DB_food_Name = "f_db_1";
     public static int DB_version =1;
     public static final String DB_food_table = "f_Table";
     public static final String key_food_RowID = "_id";
     public final static String key_food_TYPE = "type";
     public final static String key_TIME = "time";
-    public final static String key_Calories= "Calories";
-    public final static String key_Total_Fat = "Total_Fat";
-    public final static String key_Carbohydrate= "Carbohydrate";
-
+    public final static String key_Calories= "calories";
+    public final static String key_Total_Fat = "total_Fat";
+    public final static String key_Carbohydrate= "carbohydrate";
     public SQLiteDatabase f_database;
     private Cursor c;
-
-
 
     public static final String ACTIVITY_NAME = "f_DatabaseHelper";
 
@@ -45,14 +42,11 @@ public class Database_nutrition extends SQLiteOpenHelper {
                 + key_Carbohydrate + " TEXT"
                 + ")";
         db.execSQL(CREATE_TABLE_MSG);
-
     }
-
     @Override
     public void onOpen(SQLiteDatabase db){}
 
     public void onUpgrade(SQLiteDatabase db,int newVersion, int oldVersion ){
-        //  super(Context ctx ,String "Messages.db" , SQLiteDatabase.CursorFactory factory,int version);
         db.execSQL("DROP TABLE IF EXISTS "+ DB_food_table);
         onCreate(db);
     }
@@ -125,8 +119,7 @@ public class Database_nutrition extends SQLiteOpenHelper {
         f_database = getWritableDatabase();
         double total = 0.00;
         double avg = 0.00;
-
-         c = f_database.rawQuery("select count( * ) from " + DB_food_table ,null);
+        c = f_database.rawQuery("select * from " + DB_food_table ,null);
             int num = c.getCount();
         c = f_database.rawQuery("select * from " + DB_food_table,null);
             for(int i = 0; i< num; i++){
@@ -134,13 +127,9 @@ public class Database_nutrition extends SQLiteOpenHelper {
                 total += Double.parseDouble(c.getString(c.getColumnIndex(key_Calories)));
             }
             avg = total/num;
-
         c.close();
         return avg;
     }
-//    public Cursor getCursor() {
-//        return f_database.query(DB_food_table, null, null, null, null, null, null);
-//    }
 
 }
 

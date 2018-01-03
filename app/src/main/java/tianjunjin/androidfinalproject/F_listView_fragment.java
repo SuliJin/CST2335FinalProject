@@ -53,7 +53,6 @@ public class F_listView_fragment extends Fragment {
         View fragView = inflater.inflate(R.layout.f_listview_fragment, container, false);
         listView = fragView.findViewById(R.id.f_listView_history);
         foodAdapter = new FoodAdapter(getActivity());
-     //   Collections.reverse(listView);
         listView.setAdapter(foodAdapter);
 
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -83,34 +82,22 @@ public class F_listView_fragment extends Fragment {
         public FoodAdapter(Context ctx) {
             super(ctx, 0);
         }
-
         public int getCount() {
             return foodList.size();
         }
 
         public Map<String, String> getItem(int position) {
-
-        //    return foodList.get(position);
-            return foodList.get(getCount() - position - 1);
+            return foodList.get(position);
+          //  return foodList.get(getCount() - position - 1);
         }
         public long getItemId(int position) {
-
             String id = foodList.get(position).get("id").toString();
             return Long.parseLong(id);
-//            f_c.moveToPosition(position);
-//            return Long.parseLong(f_c.getString(f_c.getColumnIndex(DB.key_food_RowID)));
         }
-//        public long getItemId(int position){
-//            Map<String, String> content = getItem(position);
-//            return Long.parseLong(content.get("id"));}
-//
-//        public long getItemId(int position){
-//            cursor.moveToPosition(position);
-//            return cursor.getLong(cursor.getColumnIndex(aHelper.KEY_ID));
-//        }
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = getActivity().getLayoutInflater();
             View result = inflater.inflate(R.layout.food_item, null);
+
             if (!foodList.isEmpty()) {
             TextView message = result.findViewById(R.id.food_item_text);
             Map<String, String> food_view = getItem(position);

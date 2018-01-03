@@ -150,7 +150,8 @@
     <string name="f_history">history records</string>
     <string name="f_newrecord">new records</string>
     <string name="title_activity_f">food</string>
-    <string name="f_welcome">welcom</string>
+    <string name="f_welcome">welcom
+    </string>
     <string name="f_saveConfirm">food information saved</string>
     <string name="f_delete_success">food information deleted</string>
     <string name="f_total_calories">Total calories taken yesterday :</string>
@@ -179,5 +180,11 @@
     <string name="f_update_success">Information is updated successful</string>
     <string name="f_static">static</string>
     <string name="title_activity_food">food</string>
+    <string name="f_type">Enter the food type</string>
+    <string name="f_carlories">Enter the calories amount</string>
+    <string name="f_total_Fat">Enter the total_fat amount</string>
+    <string name="f_carbohydrate">Enter the carbohydrate amount</string>
+
+
 
 </resources>
