@@ -36,9 +36,7 @@ public class AutoHistFragment extends Fragment {
     private AutoDatabaseHelper dpHelper;
 
     public AutoHistFragment() {
-        // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,7 +57,7 @@ public class AutoHistFragment extends Fragment {
         editTextId=view.findViewById(R.id.fragmentId);
         editTextId.setText(""+id);
         editTextTime=view.findViewById(R.id.fragmentTime);
-        editTextTime.setText(year+"-"+month+"-"+day);
+        editTextTime.setText(year+" - "+month+" - "+day);
         editTextPrice=view.findViewById(R.id.fragmentPrice);
         editTextPrice.setText(price);
         editTextLiters=view.findViewById(R.id.fragmentLiters);
@@ -76,12 +74,6 @@ public class AutoHistFragment extends Fragment {
                 Intent intent = getActivity().getIntent();
                 startActivity(intent);
 
-
-               /* Intent intent = new Intent();
-                intent.putExtra("id",id);
-                getActivity().setResult(Activity.RESULT_OK,intent);
-                getActivity().finish();*/
-
             }
         });
 
@@ -92,7 +84,7 @@ public class AutoHistFragment extends Fragment {
             public void onClick(View v) {
                 Calendar calendar = Calendar.getInstance();
                 String strYear = calendar.get(Calendar.YEAR)+"";
-                String strMonth = calendar.get(Calendar.MONTH)+"";
+                String strMonth = calendar.get(Calendar.MONTH)+1+"";
                 String strDay = calendar.get(Calendar.DAY_OF_MONTH)+"";
                 String strPrice=editTextPrice.getText().toString();
                 String strLiters=editTextLiters.getText().toString();
@@ -103,6 +95,7 @@ public class AutoHistFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
         return view;
     }
 

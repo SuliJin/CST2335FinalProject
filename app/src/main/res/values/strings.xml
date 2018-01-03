@@ -50,8 +50,8 @@
     <string name="t_time">Time</string>
     <string name="t_duration">Duration</string>
     <string name="t_comment">Comment</string>
-    <string name="t_count_per_act">Count per activity:\n</string>
-    <string name="t_duration_per_act">Duration per activity:\n</string>
+    <string name="t_count_per_act">Count per activity for this month:\n</string>
+    <string name="t_duration_per_act">Activity duration per month (in minutes): \n</string>
     <string name="t_start_at">start at </string>
     <string name="t_for"> for </string>
     <string name="t_min_note"> minutes. Note: </string>
@@ -63,13 +63,21 @@
     <string name="auto_kilo">Kilometers</string>
     <string name="auto_avgPrice">Last Month Average Price($)</string>
     <string name="auto_totalCost">Last Month Total Cost($)</string>
-    <string name="auto_histRecord">History Consumption</string>
-    <string name="auto_histSummary">Consuming Summary</string>
+    <string name="auto_histRecord">History</string>
+    <string name="auto_histSummary">Summary</string>
     <string name="auto_save">Save</string>
     <string name="auto_saveConfirm">Information saved successfully!</string>
     <string name="auto_cancel">Cancel</string>
     <string name="auto_help">Help</string>
     <string name="auto_ok">OK</string>
+    <string name="auto_helpTitle">Gasoline Application 1.0</string>
+    <string name="auto_helpAuthor">Author: Zhenting Mai</string>
+    <string name="auto_helpSave">“Save” - click to save your input</string>
+    <string name="auto_helpCancel">"Cancel“ - click to cancel your input</string>
+    <string name="auto_helpHist">“History” - click to check your consuming history</string>
+    <string name="auto_helpSum">“Summary” - click to check monthly consumption of every year</string>
+    <string name="auto_helpUpdate">Update Data - check your history and click the item you want to update</string>
+    <string name="auto_helpInquire">Inquire Summary - go to the summary and type the year you want to check</string>
     <string name="auto_helpValue">Author: Zhenting Mai. Gasolin app Version 1.0. Save, to save your entry. Cancel, to
         cancel your entry. History Consumption, the records. Consuming Summary, the purchases per month.</string>
     <string name="auto_noRecord">No Record</string>
@@ -81,6 +89,21 @@
     <string name="auto_btUpdate">Update</string>
     <string name="auto_btDelete">Delete</string>
     <string name="auto_textViewDate">Date</string>
+    <string name="auto_jan">Jan</string>
+    <string name="auto_feb">Feb</string>
+    <string name="auto_mar">Mar</string>
+    <string name="auto_apr">Apr</string>
+    <string name="auto_may">May</string>
+    <string name="auto_jun">Jun</string>
+    <string name="auto_jul">Jul</string>
+    <string name="auto_aug">Aug</string>
+    <string name="auto_sep">Sep</string>
+    <string name="auto_oct">Oct</string>
+    <string name="auto_nov">Nov</string>
+    <string name="auto_dec">Dec</string>
+    <string name="autoSum_yearHint">Year</string>
+    <string name="autoSum_inquire">Inquire</string>
+
 
     <string name="title_activity_automobile2">Automobile2Activity</string>
 

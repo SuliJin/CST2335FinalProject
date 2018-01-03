@@ -38,7 +38,7 @@ public class ActivityTrackingEditActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.t_activities, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        spinner.setSelection(this.getPosition(type));
+        spinner.setSelection(ActivityTrackingUtil.getPosition(type));
 
         final EditText timeView = (EditText)findViewById(R.id.t_time_value);
         timeView.setText(time);
@@ -129,22 +129,6 @@ public class ActivityTrackingEditActivity extends AppCompatActivity {
             startActivity(startIntent);
             }
         });
-    }
-
-    private int getPosition(String type) {
-            switch (type) {
-                case "Running":
-                case "撒鸭子":  return 0;
-                case "Walking":
-                case "走道": return 1;
-                case "Biking":
-                case "骑车子": return 2;
-                case "Swimming":
-                case "游泳": return 3;
-                case "Skating":
-                case "滑出溜": return 4;
-            }
-            return 0;
     }
 
 }

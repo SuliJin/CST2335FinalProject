@@ -12,11 +12,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -44,30 +46,35 @@ public class ActivityTrackingStatisticsFragment extends Fragment {
 
         Map<String, Integer> minutePerActivityMap = new TreeMap<>();
         Map<String, Integer> activityCountMap = new TreeMap<>();
-
+        DateFormatSymbols symbols = new DateFormatSymbols(Locale.getDefault());
+        String[] months = symbols.getMonths();;
         for (Map row : activityList) {
             String type = row.get(ActivityTrackingDatabaseHelper.TYPE).toString();
             String timeString = row.get(ActivityTrackingDatabaseHelper.TIME).toString();
             Date time = null;
             try {
-                time = ActivityTrackingDatabaseHelper.DATE_FORMAT.parse(timeString);
+                time = ActivityTrackingUtil.getDateFormatter().parse(timeString);
             } catch (Exception e) {
                 Log.e(ActivityTrackingStatisticsFragment.class.getName(), "Error parsing time: " + timeString);
                 time = new Date();
             }
             Date today =  new Date();
+
+            String durationString = row.get(ActivityTrackingDatabaseHelper.DURATION).toString();
+            int duration = Integer.parseInt(durationString);
+            String month = months[time.getMonth()];
+            Integer minutePerActivity = minutePerActivityMap.get(month);
+
+            if (minutePerActivity == null) {
+                minutePerActivityMap.put(month, duration);
+            } else {
+                minutePerActivityMap.put(month, duration + minutePerActivity);
+            }
+
             if (! (time.getYear() == today.getYear() && time.getMonth() == today.getMonth())) {
                 continue;
             }
-            String durationString = row.get(ActivityTrackingDatabaseHelper.DURATION).toString();
-            int duration = Integer.parseInt(durationString);
-            Integer minutePerActivity = minutePerActivityMap.get(type);
 
-            if (minutePerActivity == null) {
-                minutePerActivityMap.put(type, duration);
-            } else {
-                minutePerActivityMap.put(type, duration + minutePerActivity);
-            }
 
             Integer activityCount = activityCountMap.get(type);
             if (activityCount == null) {

@@ -35,7 +35,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.reflect.Type;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -112,47 +114,58 @@ public class ActivityTrackingActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... strings) {
+           try {
+               SystemClock.sleep(100);
+               progressBar.setProgress(10);
+               ActivityTrackingDatabaseHelper dbHelper = new ActivityTrackingDatabaseHelper(ActivityTrackingActivity.this);
+               writeableDB = dbHelper.getWritableDatabase();
+               SystemClock.sleep(200);
+               progressBar.setProgress(30);
+               //populate activity list
+               cursor = writeableDB.rawQuery("select * from " + ActivityTrackingDatabaseHelper.TABLE_NAME, null);
+               cursor.moveToFirst();
+               while (!cursor.isAfterLast()) {
+                   Map<String, Object> row = new HashMap<>();
+                   row.put(ID, cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.ID)));
+                   String type = cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.TYPE));
+                   type = getActivityString(ActivityTrackingUtil.getPosition(type));
+                   String time = cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.TIME));
+                   try {
+                       Date date = ActivityTrackingUtil.getDateFormatter().parse(time);
+                       time =  ActivityTrackingUtil.getDateFormatter().format(date);
+                   } catch (ParseException e) {
+                       e.printStackTrace();
+                   }
+                   String duration = cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.DURATION));
+                   String comment = cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.COMMENT));
+                   row.put(ActivityTrackingDatabaseHelper.TYPE, type);
+                   row.put(ActivityTrackingDatabaseHelper.TIME, time);
+                   row.put(ActivityTrackingDatabaseHelper.DURATION, duration);
+                   row.put(ActivityTrackingDatabaseHelper.COMMENT, comment);
+                   row.put(DESCRIPTION, getResources().getString(R.string.t_start_at) + " " + time + ", " + type +
+                           " " + getResources().getString(R.string.t_for) + " " + duration +
+                           " " + getResources().getString(R.string.t_min_note) + " " + comment);
 
-            SystemClock.sleep(100);
-            progressBar.setProgress(10);
-            ActivityTrackingDatabaseHelper dbHelper = new ActivityTrackingDatabaseHelper(ActivityTrackingActivity.this);
-            writeableDB = dbHelper.getWritableDatabase();
-            SystemClock.sleep(200);
-            progressBar.setProgress(30);
-            //populate activity list
-            cursor = writeableDB.rawQuery("select * from " + ActivityTrackingDatabaseHelper.TABLE_NAME,null );
-            cursor.moveToFirst();
-            while(!cursor.isAfterLast() ) {
-                Map<String, Object> row = new HashMap<>();
-                row.put(ID, cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.ID)));
-                String type = cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.TYPE));
-                String time = cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.TIME));
-                String duration = cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.DURATION));
-                String comment = cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.COMMENT));
-                row.put(ActivityTrackingDatabaseHelper.TYPE, type);
-                row.put(ActivityTrackingDatabaseHelper.TIME, time);
-                row.put(ActivityTrackingDatabaseHelper.DURATION, duration);
-                row.put(ActivityTrackingDatabaseHelper.COMMENT, comment);
-                row.put(DESCRIPTION, getResources().getString(R.string.t_start_at) + time +", " + type +
-                        getResources().getString(R.string.t_for) + duration +
-                        getResources().getString(R.string.t_min_note)+ comment);
-
-                activityList.add(row);
-                cursor.moveToNext();
-            }
-            SystemClock.sleep(500);
-            progressBar.setProgress(80);
-            final Intent intent = new Intent(ActivityTrackingActivity.this, ActivityTrackingAddActivity.class);
-            findViewById(R.id.t_newActivity).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                    startActivity(intent);
-                }
-            });
-            SystemClock.sleep(200);
-            progressBar.setProgress(100);
-            return null;
+                   activityList.add(row);
+                   cursor.moveToNext();
+               }
+               SystemClock.sleep(500);
+               progressBar.setProgress(80);
+               final Intent intent = new Intent(ActivityTrackingActivity.this, ActivityTrackingAddActivity.class);
+               findViewById(R.id.t_newActivity).setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View v) {
+                       finish();
+                       startActivity(intent);
+                   }
+               });
+               SystemClock.sleep(200);
+               progressBar.setProgress(100);
+               return null;
+           } finally {
+               if (cursor != null)
+                   cursor.close();
+           }
         }
 
         protected void onProgressUpdate(Integer ...values){
@@ -181,6 +194,8 @@ public class ActivityTrackingActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.t_listview_Frame, fragment).addToBackStack(null).commit();
     }
-
+    public String getActivityString(int position) {
+        return getResources().getStringArray(R.array.t_activities)[position];
+    }
 
 }

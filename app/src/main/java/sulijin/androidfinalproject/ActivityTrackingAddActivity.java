@@ -37,8 +37,7 @@ public class ActivityTrackingAddActivity extends Activity {
         spinner.setAdapter(adapter);
 
         TextView timeView = findViewById(R.id.t_time_value);
-        SimpleDateFormat format = new SimpleDateFormat("yyyy MMM dd hh:mm");
-        timeView.setText(format.format(new Date()));
+        timeView.setText(ActivityTrackingUtil.getDateFormatter().format(new Date()));
 
         Button cancel = findViewById(R.id.t_cancel_new_activity);
         final Intent startIntent = new Intent(this, ActivityTrackingActivity.class);

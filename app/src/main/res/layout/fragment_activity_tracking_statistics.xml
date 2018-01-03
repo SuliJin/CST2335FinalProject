@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="40dp"
         android:fontFamily="sans-serif"
-        android:textSize="25dp"
+        android:textSize="18dp"
         android:text="@string/t_duration_per_act" />
 
     <TextView
@@ -34,7 +34,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="240dp"
         android:fontFamily="sans-serif"
-        android:textSize="25dp"
+        android:textSize="18dp"
         android:text="@string/t_count_per_act" />
 
     <TextView

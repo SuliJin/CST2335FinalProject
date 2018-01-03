@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 
-
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import sulijin.androidfinalproject.R;
@@ -24,7 +24,6 @@ public class AutoDatabaseHelper extends SQLiteOpenHelper {
     public static final int VERSION_NUM =1;
     public static final String TABLE_NAME = "AUTO";
     public static final String KEY_ID = "_ID";
-    //public static final String KEY_TIME = "TIME";
 
     public static final String KEY_YEAR = "YEAR";
     public static final String KEY_MONTH = "MONTH";
@@ -34,7 +33,7 @@ public class AutoDatabaseHelper extends SQLiteOpenHelper {
     public static final String KEY_LITERS = "LITERS";
     public static final String KEY_KILO = "KILO";
 
-    public SQLiteDatabase database;
+    public SQLiteDatabase db;
 
     private Context context;
 
@@ -53,10 +52,9 @@ public class AutoDatabaseHelper extends SQLiteOpenHelper {
                 + KEY_PRICE + " NUMERIC, "+ KEY_LITERS+ " NUMERIC, " + KEY_KILO + " NUMERIC)";
 
         db.execSQL(CREATE_TABLE);
-
         Log.i(ACTIVITY_NAME, "Calling onCreate");
-
     }
+
     @Override
 
     public void onUpgrade(SQLiteDatabase db, int oldVer, int newVer) {
@@ -74,12 +72,12 @@ public class AutoDatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void setWritable() {
-        database = getWritableDatabase();
+        db = getWritableDatabase();
     }
 
     public void closeDatabase() {
-        if (database != null && database.isOpen()) {
-            database.close();
+        if (db != null && db.isOpen()) {
+            db.close();
         }
     }
 
@@ -92,11 +90,11 @@ public class AutoDatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_LITERS, liters);
         values.put(KEY_KILO, kilo);
 
-        database.insert(TABLE_NAME, null, values);
+        db.insert(TABLE_NAME, null, values);
     }
 
     public void delete(Long id) {
-        database.execSQL("DELETE FROM " + TABLE_NAME + " WHERE " + KEY_ID + " = " + id);
+        db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE " + KEY_ID + " = " + id);
     }
 
 
@@ -109,7 +107,7 @@ public class AutoDatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_LITERS, liters);
         values.put(KEY_KILO, kilo);
 
-        database.update(TABLE_NAME, values, KEY_ID + " = " + id, null);
+        db.update(TABLE_NAME, values, KEY_ID + " = " + id, null);
     }
 
 
@@ -119,35 +117,34 @@ public class AutoDatabaseHelper extends SQLiteOpenHelper {
     int iMonth = calendar.get(Calendar.MONTH);
 
     public String getAvg(){
-       /* Calendar calendar = Calendar.getInstance();
-        int iYear = calendar.get(Calendar.YEAR);
-        int iMonth = calendar.get(Calendar.MONTH);*/
-        //Cursor c;
-        if(iMonth==1)
-            c=database.rawQuery("SELECT AVG(" + KEY_PRICE +") FROM "+TABLE_NAME + " WHERE " +
-                    KEY_YEAR + " = " + (iYear-1) + " AND " + KEY_MONTH + " = " + 12,null);
-        else
-            c=database.rawQuery("SELECT AVG(" + KEY_PRICE +") FROM "+TABLE_NAME + " WHERE " +
-                    KEY_YEAR + " = " + iYear + " AND " + KEY_MONTH + " = " + (iMonth-1),null);
 
-        // c=database.rawQuery("SELECT AVG(" + KEY_PRICE +") FROM "+TABLE_NAME,null);
-        c.moveToFirst();
-        String avg = c.getString(0);
-        if(avg==null)
-            return context.getString( R.string.auto_noRecord);
-        else
-            return avg;
+       try {
+           if (iMonth == 1)
+               c = db.rawQuery("SELECT AVG(" + KEY_PRICE + ") FROM " + TABLE_NAME + " WHERE " +
+                       KEY_YEAR + " = " + (iYear -1) + " AND " + KEY_MONTH + " = " + 12, null);
+           else
+               c = db.rawQuery("SELECT AVG(" + KEY_PRICE + ") FROM " + TABLE_NAME + " WHERE " +
+                       KEY_YEAR + " = " + iYear + " AND " + KEY_MONTH + " = " + (iMonth -1), null);
 
-
+           c.moveToFirst();
+           String avg = c.getString(0);
+           if (avg == null)
+               return context.getString(R.string.auto_noRecord);
+           else
+               return String.format("%.2f", avg);
+       }finally {
+           if(c != null)
+               c.close();
+       }
     }
 
     public String getTotal(){
 
-        if(iMonth==1)
-            c=database.rawQuery("SELECT SUM(" + KEY_PRICE +") FROM "+TABLE_NAME + " WHERE " +
+        try{if(iMonth==1)
+            c=db.rawQuery("SELECT SUM(" + KEY_PRICE +") FROM "+TABLE_NAME + " WHERE " +
                     KEY_YEAR + " = " + (iYear-1) + " AND " + KEY_MONTH + " = " + 12,null);
         else
-            c=database.rawQuery("SELECT SUM(" + KEY_PRICE +") FROM "+TABLE_NAME + " WHERE " +
+            c=db.rawQuery("SELECT SUM(" + KEY_PRICE +") FROM "+TABLE_NAME + " WHERE " +
                     KEY_YEAR + " = " + iYear + " AND " + KEY_MONTH + " = " + (iMonth-1),null);
         c.moveToFirst();
         String strCost = c.getString(0);
@@ -158,19 +155,90 @@ public class AutoDatabaseHelper extends SQLiteOpenHelper {
         else{
             double dCost = Double.parseDouble(strCost);
             double dAvgPrice = Double.parseDouble(getAvg());
-            String total = ""+dCost*dAvgPrice;
+            String total = String.format("%.2f",dCost*dAvgPrice);
             return total;
+        }}finally {
+            if(c != null)
+                c.close();
         }
     }
 
-    public Cursor getSumCursor(){
+
+    public ArrayList<String> getSum(int thisYear) {
+        ArrayList<String> list = new ArrayList<>();
+        String strLiterSum =null;
+        String strPriceAvg =null;
+           for (int i = 1; i <= 12; i++) {
+               try {
+                   c = db.rawQuery("SELECT SUM (" + KEY_LITERS + ")FROM " + TABLE_NAME + " WHERE " +
+                       KEY_YEAR + " = " + thisYear + " AND " + KEY_MONTH + " = " + i, null);
+               c.moveToFirst();
+               strLiterSum = c.getString(0);
+               } finally {
+                   if(c != null)
+                       c.close();
+               }
+              try { c = db.rawQuery("SELECT AVG (" + KEY_PRICE + ")FROM " + TABLE_NAME + " WHERE " +
+                       KEY_YEAR + " = " + thisYear + " AND " + KEY_MONTH + " = " + i, null);
+               c.moveToFirst();
+               strPriceAvg = c.getString(0);
+              } finally {
+                  if(c != null)
+                      c.close();
+              }
+               if (strLiterSum == null || strPriceAvg == null) {
+                   list.add(context.getString(R.string.auto_noRecord));
+               } else {
+                   double sumLiter = Double.parseDouble(strLiterSum);
+                   double avgPrice = Double.parseDouble(strPriceAvg);
+                   list.add(String.format("$" + "%.2f", avgPrice * sumLiter));
+               }
+           }
+
+
+        return list;
+    }
+
+    public String getMonthSum(int thisYear, int i){
+            String strLiterSum =null;
+            String strPriceAvg =null;
+            try {
+                c = db.rawQuery("SELECT SUM (" + KEY_LITERS + ")FROM " + TABLE_NAME + " WHERE " +
+                    KEY_YEAR + " = " + thisYear + " AND " + KEY_MONTH + " = " + i, null);
+                c.moveToFirst();
+                strLiterSum = c.getString(0);
+            } finally {
+                if(c != null)
+                    c.close();
+            }
+
+            try {
+                c = db.rawQuery("SELECT AVG (" + KEY_PRICE + ")FROM " + TABLE_NAME + " WHERE " +
+                    KEY_YEAR + " = " + thisYear + " AND " + KEY_MONTH + " = " + i, null);
+                 c.moveToFirst();
+                 strPriceAvg = c.getString(0);
+            } finally {
+                if(c != null)
+                    c.close();
+            }
+            if (strLiterSum == null || strPriceAvg == null) {
+                return context.getString(R.string.auto_noRecord);
+            } else {
+                double sumLiter = Double.parseDouble(strLiterSum);
+                double avgPrice = Double.parseDouble(strPriceAvg);
+                return String.format("$" + "%.2f", avgPrice * sumLiter);
+            }
+
+    }
+
+   /* public Cursor getSumCursor(){
         c=database.rawQuery("SELECT " + KEY_YEAR+"||','||"+KEY_MONTH+", SUM("+KEY_LITERS+") FROM" +
                 " "+TABLE_NAME + " GROUP BY "+KEY_YEAR+","+KEY_MONTH,null);
-        return null;
-    }
+        return c;
+    }*/
 
 
     public Cursor getCursor() {
-        return database.query(TABLE_NAME, null, null, null, null, null, null);
+        return db.query(TABLE_NAME, null, null, null, null, null, null);
     }
 }
