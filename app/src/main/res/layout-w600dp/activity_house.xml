@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,62 +8,45 @@
     tools:context="xiasheng.androidfinalproject.trackingHouseActivity">
 
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@color/colorAccent"
-        android:gravity="center_horizontal"
-        android:text="@string/title_activity_house"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@android:color/holo_blue_bright"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"/>
 
     <FrameLayout
-        android:id="@+id/landscapeFrameLayout"
+        android:id="@+id/h_listview_Frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/addButton"
-        android:layout_below="@id/title"
-        android:scrollbarAlwaysDrawVerticalTrack="true"
-        android:background="@android:color/holo_blue_bright"/>
+        android:background="#c2f2ff"     />
 
     <ListView
         android:id="@+id/thermView"
         android:layout_width="300dp"
         android:layout_height="match_parent"
-        android:layout_below="@+id/title"
+
         />
 
-    <Button
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/addButton"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/thermView"
         android:layout_alignParentBottom="true"
-        android:clickable="true"
-        android:focusable="true"
-        android:text="@string/add" />
+        android:layout_marginBottom="12dp"
+        android:src="@drawable/addnote"
+        app:layout_anchorGravity="bottom|right|end"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <ProgressBar
 
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/thermView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="420dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="35dp"
+        android:background="#c2f2ff"
+        android:progress="@android:integer/config_shortAnimTime"
+        android:progressTint="@android:color/holo_red_light"
+        android:visibility="invisible" />
 
 </RelativeLayout>

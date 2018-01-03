@@ -130,6 +130,7 @@
     <string name="addNew">Add new temperature rule</string>
     <string name="delete">Delete temperature rule</string>
     <string name="save">save</string>
+    <string name="update">update</string>
     <string name="setDayofWeek">Set Day of Week</string>
     <string name="setTemp">set temperature(0-100)</string>
     <string name="setHour">Set hour(0-23)</string>
