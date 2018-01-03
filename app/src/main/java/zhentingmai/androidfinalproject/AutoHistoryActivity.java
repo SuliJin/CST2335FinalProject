@@ -26,8 +26,6 @@ import java.util.ArrayList;
 
 import sulijin.androidfinalproject.R;
 
-
-
 public class AutoHistoryActivity extends Activity {
     protected static final String ACTIVITY_NAME = "AutoHistoryActivity";
     TextView time;
@@ -41,55 +39,6 @@ public class AutoHistoryActivity extends Activity {
     Cursor cursor;
     CarAdapter carAdapter;
     private ProgressBar progressBar;
-
-
-
-    /*class carInfo{
-        private String id;
-        private String year;
-        private String month;
-        private String day;
-
-        private String price;
-        private String liters;
-        private String kilo;
-
-        public carInfo(String id, String year, String month, String day, String price, String liters, String kilo) {
-            this.id = id;
-            this.year = year;
-            this.month = month;
-            this.day = day;
-            this.price = price;
-            this.liters = liters;
-            this.kilo = kilo;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public String getYear() {
-            return year;
-        }
-        public String getMonth() {
-            return month;
-        }
-        public String getDay() {
-            return day;
-        }
-
-        public String getPrice() {
-            return price;
-        }
-
-        public String getLiters() {
-            return liters;
-        }
-
-        public String getKilo() {
-            return kilo;
-        }
-    }*/
 
     private class CarAdapter extends ArrayAdapter<AutoInfo> {
         public CarAdapter(Context ctx) {
@@ -124,8 +73,6 @@ public class AutoHistoryActivity extends Activity {
             return view;
         }
     }
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -230,7 +177,6 @@ public class AutoHistoryActivity extends Activity {
         protected String doInBackground(AutoInfo... carInfos) {
             Log.i(ACTIVITY_NAME, "In DOINBACKGROUND");
             try {
-
                 cursor = aHelper.getCursor();
                 cursor.moveToFirst();
 

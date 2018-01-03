@@ -18,12 +18,13 @@
         android:progress="@android:integer/config_shortAnimTime"
         android:progressTint="@android:color/holo_red_light"
         android:visibility="invisible" />
+
     <FrameLayout
         android:id="@+id/t_listview_Frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
-        android:background="#d3dbf8"/>
+        android:background="#d3dbf8" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/t_newActivity"

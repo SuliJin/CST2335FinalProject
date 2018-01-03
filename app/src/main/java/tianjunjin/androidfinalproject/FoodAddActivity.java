@@ -7,7 +7,7 @@ import android.widget.FrameLayout;
 
 import sulijin.androidfinalproject.R;
 
-public class food_frameLayout extends Activity {
+public class FoodAddActivity extends Activity {
 
 
     @Override
