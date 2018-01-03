@@ -42,14 +42,14 @@ public class F_staticFragment extends android.app.Fragment {
         average_calories.setText(avg);
         total_calories.setText(total);
 
-        button = view.findViewById(R.id.t_stats_ok);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-            }
-        });
+//        button = view.findViewById(R.id.t_stats_ok);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                getActivity().finish();
+//
+//            }
+//        });
 
         return view;
     }

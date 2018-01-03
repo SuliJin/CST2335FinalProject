@@ -90,7 +90,7 @@ public class Database_nutrition extends SQLiteOpenHelper {
     }
     public int getTotal(){
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy MMM dd");
         String today = dateFormat.format(new Date()); //date of today
 
         Date myDate = null;
@@ -102,7 +102,10 @@ public class Database_nutrition extends SQLiteOpenHelper {
         Date newDate = new Date(myDate.getTime() - 1);
         String yesterday = dateFormat.format(newDate);
 
-        f_database = getWritableDatabase();
+        System.out.println(today);
+        System.out.println(yesterday);
+
+
 
         c = f_database.rawQuery("SELECT * FROM " + DB_food_table + " Where "+ key_TIME + " like '" + yesterday + "%'",null);
         c.moveToFirst();

@@ -187,5 +187,6 @@
     <string name="f_calories">卡路里信息</string>
     <string name="f_total_Fat">脂肪信息</string>
     <string name="f_carbohydrate">这个信息不能少</string>
+    <string name="title_activity_food">食物</string>
 
 </resources>
