@@ -7,6 +7,14 @@ android:layout_height="match_parent"
 android:background="#c2f2ff"
 tools:context="tianjunjin.androidfinalproject.F_historyActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/progressBar"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:src="@drawable/main" />
+
 <ProgressBar
     android:id="@+id/progressBar"
     style="?android:attr/progressBarStyleHorizontal"

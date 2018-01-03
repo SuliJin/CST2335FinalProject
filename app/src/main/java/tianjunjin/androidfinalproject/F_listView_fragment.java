@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,7 +43,6 @@ public class F_listView_fragment extends Fragment {
     public F_listView_fragment() {
     }
     public void init(ArrayList<Map> foodList) {
-
         this.foodList = foodList;
     }
 
@@ -53,28 +53,23 @@ public class F_listView_fragment extends Fragment {
         View fragView = inflater.inflate(R.layout.f_listview_fragment, container, false);
         listView = fragView.findViewById(R.id.f_listView_history);
         foodAdapter = new FoodAdapter(getActivity());
-
+     //   Collections.reverse(listView);
         listView.setAdapter(foodAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Map<String, String> message = foodAdapter.getItem(position);
+
                     long idInDb =  foodAdapter.getItemId(position);
                     Bundle bundle = new Bundle();
-              //      bundle.putLong(F_historyActivity.ID,idInDb);
-//                    bundle.putString(Database_nutrition.key_food_TYPE, message.get(Database_nutrition.key_food_TYPE).toString());
-//                    System.out.println("6 ");
-//                    bundle.putString(Database_nutrition.key_TIME , message.get(Database_nutrition.key_TIME ).toString());
-//                    bundle.putString(Database_nutrition.key_Calories, message.get(Database_nutrition.key_Calories).toString());
-//                    bundle.putString(Database_nutrition.key_Total_Fat , message.get(Database_nutrition.key_Total_Fat ).toString());
-//                    bundle.putString(Database_nutrition.key_Carbohydrate, message.get(Database_nutrition. key_Carbohydrate).toString());
                     bundle.putLong("id",idInDb);
                     bundle.putString("type", message.get(Database_nutrition.key_food_TYPE));
                     bundle.putString("time", message.get(Database_nutrition.key_TIME ));
-                    bundle.putString("calories", message.get("calories"));
-                    bundle.putString("total_Fat", message.get("total_Fat" ));
-                    bundle.putString("carbohydrate", message.get("carbohydrate"));
+                    bundle.putString("calories", message.get(Database_nutrition.key_Calories));
+                    bundle.putString("total_Fat", message.get(Database_nutrition.key_Total_Fat ));
+                    bundle.putString("carbohydrate", message.get(Database_nutrition. key_Carbohydrate));
                     Intent intent = new Intent(getActivity(), F_DetailActivity .class);
                     intent.putExtra("bundle", bundle);
                     getActivity().finish();
@@ -83,8 +78,6 @@ public class F_listView_fragment extends Fragment {
            });
         return fragView;
     }
-
-
     private class FoodAdapter extends ArrayAdapter<Map<String, String>> {
 
         public FoodAdapter(Context ctx) {
@@ -96,11 +89,16 @@ public class F_listView_fragment extends Fragment {
         }
 
         public Map<String, String> getItem(int position) {
-            return foodList.get(position);
+
+        //    return foodList.get(position);
+            return foodList.get(getCount() - position - 1);
         }
         public long getItemId(int position) {
+
             String id = foodList.get(position).get("id").toString();
             return Long.parseLong(id);
+//            f_c.moveToPosition(position);
+//            return Long.parseLong(f_c.getString(f_c.getColumnIndex(DB.key_food_RowID)));
         }
 //        public long getItemId(int position){
 //            Map<String, String> content = getItem(position);

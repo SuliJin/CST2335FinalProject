@@ -6,6 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import sulijin.androidfinalproject.R;
 
 public class Database_nutrition extends SQLiteOpenHelper {
@@ -21,8 +25,9 @@ public class Database_nutrition extends SQLiteOpenHelper {
     public final static String key_Carbohydrate= "Carbohydrate";
 
     public SQLiteDatabase f_database;
+    private Cursor c;
 
-    private Context context;
+
 
     public static final String ACTIVITY_NAME = "f_DatabaseHelper";
 
@@ -40,6 +45,7 @@ public class Database_nutrition extends SQLiteOpenHelper {
                 + key_Carbohydrate + " TEXT"
                 + ")";
         db.execSQL(CREATE_TABLE_MSG);
+
     }
 
     @Override
@@ -72,15 +78,13 @@ public class Database_nutrition extends SQLiteOpenHelper {
 
         f_database.insert(DB_food_table, null, values);
     }
-
     public void delete(Long id) {
-        f_database = getWritableDatabase();
-        f_database.execSQL("DELETE FROM " +DB_food_table + " WHERE " + key_food_RowID + " = " + id);
+        f_database = this.getWritableDatabase();
+
+        f_database.delete(DB_food_table,  key_food_RowID + " = " + id, null);
     }
-
-
     public void update(Long id,String type, String time, String calories, String total_Fat, String carbohydrate) {
-        f_database = getWritableDatabase();
+        f_database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(key_food_TYPE, type);
         values.put(key_TIME, time);
@@ -90,73 +94,53 @@ public class Database_nutrition extends SQLiteOpenHelper {
 
         f_database.update(DB_food_table, values, key_food_RowID  + " = " + id, null);
     }
+    public int getTotal(){
 
-    Cursor c;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String today = dateFormat.format(new Date()); //date of today
 
-        public String getAvg(){
-         c= f_database.rawQuery("SELECT AVG(" + key_Calories +") FROM "+ DB_food_table,null);
+        Date myDate = null;
+        try {
+            myDate = dateFormat.parse(today);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Date newDate = new Date(myDate.getTime() - 1);
+        String yesterday = dateFormat.format(newDate);
+
+        f_database = getWritableDatabase();
+
+        c = f_database.rawQuery("SELECT * FROM " + DB_food_table + " Where "+ key_TIME + " like '" + yesterday + "%'",null);
         c.moveToFirst();
-        String avg = c.getString(0);
-        if(avg==null)
-            return context.getString( R.string.f_noReord);
-        else
-            return avg;
+
+        int caloriesLastDay = 0;
+        while(!c.isAfterLast()){
+            caloriesLastDay += Integer.parseInt(c.getString(c.getColumnIndex(key_Calories)));
+            c.moveToNext();
+        }
+        c.close();
+        return caloriesLastDay;
     }
+    public double getAvg(){
+        f_database = getWritableDatabase();
+        double total = 0.00;
+        double avg = 0.00;
 
-//    public String getAvg(){
-//       /* Calendar calendar = Calendar.getInstance();
-//        int iYear = calendar.get(Calendar.YEAR);
-//        int iMonth = calendar.get(Calendar.MONTH);*/
-//        //Cursor c;
-//        if(iMonth==1)
-//            c=database.rawQuery("SELECT AVG(" + KEY_PRICE +") FROM "+TABLE_NAME + " WHERE " +
-//                    KEY_YEAR + " = " + (iYear-1) + " AND " + KEY_MONTH + " = " + 12,null);
-//        else
-//            c=database.rawQuery("SELECT AVG(" + KEY_PRICE +") FROM "+TABLE_NAME + " WHERE " +
-//                    KEY_YEAR + " = " + iYear + " AND " + KEY_MONTH + " = " + (iMonth-1),null);
-//
-//        // c=database.rawQuery("SELECT AVG(" + KEY_PRICE +") FROM "+TABLE_NAME,null);
-//        c.moveToFirst();
-//        String avg = c.getString(0);
-//        if(avg==null)
-//            return context.getString( R.string.auto_noRecord);
-//        else
-//            return avg;
-//
-//    }
-//
-//    public String getTotal(){
-//
-//        if(iMonth==1)
-//            c=database.rawQuery("SELECT SUM(" + KEY_PRICE +") FROM "+TABLE_NAME + " WHERE " +
-//                    KEY_YEAR + " = " + (iYear-1) + " AND " + KEY_MONTH + " = " + 12,null);
-//        else
-//            c=database.rawQuery("SELECT SUM(" + KEY_PRICE +") FROM "+TABLE_NAME + " WHERE " +
-//                    KEY_YEAR + " = " + iYear + " AND " + KEY_MONTH + " = " + (iMonth-1),null);
-//        c.moveToFirst();
-//        String strCost = c.getString(0);
-//        String strAvgPrice = getAvg();
-//        if(strCost==null||strAvgPrice==null){
-//            return context.getString( R.string.auto_noRecord);
-//        }
-//        else{
-//            double dCost = Double.parseDouble(strCost);
-//            double dAvgPrice = Double.parseDouble(getAvg());
-//            String total = ""+dCost*dAvgPrice;
-//            return total;
-//        }
-//    }
+         c = f_database.rawQuery("select count( * ) from " + DB_food_table ,null);
+            int num = c.getCount();
+        c = f_database.rawQuery("select * from " + DB_food_table,null);
+            for(int i = 0; i< num; i++){
+                c.moveToPosition(i);
+                total += Double.parseDouble(c.getString(c.getColumnIndex(key_Calories)));
+            }
+            avg = total/num;
 
-//    public Cursor getSumCursor(){
-//        c=f_database.rawQuery("SELECT " + KEY_YEAR+"||','||"+KEY_MONTH+", SUM("+KEY_LITERS+") FROM" +
-//                " "+TABLE_NAME + " GROUP BY "+KEY_YEAR+","+KEY_MONTH,null);
-//        return null;
-//    }
-
-
-    public Cursor getCursor() {
-        return f_database.query(DB_food_table, null, null, null, null, null, null);
+        c.close();
+        return avg;
     }
+//    public Cursor getCursor() {
+//        return f_database.query(DB_food_table, null, null, null, null, null, null);
+//    }
 
 }
 

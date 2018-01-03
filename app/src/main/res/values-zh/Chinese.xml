@@ -150,4 +150,50 @@
     <string name="author">作者:盛夏</string>
     <string name="OK">确定</string>
     <string name="version">版本：1.0.0</string>
+
+    <string name="sure_to_cancel">确定删除吗?</string>
+    <string name="f_wanna_back">保存?</string>
+    <string name="f_ok">确定</string>
+    <string name="f_cancel">取消</string>
+    <string name="f_history">历史记录</string>
+    <string name="f_newrecord">新数据输入</string>
+    <string name="title_activity_f">食物</string>
+    <string name="f_welcome">欢迎</string>
+    <string name="f_saveConfirm">信息成功保存</string>
+    <string name="f_delete_success">信息删除</string>
+    <string name="f_calories_eaten">卡路里总数</string>
+    <string name="f_average_calories">平均卡路里</string>
+    <string name="f_help">
+        Author: Tianjun Jin \t\t Version: 1.0.0 \n
+        -----------------------------------------\n\n
+        1. Help \n\n
+        Click menu -> Help to show the helps about how to use the app. \n\n
+        2. Add Activity \n\n
+        Click the ENTER NEW RECORDS button to navigate to new activity page,
+        where you can enter the information for new activity, and save new activity by clicking the Save button. \n\n
+        3. History Activity \n\n
+        Click the HISTORY RECORDS button to navigate to another new activity page,
+        where the list of the history records will be listed and in the records list to navigate to the page to edit these records.
+        where you can change the information, and update the activity by clicking the Update button,
+        or delete the activity by clicking the Delete button. \n\n
+        4.When clicking the AVERAGE CALORIES button to show the average calories in the records
+        5.When clicking the CALORIES_EATEN button to show the total calories eatten the day before.
+        作者： 靳二十一。 版本：1.0.0
+        1. 帮助
+        点击帮助 -> 解释怎样使用这个软件
+        2.点击增加
+        将进入另外的一个界面， 用户可以输入新的数据。
+        3.历史记录
+        点击进入另外的一个界面， 可以看到所以的历史记录。 点击每一条历史记录， 可以看到详细的记录
+        4.平均卡路里
+        出现一个界面用户可以看到平均的卡路里值
+        5.卡路里总数
+        点击后下一个界面用户可以看到卡路里总数
+
+    </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="f_noRecord">没有记录</string>
+    <string name="f_update_success">信息成功更新</string>
+
 </resources>
