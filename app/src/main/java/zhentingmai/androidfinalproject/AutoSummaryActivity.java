@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
@@ -18,134 +19,95 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import sulijin.androidfinalproject.R;
 
+import static zhentingmai.androidfinalproject.AutoDatabaseHelper.KEY_LITERS;
+import static zhentingmai.androidfinalproject.AutoDatabaseHelper.KEY_MONTH;
+import static zhentingmai.androidfinalproject.AutoDatabaseHelper.KEY_PRICE;
+import static zhentingmai.androidfinalproject.AutoDatabaseHelper.KEY_YEAR;
+import static zhentingmai.androidfinalproject.AutoDatabaseHelper.TABLE_NAME;
 
 
 public class AutoSummaryActivity extends Activity {
     protected static final String ACTIVITY_NAME = "AutoSummaryActivity";
-    TextView time;
-    TextView liters;
-    TextView price;
-    TextView kilo;
-    ListView listView;
+    TextView year;
+    TextView jan,janSum,feb,febSum,mar,marSum,apr,aprSum,may,maySum,jun,junSum,jul,julSum,aug,augSum,
+            sep,sepSum,oct,octSum,nov,novSum,dec,decSum;
+    EditText yearSelect;
+    Button yearSubmit;
 
-    ArrayList<AutoInfo> list=new ArrayList<>();
+    ArrayList<String> list=new ArrayList<>();
     AutoDatabaseHelper aHelper;
-    Cursor cursor;
-    CarAdapter carAdapter;
-    private ProgressBar progressBar;
+    //SQLiteDatabase db;
+    //Cursor cursor;
 
-
-
-
-
-    private class CarAdapter extends ArrayAdapter<AutoInfo> {
-        public CarAdapter(Context ctx) {
-            super(ctx, 0);
-        }
-
-        public int getCount() {
-            return list.size();
-        }
-
-        public AutoInfo getItem(int position) {
-            return list.get(position);
-        }
-
-        public long getItemId(int position){
-            cursor.moveToPosition(position);
-            return cursor.getLong(cursor.getColumnIndex(aHelper.KEY_ID));
-        }
-
-        public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = LayoutInflater.from(getContext());
-            View view = inflater.inflate(R.layout.auto_record, parent, false);
-            //View view = inflater.inflate(R.layout.auto_summary, parent, false);
-            liters=(TextView) view.findViewById(R.id.textView_litersRecord);
-            price =(TextView) view.findViewById(R.id.textView_priceRecord);
-            kilo = (TextView) view.findViewById(R.id.textView_kiloRecord);
-            time = (TextView) view.findViewById(R.id.textView_timeRecord);
-            liters.setText("Liters: "+getItem(position).getLiters());
-            price.setText("Price($/L): "+getItem(position).getPrice());
-            kilo.setText("Kilometers: "+getItem(position).getKilo());
-            time.setText(getItem(position).getYear()+"-"+getItem(position).getMonth()+ " - "+getItem(position).getDay());
-
-            return view;
-        }
-    }
-
-
+    Calendar calendar = Calendar.getInstance();
+    int thisYear = calendar.get(Calendar.YEAR);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auto_summary);
 
-        listView=(ListView)findViewById(R.id.auto_summary);
+        year=(TextView) findViewById(R.id.autoSum_year);
+        jan=(TextView) findViewById(R.id.autoSum_Jan);
+        janSum=(TextView) findViewById(R.id.autoSum_JanValue);
+        feb=(TextView) findViewById(R.id.autoSum_Feb);
+        febSum=(TextView) findViewById(R.id.autoSum_FebValue);
+        mar=(TextView) findViewById(R.id.autoSum_Mar);
+        marSum=(TextView) findViewById(R.id.autoSum_MarValue);
+        apr=(TextView) findViewById(R.id.autoSum_Apr);
+        aprSum=(TextView) findViewById(R.id.autoSum_AprValue);
+        may=(TextView) findViewById(R.id.autoSum_May);
+        maySum=(TextView) findViewById(R.id.autoSum_MayValue);
+        jun=(TextView) findViewById(R.id.autoSum_Jun);
+        junSum=(TextView) findViewById(R.id.autoSum_JunValue);
+        jul=(TextView) findViewById(R.id.autoSum_Jul);
+        julSum=(TextView) findViewById(R.id.autoSum_JulValue);
+        aug=(TextView) findViewById(R.id.autoSum_Aug);
+        augSum=(TextView) findViewById(R.id.autoSum_AugValue);
+        sep=(TextView) findViewById(R.id.autoSum_Sep);
+        sepSum=(TextView) findViewById(R.id.autoSum_SepValue);
+        oct=(TextView) findViewById(R.id.autoSum_Oct);
+        octSum=(TextView) findViewById(R.id.autoSum_OctValue);
+        nov=(TextView) findViewById(R.id.autoSum_Nov);
+        novSum=(TextView) findViewById(R.id.autoSum_NovValue);
+        dec=(TextView) findViewById(R.id.autoSum_Dec);
+        decSum=(TextView) findViewById(R.id.autoSum_DecValue);
 
-        carAdapter =new CarAdapter(this);
-        listView.setAdapter(carAdapter);
+        yearSubmit = (Button) findViewById(R.id.autoSum_submit);
+        yearSelect = (EditText) findViewById(R.id.autoSum_yearSelect);
 
         aHelper = new AutoDatabaseHelper(this);
         aHelper.setWritable();
 
+        /*SumQuery query=new SumQuery();
+        query.execute();*/
+        display(thisYear);
 
-        DatabaseQuery query=new DatabaseQuery();
-        query.execute();
-
-
-    }
-
-
-    public class DatabaseQuery extends AsyncTask<AutoInfo,Integer,String> {
-
-
-        protected void onProgressUpdate(Integer ...value){
-            Log.i(ACTIVITY_NAME, "in onProgressUpdate");
-        }
-
-        @Override
-        protected String doInBackground(AutoInfo... carInfos) {
-            Log.i(ACTIVITY_NAME, "In DOINBACKGROUND");
-            try {
-
-                cursor = aHelper.getCursor();
-
-                cursor.moveToFirst();
-
-                int colIndexId = cursor.getColumnIndex(AutoDatabaseHelper.KEY_ID);
-                int colIndexPrice = cursor.getColumnIndex(AutoDatabaseHelper.KEY_PRICE);
-                int colIndexLiters = cursor.getColumnIndex(AutoDatabaseHelper.KEY_LITERS);
-                int colIndexKilo = cursor.getColumnIndex(AutoDatabaseHelper.KEY_KILO);
-                int colIndexYear = cursor.getColumnIndex(AutoDatabaseHelper.KEY_YEAR);
-                int colIndexMonth = cursor.getColumnIndex(AutoDatabaseHelper.KEY_MONTH);
-                int colIndexDay = cursor.getColumnIndex(AutoDatabaseHelper.KEY_DAY);
-
-                while (!cursor.isAfterLast()) {
-                    list.add(new AutoInfo(cursor.getString(colIndexId), cursor.getString(colIndexYear),
-                            cursor.getString(colIndexMonth), cursor.getString(colIndexDay),cursor.getString(colIndexPrice),
-                            cursor.getString(colIndexLiters), cursor.getString(colIndexKilo)));
-                    cursor.moveToNext();
-                }
-
-            }catch(Exception e){
-                e.printStackTrace();
+        yearSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                thisYear = Integer.parseInt(yearSelect.getText().toString());
+                display(thisYear);
+                /*SumQuery query2=new SumQuery();
+                 query2.execute();*/
+                yearSelect.setText("");
             }
-            return null;
-        }
-        @Override
-        protected void onPostExecute(String result){
-            Log.i(ACTIVITY_NAME, "In onPostExecute");
-            carAdapter.notifyDataSetChanged();
-        }
+        });
     }
+
+
+
 
     @Override
     protected void onResume() {
@@ -170,7 +132,7 @@ public class AutoSummaryActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //aHelper.closeDatabase();
+        aHelper.closeDatabase();
         Log.i(ACTIVITY_NAME, "In onDestroy()");
     }
 
@@ -179,4 +141,65 @@ public class AutoSummaryActivity extends Activity {
         Intent intentRef = getIntent();
         startActivity(intentRef);
     }
+
+
+    public void display(int thisYear){
+
+        year.setText(thisYear+"");
+
+        janSum.setText(aHelper.getSum(thisYear).get(0));
+        febSum.setText(aHelper.getSum(thisYear).get(1));
+        marSum.setText(aHelper.getSum(thisYear).get(2));
+        aprSum.setText(aHelper.getSum(thisYear).get(3));
+        maySum.setText(aHelper.getSum(thisYear).get(4));
+        junSum.setText(aHelper.getSum(thisYear).get(5));
+        julSum.setText(aHelper.getSum(thisYear).get(6));
+        augSum.setText(aHelper.getSum(thisYear).get(7));
+        sepSum.setText(aHelper.getSum(thisYear).get(8));
+        octSum.setText(aHelper.getSum(thisYear).get(9));
+        novSum.setText(aHelper.getSum(thisYear).get(10));
+        decSum.setText(aHelper.getSum(thisYear).get(11));
+    }
+
+   /* public class SumQuery extends AsyncTask<Void,Integer,Void> {
+        @Override
+        protected Void doInBackground(Void...params) {
+            try {
+                 //list=null;
+                for(int i=1; i<=12; i++) {
+                    String monthSum =aHelper.getMonthSum(thisYear,i);
+                    list.add(monthSum);}
+
+                year.setText(thisYear+"");
+
+                janSum.setText(list.get(0));
+                febSum.setText(list.get(1));
+                marSum.setText(list.get(2));
+                aprSum.setText(list.get(3));
+                maySum.setText(list.get(4));
+                junSum.setText(list.get(5));
+                julSum.setText(list.get(6));
+                augSum.setText(list.get(7));
+                sepSum.setText(list.get(8));
+                octSum.setText(list.get(9));
+                novSum.setText(list.get(10));
+                decSum.setText(list.get(11));
+
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        protected void onProgressUpdate(Integer ...value){
+            Log.i(ACTIVITY_NAME, "in onProgressUpdate");
+        }
+
+        @Override
+        protected void onPostExecute(Void param){
+            Log.i(ACTIVITY_NAME, "In onPostExecute");
+        }
+    }
+*/
+
 }
