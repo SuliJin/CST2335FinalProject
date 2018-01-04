@@ -25,7 +25,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -105,10 +104,6 @@ public class ActivityTrackingActivity extends AppCompatActivity {
 
         progressBar = (ProgressBar) findViewById(R.id.t_progressBar);
         progressBar.setVisibility(View.VISIBLE);
-        animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 100);
-        animation.setDuration(1000); // 3 second
-        animation.setInterpolator(new DecelerateInterpolator());
-        animation.start();
 
         InitActivityTracking init = new InitActivityTracking();
         init.execute();
@@ -119,63 +114,62 @@ public class ActivityTrackingActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... strings) {
-           try {
-               SystemClock.sleep(100);
-               this.publishProgress(25);
-               ActivityTrackingDatabaseHelper dbHelper = new ActivityTrackingDatabaseHelper(ActivityTrackingActivity.this);
-               writeableDB = dbHelper.getWritableDatabase();
-               SystemClock.sleep(200);
-               this.publishProgress(55);
-               //populate activity list
-               cursor = writeableDB.rawQuery("select * from " + ActivityTrackingDatabaseHelper.TABLE_NAME, null);
-               cursor.moveToFirst();
-               while (!cursor.isAfterLast()) {
-                   Map<String, Object> row = new HashMap<>();
-                   row.put(ID, cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.ID)));
-                   String type = cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.TYPE));
-                   type = getActivityString(ActivityTrackingUtil.getPosition(type));
-                   String time = cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.TIME));
-                   try {
-                       Date date = ActivityTrackingUtil.getDateFormatter().parse(time);
-                       time =  ActivityTrackingUtil.getDateFormatter().format(date);
-                   } catch (ParseException e) {
-                       e.printStackTrace();
-                   }
-                   String duration = cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.DURATION));
-                   String comment = cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.COMMENT));
-                   row.put(ActivityTrackingDatabaseHelper.TYPE, type);
-                   row.put(ActivityTrackingDatabaseHelper.TIME, time);
-                   row.put(ActivityTrackingDatabaseHelper.DURATION, duration);
-                   row.put(ActivityTrackingDatabaseHelper.COMMENT, comment);
-                   row.put(DESCRIPTION, getResources().getString(R.string.t_start_at) + " " + time + ", " + type +
-                           " " + getResources().getString(R.string.t_for) + " " + duration +
-                           " " + getResources().getString(R.string.t_min_note) + " " + comment);
+            try {
+                SystemClock.sleep(100);
+                progressBar.setProgress(10);
+                ActivityTrackingDatabaseHelper dbHelper = new ActivityTrackingDatabaseHelper(ActivityTrackingActivity.this);
+                writeableDB = dbHelper.getWritableDatabase();
+                SystemClock.sleep(200);
+                progressBar.setProgress(30);
+                //populate activity list
+                cursor = writeableDB.rawQuery("select * from " + ActivityTrackingDatabaseHelper.TABLE_NAME, null);
+                cursor.moveToFirst();
+                while (!cursor.isAfterLast()) {
+                    Map<String, Object> row = new HashMap<>();
+                    row.put(ID, cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.ID)));
+                    String type = cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.TYPE));
+                    type = getActivityString(ActivityTrackingUtil.getPosition(type));
+                    String time = cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.TIME));
+                    try {
+                        Date date = ActivityTrackingUtil.getDateFormatter().parse(time);
+                        time =  ActivityTrackingUtil.getDateFormatter().format(date);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    String duration = cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.DURATION));
+                    String comment = cursor.getString(cursor.getColumnIndex(ActivityTrackingDatabaseHelper.COMMENT));
+                    row.put(ActivityTrackingDatabaseHelper.TYPE, type);
+                    row.put(ActivityTrackingDatabaseHelper.TIME, time);
+                    row.put(ActivityTrackingDatabaseHelper.DURATION, duration);
+                    row.put(ActivityTrackingDatabaseHelper.COMMENT, comment);
+                    row.put(DESCRIPTION, getResources().getString(R.string.t_start_at) + " " + time + ", " + type +
+                            " " + getResources().getString(R.string.t_for) + " " + duration +
+                            " " + getResources().getString(R.string.t_min_note) + " " + comment);
 
-                   activityList.add(row);
-                   cursor.moveToNext();
-               }
-               SystemClock.sleep(500);
-               this.publishProgress(75);
-               final Intent intent = new Intent(ActivityTrackingActivity.this, ActivityTrackingAddActivity.class);
-               findViewById(R.id.t_newActivity).setOnClickListener(new View.OnClickListener() {
-                   @Override
-                   public void onClick(View v) {
-                       finish();
-                       startActivity(intent);
-                   }
-               });
-               SystemClock.sleep(200);
-               this.publishProgress(100);
-               return null;
-           } finally {
-               if (cursor != null)
-                   cursor.close();
-           }
+                    activityList.add(row);
+                    cursor.moveToNext();
+                }
+                SystemClock.sleep(500);
+                progressBar.setProgress(80);
+                final Intent intent = new Intent(ActivityTrackingActivity.this, ActivityTrackingAddActivity.class);
+                findViewById(R.id.t_newActivity).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                        startActivity(intent);
+                    }
+                });
+                SystemClock.sleep(200);
+                progressBar.setProgress(100);
+                return null;
+            } finally {
+                if (cursor != null)
+                    cursor.close();
+            }
         }
 
         protected void onProgressUpdate(Integer ...values){
             super.onProgressUpdate(values);
-
         }
 
         @Override
