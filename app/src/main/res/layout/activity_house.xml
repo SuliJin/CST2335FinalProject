@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,11 +8,6 @@
     android:layout_height="match_parent"
     tools:context="xiasheng.androidfinalproject.trackingHouseActivity">
 
-    <!--<android.support.design.widget.AppBarLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:theme="@style/AppBarOverlay"-->
-        <!--android:id="@+id/appBarLayout">-->
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -19,26 +16,12 @@
 
             app:popupTheme="@style/PopupOverlay" />
 
-    <!--</android.support.design.widget.AppBarLayout>-->
-
-
-
-    <FrameLayout
-        android:id="@+id/h_listview_Frame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@id/progressBar"
-        android:background="#d3dbf8"/>
-
-
-    <ListView
+        <ListView
         android:id="@+id/thermView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignBottom="@+id/h_listview_Frame"
-        android:layout_alignParentStart="true"
-         />
+        android:layout_weight="1"/>
+
 
 
     <android.support.design.widget.FloatingActionButton
@@ -50,11 +33,9 @@
         android:layout_alignParentRight="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_margin="16dp"
-        app:layout_anchor="@id/thermView"
+        android:layout_marginBottom="100dp"
         app:layout_anchorGravity="bottom|right|end"
         android:src="@drawable/addnote" />
-
-
 
     <ProgressBar
 
@@ -69,5 +50,14 @@
         android:progress="@android:integer/config_shortAnimTime"
         android:progressTint="@android:color/holo_red_light"
         android:visibility="invisible" />
+
+
+
+        <FrameLayout
+            android:id="@+id/h_listview_Frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="200dp" />
 
 </RelativeLayout>

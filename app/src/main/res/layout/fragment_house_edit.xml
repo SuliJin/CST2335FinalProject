@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="#8F91BF"    >
+    android:background="#8F91BF"
+    tools:context="xiasheng.androidfinalproject.FragmentThermo">
 
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <TextView
         android:id="@+id/fragmentId"
         android:layout_marginTop="15dp"
@@ -85,7 +87,6 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/button_saveNewRule_fg_h"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="19dp"
-        android:text="@string/save" />
-
+        android:text="@string/update" />
 </RelativeLayout>
+</FrameLayout>

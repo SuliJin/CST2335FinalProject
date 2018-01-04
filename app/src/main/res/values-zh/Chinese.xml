@@ -122,6 +122,7 @@
     <string name="addNew">添加温度条目</string>
     <string name="delete">删除温度条目</string>
     <string name="save">保存</string>
+    <string name="update">更新</string>
     <string name="setDayofWeek">设置星期几</string>
     <string name="setTemp">设置温度(0-100)</string>
     <string name="setHour">设置小时(0-23)</string>

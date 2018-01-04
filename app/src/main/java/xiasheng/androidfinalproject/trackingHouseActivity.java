@@ -1,8 +1,5 @@
 package xiasheng.androidfinalproject;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -14,7 +11,6 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -27,7 +23,6 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,8 +41,6 @@ public class trackingHouseActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private ChatAdapter therAdapter;
     private House_DatabaseHelper dbHelper;
-    private Boolean isLandscape;
-    private FrameLayout landscapeFrameLayout;
     private int requestCode = 1;
 
     public boolean onOptionsItemSelected(MenuItem mi) {
@@ -57,7 +50,7 @@ public class trackingHouseActivity extends AppCompatActivity {
                 AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
                 builder2.setTitle(R.string.help);
                 LayoutInflater inflater = this.getLayoutInflater();
-                final View dialogView = inflater.inflate(R.layout.activity_thermo_help, null);
+                final View dialogView = inflater.inflate(R.layout.activity_house_help, null);
                 builder2.setView(dialogView);
                 builder2.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -83,124 +76,27 @@ public class trackingHouseActivity extends AppCompatActivity {
         TrackingAsync init = new TrackingAsync();
         init.execute();
 
-    }
+        ListView listview = findViewById(R.id.thermView);
+        therAdapter=new ChatAdapter(trackingHouseActivity.this);
+        listview.setAdapter(therAdapter);
 
-    class TrackingAsync extends AsyncTask<String, Integer, String>{
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            //public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Bundle bundle = new Bundle();
+                bundle.putString("id",therAdapter.getItemId(position)+"");
+                bundle.putString("description",therAdapter.getItem(position)+"");
 
-        @Override
-        protected String doInBackground(String... strings) {
-            SystemClock.sleep(100);
-            progressBar.setProgress(10);
-            dbHelper = new House_DatabaseHelper(trackingHouseActivity.this);
-            tempDB = dbHelper.getWritableDatabase();
-            SystemClock.sleep(200);
-            progressBar.setProgress(30);
-
-        //populate activity list
-        cursor = tempDB.rawQuery("select * from " + TABLE_NAME,null );
-        //cursor=dbHelper.read();
-        cursor.moveToFirst();
-        while(!cursor.isAfterLast() ) {
-            Map<String, Object> row = new HashMap<>();
-            row.put("id", cursor.getString(cursor.getColumnIndex(House_DatabaseHelper.ID)));
-            String day = cursor.getString(cursor.getColumnIndex(House_DatabaseHelper.DAY));
-            String hour = cursor.getString(cursor.getColumnIndex(House_DatabaseHelper.HOUR));
-            String minutes = cursor.getString(cursor.getColumnIndex(House_DatabaseHelper.MINUTE));
-            String temperature = cursor.getString(cursor.getColumnIndex(House_DatabaseHelper.Temperature));
-            row.put("Day of  Week", day);
-            row.put("description", day + " , "+ hour +": "  + minutes + " , "+  temperature);
-            userList.add(row);
-            cursor.moveToNext();
-        }
-            SystemClock.sleep(500);
-            progressBar.setProgress(80);
-
-
-            findViewById(R.id.addButton).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-//                    if(findViewById(R.id.landscapeFrameLayout)!=null){
-//                        FragmentThermo mf = new FragmentThermo();
-//                        FragmentTransaction ft = getFragmentManager().beginTransaction();
-//                       ft.add(R.id.landscapeFrameLayout, mf).commit();
-//                    }else{
-                        Intent intent = new Intent(trackingHouseActivity.this, AddHouseActivity.class);
-                        startActivityForResult(intent, requestCode);
-
-                        //startActivity(intent);
-                    }
-//                }
-            });
-            SystemClock.sleep(200);
-            progressBar.setProgress(100);
-            return null;
-        }
-
-        protected void onProgressUpdate(Integer ...values){
-            super.onProgressUpdate(values);
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            progressBar.setVisibility(View.INVISIBLE );
-            ListView listview = findViewById(R.id.thermView);
-            therAdapter=new ChatAdapter(trackingHouseActivity.this);
-            listview.setAdapter(therAdapter);
-
-
-            listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                //public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                    landscapeFrameLayout = (FrameLayout) findViewById(R.id.landscapeFrameLayout);
-
-                    if(landscapeFrameLayout == null){
-                        isLandscape = false;
-                        Log.i(ACTIVITY_NAME, "The phone is on portrait layout.");
-                    }
-                    else {
-                        isLandscape = true;
-                        Log.i(ACTIVITY_NAME, "The phone is on landscape layout.");
-                    }
-                    Bundle bundle = new Bundle();
-                    bundle.putString("id",therAdapter.getItemId(position)+"");
-                    bundle.putBoolean("isLandscape", isLandscape);
-
-                    final Intent edit=new Intent(trackingHouseActivity.this,HouseDetailActivity.class);
-                    if(isLandscape == true){
-                        FragmentThermo messageFragment = new FragmentThermo();
-                        messageFragment.setArguments(bundle);
-                        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.landscapeFrameLayout,messageFragment);
-                        fragmentTransaction.addToBackStack(null);
-                        fragmentTransaction.commit();
-                        // fragmentTransaction.add(R.id.landscapeFrameLayout, messageFragment).addToBackStack(null).commit();
-                    }
-                    else{
-
-                        edit.putExtra("bundle", bundle);
-                        startActivityForResult(edit, requestCode);
-                    }
-
-                }
-            });
-        }
-    }
-    private void init() {
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (this.requestCode == requestCode && data != null) {
-            Long id = data.getLongExtra("id", -1);
-            tempDB.delete(TABLE_NAME, House_DatabaseHelper.ID + "=" + id, null);
-            refreshActivity();
-        }
+                FragmentThermo messageFragment = new FragmentThermo();
+                messageFragment.setArguments(bundle);
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.h_listview_Frame,messageFragment).addToBackStack(null).commit();
+            }
+        });
     }
     private class ChatAdapter extends ArrayAdapter<Map<String, Object>> {
-        public ChatAdapter(Context ctx) {
+        private ChatAdapter(Context ctx) {
             super(ctx, 0);
         }
 
@@ -217,16 +113,84 @@ public class trackingHouseActivity extends AppCompatActivity {
             return Long.parseLong(content.get("id").toString());
         }
 
+        @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            View result = inflater.inflate(R.layout.activity_track_temperature, parent, false);
+            View result = inflater.inflate(R.layout.activity_house_track, parent, false);
             if (!userList.isEmpty()) {
                 Map<String, Object> content = getItem(position);
                 TextView message1 = (TextView) result.findViewById(R.id.record);
                 message1.setText(content.get("description").toString());
-          }
+            }
             return result;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (this.requestCode == requestCode && data != null) {
+            Long id = data.getLongExtra("id", -1);
+            tempDB.delete(TABLE_NAME, House_DatabaseHelper.ID + "=" + id, null);
+            refreshActivity();
+        }
+    }
+
+    class TrackingAsync extends AsyncTask<String, Integer, String>{
+
+        @Override
+        protected String doInBackground(String... strings) {
+            SystemClock.sleep(100);
+            progressBar.setProgress(10);
+            dbHelper = new House_DatabaseHelper(trackingHouseActivity.this);
+            tempDB = dbHelper.getWritableDatabase();
+            SystemClock.sleep(200);
+            progressBar.setProgress(30);
+
+        //populate activity list
+        cursor = tempDB.rawQuery("select * from " + TABLE_NAME,null );
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast() ) {
+            Map<String, Object> row = new HashMap<>();
+            row.put("id", cursor.getString(cursor.getColumnIndex(House_DatabaseHelper.ID)));
+            String day = cursor.getString(cursor.getColumnIndex(House_DatabaseHelper.DAY));
+            String hour = cursor.getString(cursor.getColumnIndex(House_DatabaseHelper.HOUR));
+            String minutes = cursor.getString(cursor.getColumnIndex(House_DatabaseHelper.MINUTE));
+            String temperature = cursor.getString(cursor.getColumnIndex(House_DatabaseHelper.Temperature));
+            row.put("Day of  Week", day);
+            row.put("description", day + " , "+ hour +": "  + minutes + " , "+ "Temp -> "+ temperature);
+            userList.add(row);
+            cursor.moveToNext();
+        }
+            SystemClock.sleep(500);
+            progressBar.setProgress(80);
+
+
+            findViewById(R.id.addButton).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                        //Intent intent = new Intent(trackingHouseActivity.this, AddHouseActivity.class);
+
+                    Fragment_AddThermo messageFragment = new Fragment_AddThermo();
+                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                    fragmentTransaction.add(R.id.h_listview_Frame,messageFragment).addToBackStack(null).commit();
+                    }
+//                }
+            });
+            SystemClock.sleep(200);
+            progressBar.setProgress(100);
+            return null;
+        }
+
+        protected void onProgressUpdate(Integer ...values){
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+           therAdapter.notifyDataSetChanged();
+            progressBar.setVisibility(View.INVISIBLE );
         }
     }
 

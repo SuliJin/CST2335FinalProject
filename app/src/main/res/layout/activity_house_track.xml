@@ -7,23 +7,19 @@
     android:orientation="horizontal"
     tools:context="xiasheng.androidfinalproject.trackingHouseActivity">
 
-
-
-
     <ListView
         android:id="@+id/thermList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/record" />
-
+        android:layout_below="@+id/record"
+        android:layout_columnWeight="1"
+        android:layout_gravity="fill"
+        />
 
     <TextView
         android:id="@+id/record"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-
-
 
 </RelativeLayout>

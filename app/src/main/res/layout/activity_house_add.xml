@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context="xiasheng.androidfinalproject.AddHouseActivity">
+    android:background="#EFC310"
+    tools:context="xiasheng.androidfinalproject.Fragment_AddThermo">
 
-
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/PopupOverlay" />
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:fontFamily="@font/petit_formal_script"
         android:text="@string/setDayofWeek" />
@@ -65,8 +66,7 @@
         android:layout_below="@+id/textView3"
         android:layout_marginStart="60dp"
         android:fontFamily="@font/petit_formal_script"
-        android:max="23"
-        android:min="1" />
+ />
 
     <NumberPicker
     android:id="@+id/numberPicker2"
@@ -75,8 +75,7 @@
     android:layout_alignTop="@+id/numberPicker1"
         android:layout_marginLeft="180dp"
     android:fontFamily="@font/petit_formal_script"
-    android:max="59"
-    android:min="00" />
+ />
 
     <TextView
     android:layout_width="wrap_content"
@@ -101,26 +100,26 @@
     android:fontFamily="@font/petit_formal_script"
     android:inputType="number"
         android:layout_marginRight="35dp"
-    android:labelFor="@string/setTemp" />
+    android:labelFor="@string/setTemp"
+       />
 
 
-    <Button
-    android:id="@+id/savebutton"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:layout_alignParentEnd="true"
-    android:layout_marginBottom="34dp"
-    android:layout_marginEnd="37dp"
-    android:text="@string/save" />
+        <Button
+            android:id="@+id/savebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/cancelbutton"
+            android:layout_toEndOf="@+id/numberPicker2"
+            android:text="@string/save" />
 
-    <Button
-    android:id="@+id/cancelbutton"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignTop="@+id/savebutton"
-    android:layout_marginStart="35dp"
-    android:text="@string/cancel" />
-
-
-</RelativeLayout>
+        <Button
+            android:id="@+id/cancelbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView4"
+            android:layout_alignTop="@+id/textView4"
+            android:layout_marginTop="31dp"
+            android:text="@string/cancel" />
+    </RelativeLayout>
+</FrameLayout>
+</ScrollView>
