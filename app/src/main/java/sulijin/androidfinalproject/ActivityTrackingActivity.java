@@ -25,6 +25,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -104,6 +105,10 @@ public class ActivityTrackingActivity extends AppCompatActivity {
 
         progressBar = (ProgressBar) findViewById(R.id.t_progressBar);
         progressBar.setVisibility(View.VISIBLE);
+        animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 100);
+        animation.setDuration(1000); // 3 second
+        animation.setInterpolator(new DecelerateInterpolator());
+        animation.start();
 
         InitActivityTracking init = new InitActivityTracking();
         init.execute();
@@ -116,11 +121,11 @@ public class ActivityTrackingActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
            try {
                SystemClock.sleep(100);
-               progressBar.setProgress(10);
+               this.publishProgress(25);
                ActivityTrackingDatabaseHelper dbHelper = new ActivityTrackingDatabaseHelper(ActivityTrackingActivity.this);
                writeableDB = dbHelper.getWritableDatabase();
                SystemClock.sleep(200);
-               progressBar.setProgress(30);
+               this.publishProgress(55);
                //populate activity list
                cursor = writeableDB.rawQuery("select * from " + ActivityTrackingDatabaseHelper.TABLE_NAME, null);
                cursor.moveToFirst();
@@ -150,7 +155,7 @@ public class ActivityTrackingActivity extends AppCompatActivity {
                    cursor.moveToNext();
                }
                SystemClock.sleep(500);
-               progressBar.setProgress(80);
+               this.publishProgress(75);
                final Intent intent = new Intent(ActivityTrackingActivity.this, ActivityTrackingAddActivity.class);
                findViewById(R.id.t_newActivity).setOnClickListener(new View.OnClickListener() {
                    @Override
@@ -160,7 +165,7 @@ public class ActivityTrackingActivity extends AppCompatActivity {
                    }
                });
                SystemClock.sleep(200);
-               progressBar.setProgress(100);
+               this.publishProgress(100);
                return null;
            } finally {
                if (cursor != null)
@@ -170,6 +175,7 @@ public class ActivityTrackingActivity extends AppCompatActivity {
 
         protected void onProgressUpdate(Integer ...values){
             super.onProgressUpdate(values);
+
         }
 
         @Override
