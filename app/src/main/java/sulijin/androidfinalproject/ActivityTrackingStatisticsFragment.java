@@ -65,13 +65,16 @@ public class ActivityTrackingStatisticsFragment extends Fragment {
             String month = months[time.getMonth()];
             Integer minutePerActivity = minutePerActivityMap.get(month);
 
+            if (! (time.getYear() == today.getYear())) {
+                continue;
+            }
             if (minutePerActivity == null) {
                 minutePerActivityMap.put(month, duration);
             } else {
                 minutePerActivityMap.put(month, duration + minutePerActivity);
             }
 
-            if (! (time.getYear() == today.getYear() && time.getMonth() == today.getMonth())) {
+            if (! (time.getMonth() == today.getMonth())) {
                 continue;
             }
 
