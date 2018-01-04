@@ -47,10 +47,26 @@ public class F_NewEntryActivity extends Activity {
             public void onClick(View view){
 
                 String type= Edittype.getText().toString();
+                if (type.matches("")) {
+                    Toast.makeText(getApplicationContext(), R.string.f_type, Toast.LENGTH_LONG).show();
+                    return;
+                }
                 String time =Edittime.getText().toString();
                 String carlories=Editcarlories.getText().toString();
+                if (carlories.matches("")) {
+                    Toast.makeText(getApplicationContext(), R.string.f_carlories, Toast.LENGTH_LONG).show();
+                    return;
+                }
                 String total_Fat=Edittotal_Fat.getText().toString();
+                if (total_Fat.matches("")) {
+                    Toast.makeText(getApplicationContext(), R.string.f_total_Fat, Toast.LENGTH_LONG).show();
+                    return;
+                }
                 String carbohydrate = Editcarbohydrate.getText().toString();
+                if (carbohydrate.matches("")) {
+                    Toast.makeText(getApplicationContext(), R.string.f_carbohydrate, Toast.LENGTH_LONG).show();
+                    return;
+                }
 
                 f_db.insert(type, time, carlories,total_Fat, carbohydrate);
                 Toast t = Toast.makeText(getApplicationContext(), R.string.f_saveConfirm, Toast.LENGTH_LONG);

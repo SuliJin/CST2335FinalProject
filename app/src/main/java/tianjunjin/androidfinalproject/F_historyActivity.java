@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -61,6 +62,14 @@ public class F_historyActivity extends Activity {
         protected String doInBackground(String... strings) {
             SystemClock.sleep(100);
             progressBar.setProgress(10);
+            SystemClock.sleep(300);
+            progressBar.setProgress(20);
+            SystemClock.sleep(500);
+            progressBar.setProgress(30);
+            SystemClock.sleep(500);
+            progressBar.setProgress(40);
+            SystemClock.sleep(500);
+            progressBar.setProgress(50);
             f_db = new Database_nutrition(F_historyActivity.this);
             f_sqldb = f_db.getWritableDatabase();
             f_c = f_sqldb.rawQuery("select * from " + Database_nutrition.DB_food_table, null);
@@ -74,9 +83,17 @@ public class F_historyActivity extends Activity {
                 f_infor.put("calories", f_c.getString(f_c.getColumnIndex(Database_nutrition.key_Calories)));
                 f_infor.put("total_Fat", f_c.getString(f_c.getColumnIndex(Database_nutrition.key_Total_Fat)));
                 f_infor.put("carbohydrate", f_c.getString(f_c.getColumnIndex(Database_nutrition.key_Carbohydrate)));
+
                 foodList.add(f_infor);
+                Collections.reverse(foodList );
                 f_c.moveToNext();
             }
+            SystemClock.sleep(500);
+            progressBar.setProgress(70);
+            SystemClock.sleep(500);
+            progressBar.setProgress(80);
+            SystemClock.sleep(500);
+            progressBar.setProgress(90);
             SystemClock.sleep(500);
             progressBar.setProgress(100);
             return null;

@@ -26,11 +26,11 @@ tools:context="tianjunjin.androidfinalproject.F_NewEntryActivity">
 
     <EditText
         android:id="@+id/type_value"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        />
+        android:inputType="text" />
 
     <TextView
         android:id="@+id/f_time"
@@ -57,8 +57,7 @@ tools:context="tianjunjin.androidfinalproject.F_NewEntryActivity">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        />
+        android:inputType="number" />
 
     <TextView
         android:id="@+id/total_fat"
@@ -71,8 +70,7 @@ tools:context="tianjunjin.androidfinalproject.F_NewEntryActivity">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        />
+        android:inputType="number" />
 
     <TextView
         android:id="@+id/carbohydrate"
@@ -85,8 +83,7 @@ tools:context="tianjunjin.androidfinalproject.F_NewEntryActivity">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        />
+        android:inputType="number" />
     <Button
         android:id="@+id/f_Save"
         android:layout_width="wrap_content"
